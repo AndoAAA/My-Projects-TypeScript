@@ -22,7 +22,7 @@ const Search: React.FC = () => {
           gap: 1,
           borderRadius: "10px",
           backgroundColor: "#fff",
-          boxShadow: "0 2px 5px rgba(0,0,0,0.2)", // Optional shadow for a cleaner look
+          boxShadow: "0 2px 5px rgba(0,0,0,0.2)",
         }}
       >
         <TextField
@@ -32,8 +32,8 @@ const Search: React.FC = () => {
           size="small"
           sx={{
             flexGrow: 1,
-            "& fieldset": { border: "none" }, // Removes the border
-            "& input": { padding: "10px 12px" }, // Adjust padding for better spacing
+            "& fieldset": { border: "none" },
+            "& input": { padding: "10px 12px" },
           }}
         />
         <IconButton
