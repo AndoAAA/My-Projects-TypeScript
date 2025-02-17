@@ -2,6 +2,7 @@ import React from "react";
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import Search from "./Search";
 import Categories from "./Categories";
+import libraryImage from "../assets/library.jpg";
 
 const Header: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const Header: React.FC = () => {
         position="static"
         sx={{
           bgcolor: "transparent",
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../assets/library.jpg")`,
+          backgroundImage: `url(${libraryImage})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
