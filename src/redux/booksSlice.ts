@@ -1,12 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 const BASE_URL = "https://openlibrary.org";
 
 interface BookResponse {
   works: {
-    authors: { name: string }[];
+    authors: { name: string[] }[];
     title: string;
     key: string;
     cover_id?: number;

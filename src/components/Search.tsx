@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { TextField, IconButton, Box } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
+import { fetchSearchResults } from "../redux/booksSlice";
 
 const Search: React.FC = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
+  const dispatch: AppDispatch = useDispatch();
+
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Search submitted!");
+    if (query.trim()) {
+      dispatch(fetchSearchResults(query));
+      navigate("/search");
+      setQuery("");
+    }
   };
 
   return (
@@ -15,7 +27,7 @@ const Search: React.FC = () => {
     >
       <Box
         component="form"
-        onSubmit={handleSubmit}
+        onSubmit={handleSearch}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -35,6 +47,8 @@ const Search: React.FC = () => {
             "& fieldset": { border: "none" },
             "& input": { padding: "10px 12px" },
           }}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
         />
         <IconButton
           type="submit"
