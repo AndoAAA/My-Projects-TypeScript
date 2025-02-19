@@ -1,5 +1,14 @@
-import { Box, Typography, Button, Card, CardContent, CardMedia, Chip } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Chip,
+} from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface Book {
   title: string;
@@ -33,8 +42,8 @@ const BookList: React.FC<BookListProps> = ({ books }) => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              justifyContent:"space-between",
-              textAlign:"center",
+              justifyContent: "space-between",
+              textAlign: "center",
               boxShadow: 3,
               borderRadius: 2,
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -74,7 +83,9 @@ const BookList: React.FC<BookListProps> = ({ books }) => {
 
               {/* Book Author */}
               <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
-                {book.authors ? book.authors[0]?.name : book.author_name?.[0] || "Unknown Author"}
+                {book.authors
+                  ? book.authors[0]?.name
+                  : book.author_name?.[0] || "Unknown Author"}
               </Typography>
 
               {/* Book Subjects (Categories) */}
@@ -99,22 +110,24 @@ const BookList: React.FC<BookListProps> = ({ books }) => {
               </Box>
 
               {/* View Details Button */}
-              <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                sx={{
-                  display: "inline-block",
-                  backgroundColor: "#6f4f37",
-                  "&:hover": {
-                    backgroundColor: "#5a3e26",
-                  },
-                  borderRadius: 1,
-                  padding: "8px 16px",
-                }}
-              >
-                View Details
-              </Button>
+              <Link to={`/works/${book.key.replace("/works/", "")}`}>
+                <Button
+                  variant="contained"
+                  size="small"
+                  color="primary"
+                  sx={{
+                    display: "inline-block",
+                    backgroundColor: "#6f4f37",
+                    "&:hover": {
+                      backgroundColor: "#5a3e26",
+                    },
+                    borderRadius: 1,
+                    padding: "8px 16px",
+                  }}
+                >
+                  View Details
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         ))

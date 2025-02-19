@@ -132,7 +132,7 @@ const booksSlice = createSlice({
         }
       )
       .addCase(fetchBooksDetails.rejected, (state, action) => {
-        state.loading = true;
+        state.loading = false;
         state.error = action.error.message || "Failed to fetch data";
       });
   },
