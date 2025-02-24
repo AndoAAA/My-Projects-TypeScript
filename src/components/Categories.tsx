@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React from "react";
 
 type CategoriesProps = {
@@ -18,22 +18,22 @@ const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
         sx={{ borderRadius: "30px", bgcolor: "#f5f5f5" }}
       >
         {categories.map((category, i) => (
-          <Typography
+          <Button
             key={i}
-            variant="body1"
+            variant={value === i ? "contained" : "outlined"}
             onClick={() => onChangeCategory(i)}
+            aria-pressed={value === i}
             sx={{
-              cursor: "pointer",
-              padding: "8px 16px",
               borderRadius: "20px",
               bgcolor: value === i ? "orange" : "transparent",
               color: value === i ? "white" : "black",
+              border: "none",
               transition: "0.3s",
               "&:hover": { bgcolor: "orange", color: "white" },
             }}
           >
             {category}
-          </Typography>
+          </Button>
         ))}
       </Box>
     </Box>

@@ -5,12 +5,23 @@ import EuroIcon from "@mui/icons-material/Euro";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  totalPrice: number;
+  cartItems: number;
+};
+
+const Header: React.FC<HeaderProps> = ({ totalPrice, cartItems }) => {
   return (
     <Container maxWidth="lg">
       {/* Logo and Title Section */}
-      <Box display="flex" alignItems="center" justifyContent="space-between" py={2}>
-        
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        py={2}
+        flexWrap="wrap"
+        gap={2}
+      >
         {/* Logo */}
         <Box display="flex" alignItems="center">
           <img src={Logo} alt="logo" width={60} height={60} />
@@ -25,12 +36,12 @@ const Header: React.FC = () => {
         </Box>
 
         {/* Search Bar */}
-        <Box width="250px">
+        <Box width={{ xs: "100%", sm: "250px" }}>
           <TextField
             fullWidth
             variant="outlined"
             size="small"
-            placeholder="Search pizza"
+            placeholder="Search pizza..."
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -38,6 +49,7 @@ const Header: React.FC = () => {
                 </InputAdornment>
               ),
             }}
+            aria-label="Search for pizzas"
           />
         </Box>
 
@@ -54,11 +66,11 @@ const Header: React.FC = () => {
               px: 3,
               "&:hover": { bgcolor: "darkorange" },
             }}
+            aria-label="Go to cart"
           >
-            10 <EuroIcon fontSize="small" /> | <ShoppingCartOutlinedIcon fontSize="small" /> 3
+            {totalPrice} <EuroIcon fontSize="small" /> | <ShoppingCartOutlinedIcon fontSize="small" /> {cartItems}
           </Button>
         </Box>
-
       </Box>
     </Container>
   );
