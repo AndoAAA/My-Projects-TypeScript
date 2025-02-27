@@ -3,15 +3,22 @@ import React, { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Home from "./pages/Home";
+import { Route, Routes } from "react-router-dom";
+import Cart from "./pages/Cart";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [cartItems, setCartItems] = useState(0);
   return (
-    <div className="App">
+    <>
       <Header totalPrice={totalPrice} cartItems={cartItems} />
-      <Home />
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 }
 

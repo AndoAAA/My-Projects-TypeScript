@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import EuroIcon from "@mui/icons-material/Euro";
 
 type PizzaBlockProps = {
-  title: string;
+  name: string;
   imageUrl: string;
   price: number;
 };
 
-const PizzaBlock: React.FC<PizzaBlockProps> = ({ title, imageUrl, price }) => {
+const PizzaBlock: React.FC<PizzaBlockProps> = ({ name, imageUrl, price }) => {
   const crustTypes = ["Thin", "Traditional"];
   const sizes = [26, 30, 40];
 
@@ -31,11 +31,11 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ title, imageUrl, price }) => {
       <Box>
         <img
           src={imageUrl}
-          alt={title}
+          alt={name}
           style={{ width: "100%", borderRadius: "10px", marginBottom: "10px" }}
         />
         <Typography variant="h6" fontWeight="bold">
-          {title}
+          {name}
         </Typography>
       </Box>
 

@@ -1,9 +1,17 @@
 import React from "react";
-import { Box, Button, Container, Typography, TextField, InputAdornment } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  Typography,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
 import Logo from "../assets/pizza-logo.svg";
 import EuroIcon from "@mui/icons-material/Euro";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { NavLink } from "react-router-dom";
 
 type HeaderProps = {
   totalPrice: number;
@@ -11,6 +19,7 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ totalPrice, cartItems }) => {
+  
   return (
     <Container maxWidth="lg">
       {/* Logo and Title Section */}
@@ -23,8 +32,16 @@ const Header: React.FC<HeaderProps> = ({ totalPrice, cartItems }) => {
         gap={2}
       >
         {/* Logo */}
-        <Box display="flex" alignItems="center">
-          <img src={Logo} alt="logo" width={60} height={60} />
+        <Box display="flex" alignItems="center" flex="1">
+          <NavLink to="/">
+            <img
+              src={Logo}
+              alt="logo"
+              width={60}
+              height={60}
+              style={{ cursor: "pointer" }}
+            />
+          </NavLink>
           <Box ml={2}>
             <Typography variant="h5" fontWeight="bold">
               DODO PIZZA
@@ -36,7 +53,10 @@ const Header: React.FC<HeaderProps> = ({ totalPrice, cartItems }) => {
         </Box>
 
         {/* Search Bar */}
-        <Box width={{ xs: "100%", sm: "250px" }}>
+        <Box
+          width={{ xs: "100%", sm: "250px", md: "300px" }}
+          mb={{ xs: 2, sm: 0 }}
+        >
           <TextField
             fullWidth
             variant="outlined"
@@ -54,23 +74,26 @@ const Header: React.FC<HeaderProps> = ({ totalPrice, cartItems }) => {
         </Box>
 
         {/* Cart Button */}
-        <Box>
-          <Button
-            variant="contained"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              bgcolor: "orange",
-              borderRadius: "30px",
-              px: 3,
-              "&:hover": { bgcolor: "darkorange" },
-            }}
-            aria-label="Go to cart"
-          >
-            {totalPrice} <EuroIcon fontSize="small" /> | <ShoppingCartOutlinedIcon fontSize="small" /> {cartItems}
-          </Button>
-        </Box>
+        <NavLink to="/cart">
+          <Box>
+            <Button
+              variant="contained"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                bgcolor: "orange",
+                borderRadius: "30px",
+                px: 3,
+                "&:hover": { bgcolor: "darkorange" },
+              }}
+              aria-label="Go to cart"
+            >
+              {totalPrice} <EuroIcon fontSize="small" /> |{" "}
+              <ShoppingCartOutlinedIcon fontSize="small" /> {cartItems}
+            </Button>
+          </Box>
+        </NavLink>
       </Box>
     </Container>
   );
