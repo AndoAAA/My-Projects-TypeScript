@@ -19,8 +19,8 @@ const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
         sx={{
           borderRadius: "30px",
           bgcolor: "#f5f5f5",
-          flexDirection: { xs: "column", sm: "row" }, // Stack vertically on mobile
-          alignItems: "center", // Center buttons on mobile
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: "center",
         }}
       >
         {categories.map((category, i) => (
@@ -36,8 +36,8 @@ const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
               color: value === i ? "white" : "black",
               border: "none",
               transition: "0.3s",
-              fontSize: { xs: "12px", sm: "14px" }, // Adjust font size for small screens
-              padding: { xs: "6px 12px", sm: "8px 16px" }, // Adjust padding for mobile
+              fontSize: { xs: "12px", sm: "14px" }, 
+              padding: { xs: "6px 12px", sm: "8px 16px" }, 
               "&:hover": { bgcolor: "orange", color: "white" },
             }}
           >

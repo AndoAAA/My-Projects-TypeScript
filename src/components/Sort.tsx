@@ -27,7 +27,7 @@ const Sort: React.FC = () => {
   const [selectedSort, setSelectedSort] = useState<string>("Popular (DESC)");
   const sortRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // Check for mobile screen
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <div ref={sortRef}>
@@ -41,10 +41,10 @@ const Sort: React.FC = () => {
                 sx={{
                   bgcolor: "orange",
                   borderRadius: "30px",
-                  px: isMobile ? 1.5 : 3, // Adjust padding for mobile
-                  py: isMobile ? 1 : 1.5, // Adjust vertical padding for mobile
+                  px: isMobile ? 1.5 : 3,
+                  py: isMobile ? 1 : 1.5,
                   "&:hover": { bgcolor: "darkorange" },
-                  minWidth: "150px", // Make the button larger on mobile
+                  minWidth: "150px",
                 }}
               >
                 Sort By: {selectedSort}
@@ -60,18 +60,18 @@ const Sort: React.FC = () => {
                     <Paper
                       sx={{
                         mt: 1,
-                        p: isMobile ? 1 : 2, // Adjust padding for mobile
+                        p: isMobile ? 1 : 2,
                         borderRadius: "8px",
                         boxShadow: 3,
-                        minWidth: "150px", // Set a minimum width for the dropdown
+                        minWidth: "150px",
                       }}
                     >
                       {sortList.map((item) => (
                         <Typography
                           key={item.sortProperty}
                           onClick={() => {
-                            setSelectedSort(item.name); // Update selected sort
-                            popupState.close(); // Close popup after selecting
+                            setSelectedSort(item.name);
+                            popupState.close();
                           }}
                           sx={{
                             p: 1,

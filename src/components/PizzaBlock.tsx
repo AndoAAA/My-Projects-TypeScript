@@ -25,6 +25,10 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ name, imageUrl, price }) => {
         borderRadius: "10px",
         bgcolor: "#f9f9f9",
         boxShadow: 3,
+        margin: "0 auto",
+        "@media (max-width: 600px)": {
+          maxWidth: "100%",
+        },
       }}
     >
       {/* Pizza Image and Title */}
@@ -41,7 +45,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ name, imageUrl, price }) => {
 
       {/* Crust and Size Selection */}
       <Box sx={{ mt: 2, p: 1, borderRadius: "8px" }}>
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 1 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", gap: 1, flexWrap: "wrap" }}>
           {crustTypes.map((type, index) => (
             <Button
               key={index}
@@ -59,7 +63,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ name, imageUrl, price }) => {
             </Button>
           ))}
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 1, mt: 1 }}>
+        <Box sx={{ display: "flex", justifyContent: "center", gap: 1, mt: 1, flexWrap: "wrap" }}>
           {sizes.map((size, index) => (
             <Button
               key={index}
@@ -73,7 +77,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ name, imageUrl, price }) => {
                 "&:hover": { bgcolor: activeSize === index ? "darkorange" : "#ddd" },
               }}
             >
-              {size} cm
+              {size} sm
             </Button>
           ))}
         </Box>
@@ -86,9 +90,10 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ name, imageUrl, price }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          flexWrap: "wrap",
         }}
       >
-        <Typography variant="h6" fontWeight="bold">
+        <Typography variant="h6" fontWeight="bold" sx={{ flex: 1 }}>
           from {price} <EuroIcon fontSize="small" />
         </Typography>
         <Button
