@@ -12,7 +12,11 @@ interface Pizza {
   price: number;
 }
 
-const Home: React.FC = () => {
+interface HomeProps {
+  searchTerm: string;
+}
+
+const Home: React.FC<HomeProps> = ({ searchTerm }) => {
   const [category, setCategory] = useState(0);
   const [sortType, setSortType] = useState("rating");
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
@@ -47,6 +51,10 @@ const Home: React.FC = () => {
     window.scrollTo(0, 0);
   }, [category, sortType]);
 
+  const filteredPizzas = pizzas.filter((pizza) =>
+    pizza.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Container maxWidth="lg">
       {/* Filters Section */}
@@ -75,7 +83,7 @@ const Home: React.FC = () => {
                   <MyLoader />
                 </Grid>
               ))
-            : pizzas.map((pizza) => (
+            : filteredPizzas.map((pizza) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={pizza.id}>
                   <PizzaBlock
                     name={pizza.name}

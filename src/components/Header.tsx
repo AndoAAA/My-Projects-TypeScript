@@ -1,25 +1,24 @@
-import React from "react";
-import {
-  Box,
-  Button,
-  Container,
-  Typography,
-  TextField,
-  InputAdornment,
-} from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import Logo from "../assets/pizza-logo.svg";
 import EuroIcon from "@mui/icons-material/Euro";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { NavLink } from "react-router-dom";
+import Search from "./Search";
+import React from "react";
 
 type HeaderProps = {
   totalPrice: number;
   cartItems: number;
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
 };
 
-const Header: React.FC<HeaderProps> = ({ totalPrice, cartItems }) => {
-  
+const Header: React.FC<HeaderProps> = ({
+  totalPrice,
+  cartItems,
+  searchTerm,
+  setSearchTerm,
+}) => {
   return (
     <Container maxWidth="lg">
       {/* Logo and Title Section */}
@@ -57,20 +56,7 @@ const Header: React.FC<HeaderProps> = ({ totalPrice, cartItems }) => {
           width={{ xs: "100%", sm: "250px", md: "300px" }}
           mb={{ xs: 2, sm: 0 }}
         >
-          <TextField
-            fullWidth
-            variant="outlined"
-            size="small"
-            placeholder="Search pizza..."
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchOutlinedIcon color="action" />
-                </InputAdornment>
-              ),
-            }}
-            aria-label="Search for pizzas"
-          />
+          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         </Box>
 
         {/* Cart Button */}
