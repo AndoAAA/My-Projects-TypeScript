@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Popper from "@mui/material/Popper";
@@ -15,19 +15,26 @@ type SortItem = {
 };
 
 const sortList: SortItem[] = [
-  { name: "Popular (DESC)", sortProperty: "RATING_DESC" },
-  { name: "Popular (ASC)", sortProperty: "RATING_ASC" },
-  { name: "Price (DESC)", sortProperty: "PRICE_DESC" },
-  { name: "Price (ASC)", sortProperty: "PRICE_ASC" },
-  { name: "Alphabet (DESC)", sortProperty: "TITLE_DESC" },
-  { name: "Alphabet (ASC)", sortProperty: "TITLE_ASC" },
+  { name: "Popular (Descending)", sortProperty: "rating" },
+  { name: "Popular (Ascending)", sortProperty: "-rating" },
+  { name: "Price (High to Low)", sortProperty: "price" },
+  { name: "Price (Low to High)", sortProperty: "-price" },
+  { name: "Alphabet (Z-A)", sortProperty: "name" },
+  { name: "Alphabet (A-Z)", sortProperty: "-name" },
 ];
 
-const Sort: React.FC = () => {
-  const [selectedSort, setSelectedSort] = useState<string>("Popular (DESC)");
+interface SortProps {
+  value: string;
+  onChangeSort: (sortType: string) => void;
+}
+
+const Sort: React.FC<SortProps> = ({ value, onChangeSort }) => {
   const sortRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const selectedSortName =
+    sortList.find((item) => item.sortProperty === value)?.name || "Popular";
 
   return (
     <div ref={sortRef}>
@@ -44,10 +51,10 @@ const Sort: React.FC = () => {
                   px: isMobile ? 1.5 : 3,
                   py: isMobile ? 1 : 1.5,
                   "&:hover": { bgcolor: "darkorange" },
-                  minWidth: "150px",
+                  minWidth: "180px",
                 }}
               >
-                Sort By: {selectedSort}
+                Sort By: {selectedSortName}
               </Button>
 
               <Popper
@@ -63,14 +70,14 @@ const Sort: React.FC = () => {
                         p: isMobile ? 1 : 2,
                         borderRadius: "8px",
                         boxShadow: 3,
-                        minWidth: "150px",
+                        minWidth: "180px",
                       }}
                     >
                       {sortList.map((item) => (
                         <Typography
                           key={item.sortProperty}
                           onClick={() => {
-                            setSelectedSort(item.name);
+                            onChangeSort(item.sortProperty);
                             popupState.close();
                           }}
                           sx={{
@@ -79,11 +86,11 @@ const Sort: React.FC = () => {
                             borderRadius: "6px",
                             transition: "0.2s",
                             bgcolor:
-                              selectedSort === item.name
+                              value === item.sortProperty
                                 ? "orange"
                                 : "transparent",
                             color:
-                              selectedSort === item.name ? "white" : "black",
+                              value === item.sortProperty ? "white" : "black",
                             "&:hover": { bgcolor: "orange", color: "white" },
                           }}
                         >

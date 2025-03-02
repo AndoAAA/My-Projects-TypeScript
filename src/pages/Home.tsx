@@ -5,13 +5,34 @@ import { Box, Container, Typography, Grid } from "@mui/material";
 import PizzaBlock from "../components/PizzaBlock";
 import MyLoader from "../components/Skeleton";
 
+interface Pizza {
+  id: number;
+  name: string;
+  imageUrl: string;
+  price: number;
+}
+
 const Home: React.FC = () => {
   const [category, setCategory] = useState(0);
-  const [pizzas, setPizzas] = useState([]);
+  const [sortType, setSortType] = useState("rating");
+  const [pizzas, setPizzas] = useState<Pizza[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://66dc505a47d749b72acb471f.mockapi.io/pizzas`)
+    setLoading(true);
+
+    const isDescending = !sortType.startsWith("-");
+    const sortBy = sortType.replace("-", "");
+    const order = isDescending ? "desc" : "asc";
+
+    const categoryFilter = category > 0 ? `category=${category}` : "";
+    const sortQuery = `sortBy=${sortBy}&order=${order}`;
+
+    const url = `https://66dc505a47d749b72acb471f.mockapi.io/pizzas?${
+      categoryFilter ? `${categoryFilter}&` : ""
+    }${sortQuery}`;
+
+    fetch(url)
       .then((res) => res.json())
       .then((arr) => {
         console.log("Fetched Pizzas:", arr);
@@ -22,7 +43,9 @@ const Home: React.FC = () => {
         console.error("Error fetching pizzas:", error);
         setLoading(false);
       });
-  }, []);
+
+    window.scrollTo(0, 0);
+  }, [category, sortType]);
 
   return (
     <Container maxWidth="lg">
@@ -37,7 +60,7 @@ const Home: React.FC = () => {
         mb={4}
       >
         <Categories value={category} onChangeCategory={setCategory} />
-        <Sort />
+        <Sort value={sortType} onChangeSort={setSortType} />
       </Box>
 
       {/* Pizza Listing */}
@@ -52,8 +75,8 @@ const Home: React.FC = () => {
                   <MyLoader />
                 </Grid>
               ))
-            : pizzas.map((pizza, index) => (
-                <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+            : pizzas.map((pizza) => (
+                <Grid item xs={12} sm={6} md={4} lg={3} key={pizza.id}>
                   <PizzaBlock
                     name={pizza.name}
                     imageUrl={pizza.imageUrl}
