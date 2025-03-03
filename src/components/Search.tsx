@@ -1,14 +1,11 @@
 import { InputAdornment, TextField } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ClearIcon from "@mui/icons-material/Clear";
+import { SearchContext } from "./SearchContext";
 
-interface SearchProps {
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-}
-
-const Search: React.FC<SearchProps> = ({ searchTerm, setSearchTerm }) => {
+const Search: React.FC = () => {
+  const { searchTerm, setSearchTerm } = useContext(SearchContext);
   return (
     <TextField
       fullWidth

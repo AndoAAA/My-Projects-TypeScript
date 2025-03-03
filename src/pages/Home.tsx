@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import { Box, Container, Typography, Grid } from "@mui/material";
 import PizzaBlock from "../components/PizzaBlock";
 import MyLoader from "../components/Skeleton";
+import { SearchContext } from "../components/SearchContext";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { setCategory } from "../redux/filter/filterSlice";
+import { RootState } from "../redux/store";
 
 interface Pizza {
   id: number;
@@ -12,21 +17,21 @@ interface Pizza {
   price: number;
 }
 
-interface HomeProps {
-  searchTerm: string;
-}
-
-const Home: React.FC<HomeProps> = ({ searchTerm }) => {
-  const [category, setCategory] = useState(0);
-  const [sortType, setSortType] = useState("rating");
+const Home: React.FC = () => {
+  const dispatch = useDispatch();
+  const category = useSelector((state: RootState) => state.filter.category);
+  const sort = useSelector(
+    (state: RootState) => state.filter.sort.sortProperty
+  );
+  const { searchTerm } = useContext(SearchContext);
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
 
-    const isDescending = !sortType.startsWith("-");
-    const sortBy = sortType.replace("-", "");
+    const isDescending = !sort.startsWith("-");
+    const sortBy = sort.replace("-", "");
     const order = isDescending ? "desc" : "asc";
 
     const categoryFilter = category > 0 ? `category=${category}` : "";
@@ -49,11 +54,15 @@ const Home: React.FC<HomeProps> = ({ searchTerm }) => {
       });
 
     window.scrollTo(0, 0);
-  }, [category, sortType]);
+  }, [category, sort]);
 
   const filteredPizzas = pizzas.filter((pizza) =>
     pizza.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const onChangeCategory = (id: number) => {
+    dispatch(setCategory(id));
+  };
 
   return (
     <Container maxWidth="lg">
@@ -67,8 +76,8 @@ const Home: React.FC<HomeProps> = ({ searchTerm }) => {
         mt={3}
         mb={4}
       >
-        <Categories value={category} onChangeCategory={setCategory} />
-        <Sort value={sortType} onChangeSort={setSortType} />
+        <Categories value={category} onChangeCategory={onChangeCategory} />
+        <Sort />
       </Box>
 
       {/* Pizza Listing */}

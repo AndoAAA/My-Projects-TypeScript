@@ -4,21 +4,12 @@ import EuroIcon from "@mui/icons-material/Euro";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { NavLink } from "react-router-dom";
 import Search from "./Search";
-import React from "react";
+import React, { useContext } from "react";
+import { SearchContext } from "./SearchContext";
 
-type HeaderProps = {
-  totalPrice: number;
-  cartItems: number;
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-};
-
-const Header: React.FC<HeaderProps> = ({
-  totalPrice,
-  cartItems,
-  searchTerm,
-  setSearchTerm,
-}) => {
+const Header: React.FC = () => {
+  const { searchTerm, setSearchTerm, totalPrice, cartItems } =
+    useContext(SearchContext);
   return (
     <Container maxWidth="lg">
       {/* Logo and Title Section */}
@@ -56,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({
           width={{ xs: "100%", sm: "250px", md: "300px" }}
           mb={{ xs: 2, sm: 0 }}
         >
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <Search />
         </Box>
 
         {/* Cart Button */}

@@ -8,6 +8,10 @@ import Paper from "@mui/material/Paper";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { setSort } from "../redux/filter/filterSlice";
 
 type SortItem = {
   name: string;
@@ -23,18 +27,25 @@ const sortList: SortItem[] = [
   { name: "Alphabet (A-Z)", sortProperty: "-name" },
 ];
 
-interface SortProps {
-  value: string;
-  onChangeSort: (sortType: string) => void;
-}
-
-const Sort: React.FC<SortProps> = ({ value, onChangeSort }) => {
+const Sort: React.FC = () => {
+  const sort = useSelector((state: RootState) => state.filter.sort);
+  const dispatch = useDispatch();
   const sortRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const selectedSortName =
-    sortList.find((item) => item.sortProperty === value)?.name || "Popular";
+    sortList.find((item) => item.sortProperty === sort.sortProperty)?.name ||
+    "Popular";
+
+  const onChangeSort = (sortProperty: string) => {
+    const selectedSort = sortList.find(
+      (item) => item.sortProperty === sortProperty
+    );
+    if (selectedSort) {
+      dispatch(setSort(selectedSort));
+    }
+  };
 
   return (
     <div ref={sortRef}>
@@ -86,11 +97,13 @@ const Sort: React.FC<SortProps> = ({ value, onChangeSort }) => {
                             borderRadius: "6px",
                             transition: "0.2s",
                             bgcolor:
-                              value === item.sortProperty
+                              sort.sortProperty === item.sortProperty
                                 ? "orange"
                                 : "transparent",
                             color:
-                              value === item.sortProperty ? "white" : "black",
+                              sort.sortProperty === item.sortProperty
+                                ? "white"
+                                : "black",
                             "&:hover": { bgcolor: "orange", color: "white" },
                           }}
                         >
