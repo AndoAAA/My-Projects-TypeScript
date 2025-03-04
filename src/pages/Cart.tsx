@@ -1,60 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Container, Typography, Button } from "@mui/material";
 import CartItem from "../components/CartItem";
 import { useNavigate } from "react-router-dom";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { clearItems } from "../redux/cart/cartSlice";
 
-const Cart = () => {
+const Cart: React.FC = () => {
+  const dispatch = useDispatch();
+  const { items: cartItems, totalPrice } = useSelector(
+    (state: RootState) => state.cart
+  );
   const navigate = useNavigate();
 
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: "Pepperoni Pizza",
-      imageUrl: "https://via.placeholder.com/80",
-      price: 12.99,
-      quantity: 2,
-    },
-    {
-      id: 2,
-      name: "Margarita Pizza",
-      imageUrl: "https://via.placeholder.com/80",
-      price: 10.99,
-      quantity: 1,
-    },
-  ]);
-
-  const increaseQuantity = (id: number) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
-  };
-
-  const decreaseQuantity = (id: number) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (id: number) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
-
   const clearCart = () => {
-    setCartItems([]);
+    dispatch(clearItems());
   };
-
-  const totalPrice = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
-
   return (
     <Container maxWidth="md">
       {/* Cart Title with Icon */}
@@ -94,13 +57,7 @@ const Cart = () => {
       ) : (
         <Box>
           {cartItems.map((item) => (
-            <CartItem
-              key={item.id}
-              {...item}
-              onIncrease={() => increaseQuantity(item.id)}
-              onDecrease={() => decreaseQuantity(item.id)}
-              onRemove={() => removeItem(item.id)}
-            />
+            <CartItem key={item.id} {...item} />
           ))}
 
           {/* Cart Summary */}
@@ -133,6 +90,7 @@ const Cart = () => {
                 Checkout
               </Button>
               <Button
+                onClick={clearCart}
                 variant="outlined"
                 sx={{
                   borderColor: "darkorange",
@@ -141,7 +99,6 @@ const Cart = () => {
                   px: 4,
                   "&:hover": { bgcolor: "darkorange", color: "white" },
                 }}
-                onClick={clearCart}
               >
                 Clear Cart
               </Button>

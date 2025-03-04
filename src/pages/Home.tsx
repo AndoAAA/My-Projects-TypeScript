@@ -15,6 +15,9 @@ interface Pizza {
   name: string;
   imageUrl: string;
   price: number;
+  sizes: number[];
+  types: number[];
+  rating: number;
 }
 
 const Home: React.FC = () => {
@@ -95,9 +98,13 @@ const Home: React.FC = () => {
             : filteredPizzas.map((pizza) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={pizza.id}>
                   <PizzaBlock
+                    id={String(pizza.id)}
                     name={pizza.name}
                     imageUrl={pizza.imageUrl}
                     price={pizza.price}
+                    sizes={pizza.sizes}
+                    types={pizza.types}
+                    rating={pizza.rating}
                   />
                 </Grid>
               ))}

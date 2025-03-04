@@ -4,12 +4,13 @@ import EuroIcon from "@mui/icons-material/Euro";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { NavLink } from "react-router-dom";
 import Search from "./Search";
-import React, { useContext } from "react";
-import { SearchContext } from "./SearchContext";
+import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const Header: React.FC = () => {
-  const { searchTerm, setSearchTerm, totalPrice, cartItems } =
-    useContext(SearchContext);
+  const { totalPrice, items } = useSelector((state: RootState) => state.cart);
+
   return (
     <Container maxWidth="lg">
       {/* Logo and Title Section */}
@@ -51,7 +52,7 @@ const Header: React.FC = () => {
         </Box>
 
         {/* Cart Button */}
-        <NavLink to="/cart">
+        <NavLink to="/cart" style={{ textDecoration: "none" }}>
           <Box>
             <Button
               variant="contained"
@@ -66,8 +67,8 @@ const Header: React.FC = () => {
               }}
               aria-label="Go to cart"
             >
-              {totalPrice} <EuroIcon fontSize="small" /> |{" "}
-              <ShoppingCartOutlinedIcon fontSize="small" /> {cartItems}
+              {totalPrice.toFixed(2)} <EuroIcon fontSize="small" /> |
+              <ShoppingCartOutlinedIcon fontSize="small" /> {items.length}
             </Button>
           </Box>
         </NavLink>

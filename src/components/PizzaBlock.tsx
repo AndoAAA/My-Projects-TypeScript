@@ -1,20 +1,55 @@
 import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import EuroIcon from "@mui/icons-material/Euro";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { CartItem } from "../redux/cart/types";
+import { addToCart } from "../redux/cart/cartSlice";
+
+const typesNames = ["Thin", "Traditional"];
+const sizesTypes = [26, 30, 40];
 
 type PizzaBlockProps = {
+  id: string;
   name: string;
-  imageUrl: string;
   price: number;
+  imageUrl: string;
+  sizes: number[];
+  types: number[];
+  rating: number;
 };
 
-const PizzaBlock: React.FC<PizzaBlockProps> = ({ name, imageUrl, price }) => {
-  const crustTypes = ["Thin", "Traditional"];
-  const sizes = [26, 30, 40];
-
+const PizzaBlock: React.FC<PizzaBlockProps> = ({
+  id,
+  name,
+  price,
+  imageUrl,
+  sizes,
+  types,
+  rating,
+}) => {
+  const dispatch = useDispatch();
+  const cartItem = useSelector((state: RootState) =>
+    state.cart.items.find((item) => item.id === id)
+  );
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
-  const [addedCount, setAddedCount] = useState(0);
+  
+  const addedCount = cartItem ? cartItem.count : 0;
+
+  const onClickAdd = () => {
+    const item: CartItem = {
+      id,
+      name,
+      price,
+      imageUrl,
+      type: typesNames[activeType],
+      size: sizes[activeSize],
+      count: 0,
+    };
+    dispatch(addToCart(item))
+  };
 
   return (
     <Box
@@ -45,8 +80,15 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ name, imageUrl, price }) => {
 
       {/* Crust and Size Selection */}
       <Box sx={{ mt: 2, p: 1, borderRadius: "8px" }}>
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 1, flexWrap: "wrap" }}>
-          {crustTypes.map((type, index) => (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 1,
+            flexWrap: "wrap",
+          }}
+        >
+          {typesNames.map((type, index) => (
             <Button
               key={index}
               variant={activeType === index ? "contained" : "outlined"}
@@ -56,15 +98,25 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ name, imageUrl, price }) => {
                 border: "none",
                 color: activeType === index ? "white" : "black",
                 bgcolor: activeType === index ? "orange" : "transparent",
-                "&:hover": { bgcolor: activeType === index ? "darkorange" : "#ddd" },
+                "&:hover": {
+                  bgcolor: activeType === index ? "darkorange" : "#ddd",
+                },
               }}
             >
               {type}
             </Button>
           ))}
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 1, mt: 1, flexWrap: "wrap" }}>
-          {sizes.map((size, index) => (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 1,
+            mt: 1,
+            flexWrap: "wrap",
+          }}
+        >
+          {sizesTypes.map((size, index) => (
             <Button
               key={index}
               variant={activeSize === index ? "contained" : "outlined"}
@@ -74,7 +126,9 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ name, imageUrl, price }) => {
                 border: "none",
                 color: activeSize === index ? "white" : "black",
                 bgcolor: activeSize === index ? "orange" : "transparent",
-                "&:hover": { bgcolor: activeSize === index ? "darkorange" : "#ddd" },
+                "&:hover": {
+                  bgcolor: activeSize === index ? "darkorange" : "#ddd",
+                },
               }}
             >
               {size} sm
@@ -98,7 +152,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({ name, imageUrl, price }) => {
         </Typography>
         <Button
           variant="contained"
-          onClick={() => setAddedCount((prev) => prev + 1)}
+          onClick={onClickAdd}
           sx={{
             backgroundColor: "white",
             color: "orange",
