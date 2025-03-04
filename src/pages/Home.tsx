@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
-import { Box, Container, Typography, Grid } from "@mui/material";
+import { Box, Container, Typography, Grid, Alert } from "@mui/material";
 import PizzaBlock from "../components/PizzaBlock";
 import MyLoader from "../components/Skeleton";
-import { SearchContext } from "../components/SearchContext";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCategory } from "../redux/filter/filterSlice";
 import { RootState } from "../redux/store";
 
@@ -23,45 +21,46 @@ interface Pizza {
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const category = useSelector((state: RootState) => state.filter.category);
-  const sort = useSelector(
-    (state: RootState) => state.filter.sort.sortProperty
-  );
-  const { searchTerm } = useContext(SearchContext);
+  const sort = useSelector((state: RootState) => state.filter.sort.sortProperty);
+  const searchTerm = useSelector((state: RootState) => state.filter.searchTerm);
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setLoading(true);
+    const fetchPizzas = async () => {
+      setLoading(true);
+      setError(null);
 
-    const isDescending = !sort.startsWith("-");
-    const sortBy = sort.replace("-", "");
-    const order = isDescending ? "desc" : "asc";
+      try {
+        const isDescending = !sort.startsWith("-");
+        const sortBy = sort.replace("-", "");
+        const order = isDescending ? "desc" : "asc";
 
-    const categoryFilter = category > 0 ? `category=${category}` : "";
-    const sortQuery = `sortBy=${sortBy}&order=${order}`;
+        const params = new URLSearchParams();
+        if (category > 0) params.append("category", String(category));
+        params.append("sortBy", sortBy);
+        params.append("order", order);
+        if (searchTerm) params.append("search", searchTerm);
 
-    const url = `https://66dc505a47d749b72acb471f.mockapi.io/pizzas?${
-      categoryFilter ? `${categoryFilter}&` : ""
-    }${sortQuery}`;
+        const url = `https://66dc505a47d749b72acb471f.mockapi.io/pizzas?${params.toString()}`;
 
-    fetch(url)
-      .then((res) => res.json())
-      .then((arr) => {
-        console.log("Fetched Pizzas:", arr);
-        setPizzas(arr);
-        setLoading(false);
-      })
-      .catch((error) => {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error("Failed to fetch pizzas");
+        const data = await response.json();
+        setPizzas(data);
+      } catch (error) {
         console.error("Error fetching pizzas:", error);
+        setError("Sorry, we couldn't load the pizzas. Please try again later.");
+        setPizzas([]);
+      } finally {
         setLoading(false);
-      });
+      }
+    };
 
+    fetchPizzas();
     window.scrollTo(0, 0);
-  }, [category, sort]);
-
-  const filteredPizzas = pizzas.filter((pizza) =>
-    pizza.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  }, [category, sort, searchTerm]);
 
   const onChangeCategory = (id: number) => {
     dispatch(setCategory(id));
@@ -88,6 +87,14 @@ const Home: React.FC = () => {
         <Typography variant="h4" fontWeight="bold" mb={2}>
           All Pizzas
         </Typography>
+        
+        {/* Error Handling */}
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        )}
+
         <Grid container spacing={3}>
           {loading
             ? [...Array(10)].map((_, index) => (
@@ -95,7 +102,7 @@ const Home: React.FC = () => {
                   <MyLoader />
                 </Grid>
               ))
-            : filteredPizzas.map((pizza) => (
+            : pizzas.map((pizza) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={pizza.id}>
                   <PizzaBlock
                     id={String(pizza.id)}

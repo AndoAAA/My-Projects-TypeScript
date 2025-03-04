@@ -43,7 +43,7 @@ const Sort: React.FC = () => {
       (item) => item.sortProperty === sortProperty
     );
     if (selectedSort) {
-      dispatch(setSort(selectedSort));
+      dispatch(setSort(sortProperty));
     }
   };
 

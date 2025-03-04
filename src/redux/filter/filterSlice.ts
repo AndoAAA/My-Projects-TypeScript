@@ -1,12 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { FilterSliceState, SortPropertyEnum } from "./types";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { FilterSliceState, Sort, SortPropertyEnum } from "./types";
+
 
 const initialState: FilterSliceState = {
     searchTerm: '',
     category: 0,
     sort: {
-      name: 'популярности',
-      sortProperty: SortPropertyEnum.RATING_DESC,
+      sortProperty: "rating",
     },
   };
 
@@ -14,13 +14,13 @@ const filterSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
-    setCategory(state, action) {
+    setCategory(state, action: PayloadAction<number>) {
       state.category = action.payload;
     },
-    setSort(state, action) {
-      state.sort = action.payload;
+    setSort(state, action: PayloadAction<string>) {
+      state.sort.sortProperty = action.payload;
     },
-    setSearchTerm(state, action) {
+    setSearchTerm(state, action: PayloadAction<string>) {
       state.searchTerm = action.payload;
     },
   },
