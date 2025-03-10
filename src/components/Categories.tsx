@@ -14,11 +14,11 @@ const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
       <Box
         display="flex"
         flexWrap="wrap"
-        gap={2}
+        gap={{ xs: 1, sm: 2 }}
         p={1}
         sx={{
           borderRadius: "30px",
-          bgcolor: "#f5f5f5",
+          bgcolor: "#ffff",
           flexDirection: { xs: "column", sm: "row" },
           alignItems: "center",
         }}
@@ -34,10 +34,11 @@ const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
               borderRadius: "20px",
               bgcolor: value === i ? "orange" : "transparent",
               color: value === i ? "white" : "black",
-              border: "none",
-              transition: "0.3s",
-              fontSize: { xs: "12px", sm: "14px" }, 
-              padding: { xs: "6px 12px", sm: "8px 16px" }, 
+              border: value === i ? "none" : "1px solid #ccc",
+              transition: "all 0.3s ease",
+              fontSize: { xs: "12px", sm: "14px" },
+              padding: { xs: "6px 10px", sm: "8px 16px" },
+              minWidth: { xs: "100%", sm: "auto" },
               "&:hover": { bgcolor: "orange", color: "white" },
             }}
           >

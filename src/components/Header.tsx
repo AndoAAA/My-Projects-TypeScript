@@ -13,31 +13,24 @@ const Header: React.FC = () => {
 
   return (
     <Container maxWidth="lg">
-      {/* Logo and Title Section */}
       <Box
         display="flex"
         alignItems="center"
         justifyContent="space-between"
-        py={2}
         flexWrap="wrap"
+        py={2}
         gap={2}
       >
-        {/* Logo */}
-        <Box display="flex" alignItems="center" flex="1">
+        {/* Logo & Title */}
+        <Box display="flex" alignItems="center" flex="1" minWidth="180px">
           <NavLink to="/">
-            <img
-              src={Logo}
-              alt="logo"
-              width={60}
-              height={60}
-              style={{ cursor: "pointer" }}
-            />
+            <img src={Logo} alt="logo" style={{ cursor: "pointer", width: 50, height: 50 }} />
           </NavLink>
           <Box ml={2}>
-            <Typography variant="h5" fontWeight="bold">
+            <Typography variant="h6" fontWeight="bold">
               DODO PIZZA
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
+            <Typography variant="body2" color="textSecondary">
               The most delicious pizza in the universe
             </Typography>
           </Box>
@@ -45,15 +38,15 @@ const Header: React.FC = () => {
 
         {/* Search Bar */}
         <Box
-          width={{ xs: "100%", sm: "250px", md: "300px" }}
-          mb={{ xs: 2, sm: 0 }}
+          width={{ xs: "100%", sm: "60%", md: "40%" }}
+          order={{ xs: 3, sm: 2 }}
         >
           <Search />
         </Box>
 
         {/* Cart Button */}
-        <NavLink to="/cart" style={{ textDecoration: "none" }}>
-          <Box>
+        <Box order={{ xs: 2, sm: 3 }} minWidth="120px">
+          <NavLink to="/cart" style={{ textDecoration: "none" }}>
             <Button
               variant="contained"
               sx={{
@@ -62,16 +55,22 @@ const Header: React.FC = () => {
                 gap: 1,
                 bgcolor: "orange",
                 borderRadius: "30px",
-                px: 3,
+                px: { xs: 2, sm: 3 },
+                py: { xs: 1, sm: 1.5 },
+                fontSize: { xs: "0.8rem", sm: "1rem" },
                 "&:hover": { bgcolor: "darkorange" },
+                width: "100%",
+                justifyContent: "center",
               }}
               aria-label="Go to cart"
             >
-              {totalPrice.toFixed(2)} <EuroIcon fontSize="small" /> |
-              <ShoppingCartOutlinedIcon fontSize="small" /> {items.length}
+              <EuroIcon fontSize="small" />
+              {totalPrice?.toFixed(2) || "0.00"} | 
+              <ShoppingCartOutlinedIcon fontSize="small" />
+              {items.length}
             </Button>
-          </Box>
-        </NavLink>
+          </NavLink>
+        </Box>
       </Box>
     </Container>
   );

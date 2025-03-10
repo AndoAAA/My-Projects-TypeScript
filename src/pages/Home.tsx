@@ -7,6 +7,7 @@ import MyLoader from "../components/Skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { setCategory } from "../redux/filter/filterSlice";
 import { RootState } from "../redux/store";
+import axios from "axios";
 
 interface Pizza {
   id: number;
@@ -20,20 +21,24 @@ interface Pizza {
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
-  const category = useSelector((state: RootState) => state.filter.category);
-  const sort = useSelector((state: RootState) => state.filter.sort.sortProperty);
-  const searchTerm = useSelector((state: RootState) => state.filter.searchTerm);
+  const { category, sort, searchTerm } = useSelector((state: RootState) => ({
+    category: state.filter.category,
+    sort: state.filter.sort.sortProperty,
+    searchTerm: state.filter.searchTerm,
+  }));
+
   const [pizzas, setPizzas] = useState<Pizza[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchPizzas = async () => {
       setLoading(true);
       setError(null);
 
       try {
-        const isDescending = !sort.startsWith("-");
+        const isDescending = sort.startsWith("-");
         const sortBy = sort.replace("-", "");
         const order = isDescending ? "desc" : "asc";
 
@@ -45,14 +50,12 @@ const Home: React.FC = () => {
 
         const url = `https://66dc505a47d749b72acb471f.mockapi.io/pizzas?${params.toString()}`;
 
-        const response = await fetch(url);
-        if (!response.ok) throw new Error("Failed to fetch pizzas");
-        const data = await response.json();
+        const { data } = await axios.get<Pizza[]>(url, { signal: controller.signal });
         setPizzas(data);
-      } catch (error) {
-        console.error("Error fetching pizzas:", error);
-        setError("Sorry, we couldn't load the pizzas. Please try again later.");
-        setPizzas([]);
+      } catch (err) {
+        if (!axios.isCancel(err)) {
+          setError("Failed to load pizzas. Please try again later.");
+        }
       } finally {
         setLoading(false);
       }
@@ -60,11 +63,11 @@ const Home: React.FC = () => {
 
     fetchPizzas();
     window.scrollTo(0, 0);
+
+    return () => controller.abort();
   }, [category, sort, searchTerm]);
 
-  const onChangeCategory = (id: number) => {
-    dispatch(setCategory(id));
-  };
+  const onChangeCategory = (id: number) => dispatch(setCategory(id));
 
   return (
     <Container maxWidth="lg">
@@ -72,11 +75,12 @@ const Home: React.FC = () => {
       <Box
         display="flex"
         flexWrap="wrap"
-        gap="20px"
+        gap={2}
         justifyContent="space-between"
         alignItems="center"
         mt={3}
         mb={4}
+        sx={{ flexDirection: { xs: "column", sm: "row" } }}
       >
         <Categories value={category} onChangeCategory={onChangeCategory} />
         <Sort />
@@ -87,15 +91,11 @@ const Home: React.FC = () => {
         <Typography variant="h4" fontWeight="bold" mb={2}>
           All Pizzas
         </Typography>
-        
-        {/* Error Handling */}
-        {error && (
-          <Alert severity="error" sx={{ mb: 2 }}>
-            {error}
-          </Alert>
-        )}
 
-        <Grid container spacing={3}>
+        {/* Error Handling */}
+        {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+
+        <Grid container spacing={{ xs: 2, sm: 3 }}>
           {loading
             ? [...Array(10)].map((_, index) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
@@ -104,15 +104,7 @@ const Home: React.FC = () => {
               ))
             : pizzas.map((pizza) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={pizza.id}>
-                  <PizzaBlock
-                    id={String(pizza.id)}
-                    name={pizza.name}
-                    imageUrl={pizza.imageUrl}
-                    price={pizza.price}
-                    sizes={pizza.sizes}
-                    types={pizza.types}
-                    rating={pizza.rating}
-                  />
+                  <PizzaBlock {...pizza} id={String(pizza.id)}/>
                 </Grid>
               ))}
         </Grid>

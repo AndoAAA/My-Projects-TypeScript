@@ -94,8 +94,8 @@ const CartItem: React.FC<CartItemProps> = ({
         <Typography variant="h6">
           {(price * count).toFixed(2)} <EuroIcon fontSize="small" />
         </Typography>
-        <Button variant="contained" color="error" onClick={onClickRemove}>
-          <DeleteIcon />
+        <Button variant="contained" color="error">
+          <DeleteIcon onClick={onClickRemove} />
         </Button>
       </Box>
     </Box>

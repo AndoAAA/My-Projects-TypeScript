@@ -1,5 +1,5 @@
 import { InputAdornment, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ClearIcon from "@mui/icons-material/Clear";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,25 +10,31 @@ const Search: React.FC = () => {
   const searchTerm = useSelector((state: RootState) => state.filter.searchTerm);
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState(searchTerm);
-
-  const debounce = (func: Function, delay: number) => {
-    let timer: NodeJS.Timeout;
-    return (e: React.ChangeEvent<HTMLInputElement>) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        func(e);
-      }, delay);
-    };
-  };
+  const inputRef = useRef<HTMLInputElement>(null);
+  const debounceTimer = useRef<NodeJS.Timeout | null>(null);
 
 
-  const searchItems = debounce((e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSearchTerm(e.target.value));
-  }, 500);
+  useEffect(() => {
+    setInputValue(searchTerm);
+  }, [searchTerm]);
+
+  const debounceSearch = useCallback((value: string) => {
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    debounceTimer.current = setTimeout(() => {
+      dispatch(setSearchTerm(value));
+    }, 500);
+  }, [dispatch]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    searchItems(e);
+    const value = e.target.value;
+    setInputValue(value);
+    debounceSearch(value);
+  };
+
+  const clearSearch = () => {
+    setInputValue("");
+    dispatch(setSearchTerm(""));
+    inputRef.current?.focus();
   };
 
   return (
@@ -39,6 +45,7 @@ const Search: React.FC = () => {
       placeholder="Search pizzas..."
       value={inputValue}
       onChange={handleInputChange}
+      inputRef={inputRef}
       InputProps={{
         startAdornment: (
           <InputAdornment position="start">
@@ -48,10 +55,7 @@ const Search: React.FC = () => {
         endAdornment: inputValue && (
           <InputAdornment position="end">
             <ClearIcon
-              onClick={() => {
-                setInputValue("");
-                dispatch(setSearchTerm(""));
-              }}
+              onClick={clearSearch}
               sx={{
                 cursor: "pointer",
                 color: "action.active",

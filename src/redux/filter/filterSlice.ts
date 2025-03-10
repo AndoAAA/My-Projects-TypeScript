@@ -1,14 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { FilterSliceState, Sort, SortPropertyEnum } from "./types";
-
+import { FilterSliceState } from "./types";
 
 const initialState: FilterSliceState = {
-    searchTerm: '',
-    category: 0,
-    sort: {
-      sortProperty: "rating",
-    },
-  };
+  searchTerm: "",
+  category: 0,
+  sort: {
+    sortProperty: "rating",
+  },
+};
 
 const filterSlice = createSlice({
   name: "filters",
