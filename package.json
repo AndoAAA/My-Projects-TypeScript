@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^2.5.1",
     "axios": "^1.8.2",
     "cra-template-typescript": "1.2.0",
+    "firebase": "^11.4.0",
     "material-ui-popup-state": "^5.3.3",
     "react": "^19.0.0",
     "react-content-loader": "^7.0.2",

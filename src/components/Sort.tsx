@@ -19,8 +19,8 @@ type SortItem = {
 };
 
 const sortList: SortItem[] = [
-  { name: "Popular (Descending)", sortProperty: "rating" },
-  { name: "Popular (Ascending)", sortProperty: "-rating" },
+  { name: "Popular (Desc)", sortProperty: "rating" },
+  { name: "Popular (Asc)", sortProperty: "-rating" },
   { name: "Price (High to Low)", sortProperty: "price" },
   { name: "Price (Low to High)", sortProperty: "-price" },
   { name: "Alphabet (Z-A)", sortProperty: "name" },
