@@ -7,7 +7,7 @@ import { RootState } from "../redux/store";
 import { CartItem } from "../redux/cart/types";
 import { addToCart } from "../redux/cart/cartSlice";
 
-const typesNames = ["Thin", "Traditional"];
+const typesNames = ["thin", "traditional"];
 const sizesTypes = [26, 30, 40];
 
 type PizzaBlockProps = {

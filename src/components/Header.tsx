@@ -24,7 +24,11 @@ const Header: React.FC = () => {
         {/* Logo & Title */}
         <Box display="flex" alignItems="center" flex="1" minWidth="180px">
           <NavLink to="/">
-            <img src={Logo} alt="logo" style={{ cursor: "pointer", width: 50, height: 50 }} />
+            <img
+              src={Logo}
+              alt="logo"
+              style={{ cursor: "pointer", width: 50, height: 50 }}
+            />
           </NavLink>
           <Box ml={2}>
             <Typography variant="h6" fontWeight="bold">
@@ -65,7 +69,7 @@ const Header: React.FC = () => {
               aria-label="Go to cart"
             >
               <EuroIcon fontSize="small" />
-              {totalPrice?.toFixed(2) || "0.00"} | 
+              {totalPrice?.toFixed(2) || "0.00"} |
               <ShoppingCartOutlinedIcon fontSize="small" />
               {items.length}
             </Button>

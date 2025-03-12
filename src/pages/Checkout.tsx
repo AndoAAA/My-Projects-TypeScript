@@ -52,13 +52,24 @@ const Checkout: React.FC = () => {
       </Typography>
 
       {cartItems.length === 0 ? (
-        <Typography variant="h6" sx={{ mt: 3, color: "gray", fontStyle: "italic" }}>
+        <Typography
+          variant="h6"
+          sx={{ mt: 3, color: "gray", fontStyle: "italic" }}
+        >
           Your cart is empty! 🛒
         </Typography>
       ) : (
         <>
           {/* Cart Summary */}
-          <Box sx={{ my: 2, textAlign: "left", p: 2, bgcolor: "#f9f9f9", borderRadius: "10px" }}>
+          <Box
+            sx={{
+              my: 2,
+              textAlign: "left",
+              p: 2,
+              bgcolor: "#f9f9f9",
+              borderRadius: "10px",
+            }}
+          >
             <Typography variant="h6">Order Summary:</Typography>
             {cartItems.map((item, index) => (
               <Box
@@ -93,7 +104,10 @@ const Checkout: React.FC = () => {
           </Box>
 
           {/* Checkout Form */}
-          <Box component="form" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box
+            component="form"
+            sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+          >
             <TextField
               label="Full Name"
               name="name"
@@ -135,7 +149,15 @@ const Checkout: React.FC = () => {
           </Box>
 
           {/* Action Buttons */}
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 1, mt: 3 }}>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 1,
+              mt: 3,
+            }}
+          >
             <Button
               variant="contained"
               sx={{
@@ -149,8 +171,6 @@ const Checkout: React.FC = () => {
             >
               Confirm Order
             </Button>
-
-            
 
             <Button
               variant="contained"

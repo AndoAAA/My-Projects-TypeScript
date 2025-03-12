@@ -1,71 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import { Box, Container, Typography, Grid, Alert } from "@mui/material";
 import PizzaBlock from "../components/PizzaBlock";
 import MyLoader from "../components/Skeleton";
-import { useDispatch, useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../redux/store";
 import { setCategory } from "../redux/filter/filterSlice";
-import { RootState } from "../redux/store";
-import axios from "axios";
-
-interface Pizza {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-  sizes: number[];
-  types: number[];
-  rating: number;
-}
+import { fetchPizzas } from "../redux/pizza/asyncAction";
+import { useSelector } from "react-redux";
 
 const Home: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { category, sort, searchTerm } = useSelector((state: RootState) => ({
     category: state.filter.category,
     sort: state.filter.sort.sortProperty,
     searchTerm: state.filter.searchTerm,
   }));
 
-  const [pizzas, setPizzas] = useState<Pizza[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { items: pizzas, status } = useSelector(
+    (state: RootState) => state.pizzas
+  );
 
   useEffect(() => {
-    const controller = new AbortController();
-    const fetchPizzas = async () => {
-      setLoading(true);
-      setError(null);
-
-      try {
-        const isDescending = sort.startsWith("-");
-        const sortBy = sort.replace("-", "");
-        const order = isDescending ? "desc" : "asc";
-
-        const params = new URLSearchParams();
-        if (category > 0) params.append("category", String(category));
-        params.append("sortBy", sortBy);
-        params.append("order", order);
-        if (searchTerm) params.append("search", searchTerm);
-
-        const url = `https://66dc505a47d749b72acb471f.mockapi.io/pizzas?${params.toString()}`;
-
-        const { data } = await axios.get<Pizza[]>(url, { signal: controller.signal });
-        setPizzas(data);
-      } catch (err) {
-        if (!axios.isCancel(err)) {
-          setError("Failed to load pizzas. Please try again later.");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPizzas();
+    dispatch(fetchPizzas({ category, sort, searchTerm }));
     window.scrollTo(0, 0);
-
-    return () => controller.abort();
-  }, [category, sort, searchTerm]);
+  }, [category, sort, searchTerm, dispatch]);
 
   const onChangeCategory = (id: number) => dispatch(setCategory(id));
 
@@ -93,10 +52,14 @@ const Home: React.FC = () => {
         </Typography>
 
         {/* Error Handling */}
-        {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+        {status === "error" && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            Failed to load pizzas. Please try again later.
+          </Alert>
+        )}
 
         <Grid container spacing={{ xs: 2, sm: 3 }}>
-          {loading
+          {status === "loading"
             ? [...Array(10)].map((_, index) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                   <MyLoader />
@@ -104,7 +67,7 @@ const Home: React.FC = () => {
               ))
             : pizzas.map((pizza) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={pizza.id}>
-                  <PizzaBlock {...pizza} id={String(pizza.id)}/>
+                  <PizzaBlock {...pizza} id={String(pizza.id)} />
                 </Grid>
               ))}
         </Grid>
