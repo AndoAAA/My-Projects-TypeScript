@@ -14,7 +14,6 @@ const Checkout: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Form State
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -22,19 +21,16 @@ const Checkout: React.FC = () => {
     phone: "",
   });
 
-  // Handle Form Input Change
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Validation
   const isFormValid =
     form.name.trim() &&
     form.email.trim().includes("@") &&
     form.address.trim() &&
     form.phone.trim().length >= 8;
 
-  // Handle Checkout Submission
   const handleCheckout = () => {
     if (!isFormValid) {
       alert("Please fill in all fields correctly!");
