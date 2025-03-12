@@ -21,10 +21,10 @@ type SortItem = {
 const sortList: SortItem[] = [
   { name: "Popular (Desc)", sortProperty: "rating" },
   { name: "Popular (Asc)", sortProperty: "-rating" },
-  { name: "Price (High to Low)", sortProperty: "price" },
-  { name: "Price (Low to High)", sortProperty: "-price" },
-  { name: "Alphabet (Z-A)", sortProperty: "name" },
-  { name: "Alphabet (A-Z)", sortProperty: "-name" },
+  { name: "Price (Low to High)", sortProperty: "price" },
+  { name: "Price (High to Low)", sortProperty: "-price" },
+  { name: "Alphabet (A-Z)", sortProperty: "name" },
+  { name: "Alphabet (Z-A)", sortProperty: "-name" },
 ];
 
 const Sort: React.FC = () => {
