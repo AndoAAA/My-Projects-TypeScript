@@ -35,7 +35,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
   );
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
-  
+
   const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickAdd = () => {
@@ -48,7 +48,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
       size: sizes[activeSize],
       count: 0,
     };
-    dispatch(addToCart(item))
+    dispatch(addToCart(item));
   };
 
   return (

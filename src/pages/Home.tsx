@@ -29,7 +29,7 @@ const Home: React.FC = () => {
   const onChangeCategory = (id: number) => dispatch(setCategory(id));
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ paddingBottom: "50px" }}>
       {/* Filters Section */}
       <Box
         display="flex"
@@ -39,7 +39,11 @@ const Home: React.FC = () => {
         alignItems="center"
         mt={3}
         mb={4}
-        sx={{ flexDirection: { xs: "column", sm: "row" } }}
+        sx={{
+          flexDirection: { xs: "column", sm: "row" },
+          paddingLeft: { xs: 2, sm: 0 }, // Add some left padding for xs screens
+          paddingRight: { xs: 2, sm: 0 }, // Add some right padding for xs screens
+        }}
       >
         <Categories value={category} onChangeCategory={onChangeCategory} />
         <Sort />
@@ -47,7 +51,12 @@ const Home: React.FC = () => {
 
       {/* Pizza Listing */}
       <Box>
-        <Typography variant="h4" fontWeight="bold" mb={2}>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          mb={2}
+          sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+        >
           All Pizzas
         </Typography>
 
@@ -58,7 +67,7 @@ const Home: React.FC = () => {
           </Alert>
         )}
 
-        <Grid container spacing={{ xs: 2, sm: 3 }}>
+        <Grid container spacing={{ xs: 2, sm: 3 }} justifyContent="center">
           {status === "loading"
             ? [...Array(10)].map((_, index) => (
                 <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
