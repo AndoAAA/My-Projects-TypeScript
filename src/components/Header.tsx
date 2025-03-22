@@ -2,7 +2,7 @@ import { Box, Button, Container, Typography } from "@mui/material";
 import Logo from "../assets/pizza-logo.svg";
 import EuroIcon from "@mui/icons-material/Euro";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Search from "./Search";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -10,6 +10,7 @@ import { RootState } from "../redux/store";
 
 const Header: React.FC = () => {
   const { totalPrice, items } = useSelector((state: RootState) => state.cart);
+  const location = useLocation();
 
   return (
     <Container maxWidth="lg">
@@ -50,30 +51,32 @@ const Header: React.FC = () => {
 
         {/* Cart Button */}
         <Box order={{ xs: 2, sm: 3 }} minWidth="120px">
-          <NavLink to="/cart" style={{ textDecoration: "none" }}>
-            <Button
-              variant="contained"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                bgcolor: "orange",
-                borderRadius: "30px",
-                px: { xs: 2, sm: 3 },
-                py: { xs: 1, sm: 1.5 },
-                fontSize: { xs: "0.8rem", sm: "1rem" },
-                "&:hover": { bgcolor: "darkorange" },
-                width: "100%",
-                justifyContent: "center",
-              }}
-              aria-label="Go to cart"
-            >
-              <EuroIcon fontSize="small" />
-              {totalPrice?.toFixed(2) || "0.00"} |
-              <ShoppingCartOutlinedIcon fontSize="small" />
-              {items.length}
-            </Button>
-          </NavLink>
+          {location.pathname !== "/cart" && (
+            <NavLink to="/cart" style={{ textDecoration: "none" }}>
+              <Button
+                variant="contained"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                  bgcolor: "orange",
+                  borderRadius: "30px",
+                  px: { xs: 2, sm: 3 },
+                  py: { xs: 1, sm: 1.5 },
+                  fontSize: { xs: "0.8rem", sm: "1rem" },
+                  "&:hover": { bgcolor: "darkorange" },
+                  width: "100%",
+                  justifyContent: "center",
+                }}
+                aria-label="Go to cart"
+              >
+                <EuroIcon fontSize="small" />
+                {totalPrice?.toFixed(2) || "0.00"} |
+                <ShoppingCartOutlinedIcon fontSize="small" />
+                {items.length}
+              </Button>
+            </NavLink>
+          )}
         </Box>
       </Box>
     </Container>

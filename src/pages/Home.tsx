@@ -41,8 +41,8 @@ const Home: React.FC = () => {
         mb={4}
         sx={{
           flexDirection: { xs: "column", sm: "row" },
-          paddingLeft: { xs: 2, sm: 0 }, // Add some left padding for xs screens
-          paddingRight: { xs: 2, sm: 0 }, // Add some right padding for xs screens
+          paddingLeft: { xs: 2, sm: 0 },
+          paddingRight: { xs: 2, sm: 0 },
         }}
       >
         <Categories value={category} onChangeCategory={onChangeCategory} />

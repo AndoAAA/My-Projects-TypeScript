@@ -1,11 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
-import React, { useState } from "react";
 import EuroIcon from "@mui/icons-material/Euro";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import React, { useState, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { CartItem } from "../redux/cart/types";
 import { addToCart } from "../redux/cart/cartSlice";
+import { Link } from "react-router-dom";
 
 const typesNames = ["thin", "traditional"];
 const sizesTypes = [26, 30, 40];
@@ -26,8 +26,6 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
   price,
   imageUrl,
   sizes,
-  types,
-  rating,
 }) => {
   const dispatch = useDispatch();
   const cartItem = useSelector((state: RootState) =>
@@ -38,7 +36,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 
   const addedCount = cartItem ? cartItem.count : 0;
 
-  const onClickAdd = () => {
+  const onClickAdd = useCallback(() => {
     const item: CartItem = {
       id,
       name,
@@ -49,7 +47,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
       count: 0,
     };
     dispatch(addToCart(item));
-  };
+  }, [dispatch, id, name, price, imageUrl, activeType, activeSize]);
 
   return (
     <Box
@@ -68,11 +66,17 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
     >
       {/* Pizza Image and Title */}
       <Box>
-        <img
-          src={imageUrl}
-          alt={name}
-          style={{ width: "100%", borderRadius: "10px", marginBottom: "10px" }}
-        />
+        <Link key={id} to={`/pizza/${id}`}>
+          <img
+            src={imageUrl}
+            alt={name}
+            style={{
+              width: "100%",
+              borderRadius: "10px",
+              marginBottom: "10px",
+            }}
+          />
+        </Link>
         <Typography variant="h6" fontWeight="bold">
           {name}
         </Typography>
@@ -148,7 +152,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
         }}
       >
         <Typography variant="h6" fontWeight="bold" sx={{ flex: 1 }}>
-          from {price} <EuroIcon fontSize="small" />
+          from {price.toFixed(2)} <EuroIcon fontSize="small" />
         </Typography>
         <Button
           variant="contained"
@@ -162,7 +166,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
             "&:hover": { backgroundColor: "darkorange", color: "white" },
           }}
         >
-          + Add {addedCount > 0 && <i>({addedCount})</i>}
+          + Add {addedCount > 0 && `(${addedCount})`}
         </Button>
       </Box>
     </Box>

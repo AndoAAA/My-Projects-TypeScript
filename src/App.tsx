@@ -7,16 +7,20 @@ import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 
 import Checkout from "./pages/Checkout";
+import SinglePage from "./pages/SinglePage";
+import MainLayout from "./layouts/MainLayout";
 
 function App() {
   return (
     <>
-      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<MainLayout />}>
+          <Route path="" element={<Home />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="pizza/:id" element={<SinglePage />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
       </Routes>
     </>
   );
