@@ -1,9 +1,13 @@
-import { reportWebVitals } from 'web-vitals';
+import { onCLS, onFID, onFCP, onLCP, onTTFB } from "web-vitals";
 
-const reportWebVitalsHandler = (onPerfEntry: any) => {
+const reportWebVitals = (onPerfEntry?: (metric: any) => void) => {
   if (onPerfEntry && onPerfEntry instanceof Function) {
-    onPerfEntry(reportWebVitals);
+    onCLS(onPerfEntry);
+    onFID(onPerfEntry);
+    onFCP(onPerfEntry);
+    onLCP(onPerfEntry);
+    onTTFB(onPerfEntry);
   }
 };
 
-export default reportWebVitalsHandler;
+export default reportWebVitals;
