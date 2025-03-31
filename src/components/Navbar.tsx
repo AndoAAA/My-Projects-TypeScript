@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "../assets/logo.jpg";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const theme = useTheme();
@@ -43,9 +43,9 @@ const Navbar = () => {
           }}
         >
           {/* Logo */}
-          <NavLink to="/home" style={{ display: "flex", alignItems: "center" }}>
+          <NavLink to="/" style={{ display: "flex", alignItems: "center" }}>
             <Box>
-              <img src={Logo} alt="Company Logo" style={{ height: "80px" }} />
+              <img src={Logo} alt="Company Logo" style={{ height: "120px" }} />
             </Box>
           </NavLink>
 
@@ -55,11 +55,19 @@ const Navbar = () => {
               {navItems.map((item) => (
                 <Typography
                   key={item}
-                  component={Link}
-                  to={item.toLowerCase().replace(/\s+/g, "-")}
+                  component={NavLink}
+                  to={
+                    item === "Home"
+                      ? "/"
+                      : item.toLowerCase().replace(/\s+/g, "-")
+                  }
                   sx={{
                     textDecoration: "none",
                     color: "#333",
+                    "&.active": {
+                      color: theme.palette.primary.main,
+                      fontWeight: "bold",
+                    },
                     "&:hover": { color: theme.palette.primary.main },
                   }}
                 >
@@ -72,11 +80,16 @@ const Navbar = () => {
           {/* Contact Button */}
           {!isMobile && (
             <Button
-              variant="contained"
+              variant="outlined"
+              component={NavLink}
+              to="/contact"
               sx={{
-                background: theme.palette.primary.main,
-                color: "#fff",
-                "&:hover": { background: theme.palette.primary.dark },
+                background: "white",
+                color: theme.palette.primary.main,
+                "&:hover": {
+                  background: theme.palette.primary.main,
+                  color: "white",
+                },
               }}
             >
               Contact
@@ -97,14 +110,17 @@ const Navbar = () => {
 
       {/* Drawer (Sidebar Menu for Mobile) */}
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <Box sx={{ width: 250 }}>
+        <Box sx={{ width: 250 }} onClick={toggleDrawer(false)}>
           <List>
             {navItems.map((item) => (
               <ListItem disablePadding key={item}>
                 <ListItemButton
-                  component={Link}
-                  to={item.toLowerCase().replace(/\s+/g, "-")}
-                  onClick={toggleDrawer(false)}
+                  component={NavLink}
+                  to={
+                    item === "Home"
+                      ? "/"
+                      : item.toLowerCase().replace(/\s+/g, "-")
+                  }
                 >
                   <ListItemText primary={item} />
                 </ListItemButton>
@@ -113,7 +129,7 @@ const Navbar = () => {
           </List>
           <Button
             fullWidth
-            component={Link}
+            component={NavLink}
             to="/contact"
             variant="contained"
             sx={{
@@ -121,7 +137,6 @@ const Navbar = () => {
               background: theme.palette.primary.main,
               color: "#fff",
             }}
-            onClick={toggleDrawer(false)}
           >
             Contact
           </Button>
