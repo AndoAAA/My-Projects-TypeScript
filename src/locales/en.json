@@ -1,0 +1,19 @@
+{
+  "hello": "Hello",
+  "footer": {
+    "contact": "Contact Us",
+    "phone": "Phone",
+    "email": "Email",
+    "workingHours": "Working Hours",
+    "address": "Address"
+  },
+  "navbar": {
+    "home": "Home",
+    "contact": "Contact Us",
+    "about": "About Us",
+    "service": "Services"
+  },
+  "header": {
+    "address": "5 Dro St, Yerevan 0069"
+  }
+}

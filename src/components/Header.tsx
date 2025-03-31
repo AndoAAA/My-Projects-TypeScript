@@ -15,6 +15,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EmailIcon from "@mui/icons-material/Email";
 import InstagramIcon from "../assets/icons/instagram.png";
 import FacebookIcon from "../assets/icons/facebook.png";
+import { useTranslation } from "react-i18next";
 
 const languageOptions = [
   {
@@ -62,14 +63,22 @@ const languageOptions = [
 ];
 
 const Header = () => {
+  const { t, i18n } = useTranslation();
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [selectedLanguage, setSelectedLanguage] = useState(languageOptions[0]);
+  const [selectedLanguage, setSelectedLanguage] = useState(
+    languageOptions.find((lang) => lang.value === i18n.language) ||
+      languageOptions[0]
+  );
 
   const handleLanguageChange = (
     newValue: SingleValue<(typeof languageOptions)[0]>
   ) => {
-    setSelectedLanguage(newValue as any);
+    if (newValue) {
+      setSelectedLanguage(newValue);
+      i18n.changeLanguage(newValue.value);
+    }
   };
 
   return (
@@ -117,8 +126,8 @@ const Header = () => {
           >
             <LocationOnIcon
               sx={{ color: "#EA4335", fontSize: isMobile ? 18 : 24 }}
-            />{" "}
-            5 Dro St, Yerevan, Armenia
+            />
+            {t("header.address")}
           </Typography>
           <Typography
             variant={isMobile ? "body2" : "body1"}
