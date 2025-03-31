@@ -5,8 +5,11 @@ import MailIcon from "@mui/icons-material/Mail";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Logo from "../assets/logo.jpg";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const {t} = useTranslation();
+
   return (
     <Box
       sx={{
@@ -41,7 +44,7 @@ const Footer = () => {
           <MailIcon sx={{ color: "#ff9800" }} /> mmm@mmm.mm
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <AccessTimeIcon sx={{ color: "#f44336" }} /> Mon - Sat: 10:00-20:00
+          <AccessTimeIcon sx={{ color: "#f44336" }} />{t("footer.workingHours")}  - 10:00-20:00
         </Box>
       </Box>
 
@@ -61,7 +64,7 @@ const Footer = () => {
           style={{ maxWidth: "120px", marginBottom: "10px" }}
         />
         <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <LocationOnIcon /> 5 Dro St, Yerevan, Armenia
+          <LocationOnIcon /> {t("footer.address")}
         </Typography>
       </Box>
 

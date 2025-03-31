@@ -17,8 +17,10 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import Logo from "../assets/logo.jpg";
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -27,7 +29,12 @@ const Navbar = () => {
     setDrawerOpen(open);
   };
 
-  const navItems = ["Home", "About", "Contact", "Service"];
+  const navItems = [
+    { key: "home", path: "/" },
+    { key: "about", path: "/about" },
+    { key: "contact", path: "/contact" },
+    { key: "service", path: "/service" },
+  ];
 
   return (
     <>
@@ -52,15 +59,11 @@ const Navbar = () => {
           {/* Navigation Links (Hidden on Mobile) */}
           {!isMobile && (
             <Box sx={{ display: "flex", gap: 3 }}>
-              {navItems.map((item) => (
+              {navItems.map(({ key, path }) => (
                 <Typography
-                  key={item}
+                  key={key}
                   component={NavLink}
-                  to={
-                    item === "Home"
-                      ? "/"
-                      : item.toLowerCase().replace(/\s+/g, "-")
-                  }
+                  to={path}
                   sx={{
                     textDecoration: "none",
                     color: "#333",
@@ -71,7 +74,7 @@ const Navbar = () => {
                     "&:hover": { color: theme.palette.primary.main },
                   }}
                 >
-                  {item}
+                  {t(`navbar.${key}`)}
                 </Typography>
               ))}
             </Box>
@@ -92,7 +95,7 @@ const Navbar = () => {
                 },
               }}
             >
-              Contact
+              {t("navbar.contact")}
             </Button>
           )}
 
@@ -112,17 +115,10 @@ const Navbar = () => {
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         <Box sx={{ width: 250 }} onClick={toggleDrawer(false)}>
           <List>
-            {navItems.map((item) => (
-              <ListItem disablePadding key={item}>
-                <ListItemButton
-                  component={NavLink}
-                  to={
-                    item === "Home"
-                      ? "/"
-                      : item.toLowerCase().replace(/\s+/g, "-")
-                  }
-                >
-                  <ListItemText primary={item} />
+            {navItems.map(({ key, path }) => (
+              <ListItem disablePadding key={key}>
+                <ListItemButton component={NavLink} to={path}>
+                  <ListItemText primary={t(`navbar.${key}`)} />
                 </ListItemButton>
               </ListItem>
             ))}
@@ -138,7 +134,7 @@ const Navbar = () => {
               color: "#fff",
             }}
           >
-            Contact
+            {t("navbar.contact")}
           </Button>
         </Box>
       </Drawer>
