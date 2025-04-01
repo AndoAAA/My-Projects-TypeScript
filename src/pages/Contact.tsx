@@ -5,6 +5,7 @@ import emailjs from "@emailjs/browser";
 import { useTranslation } from "react-i18next";
 import FacebookIcon from "../assets/icons/facebook.png";
 import InstagramIcon from "../assets/icons/instagram.png";
+import { TFunction } from "i18next";
 
 type FormDataType = {
   name: string;
@@ -32,7 +33,7 @@ const contactLinks = [
 ];
 
 const Contact: React.FC = () => {
-  const { t } = useTranslation();
+  const { t }: { t: (key: string) => string } = useTranslation();
   const [formData, setFormData] = useState<FormDataType>({
     name: "",
     email: "",
@@ -135,7 +136,7 @@ const Contact: React.FC = () => {
             href={item.link}
             target="_blank"
             underline="none"
-            aria-label={t(item.label) || ""}
+            aria-label={item.label}
             sx={{
               display: "flex",
               alignItems: "center",
