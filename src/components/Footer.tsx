@@ -8,7 +8,7 @@ import Logo from "../assets/logo.jpg";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-  const {t} = useTranslation();
+  const { t }: { t: (key: string) => string } = useTranslation();
 
   return (
     <Box
@@ -41,10 +41,18 @@ const Footer = () => {
           <WhatsAppIcon sx={{ color: "#25D366" }} /> +374(93) 39-14-81
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <MailIcon sx={{ color: "#ff9800" }} /> mmm@mmm.mm
+          <MailIcon sx={{ color: "#ff9800" }} />
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Typography>{t("footer.email")}</Typography>
+            <Typography>mmm@mmm.mm</Typography>
+          </Box>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <AccessTimeIcon sx={{ color: "#f44336" }} />{t("footer.workingHours")}  - 10:00-20:00
+          <AccessTimeIcon sx={{ color: "#f44336" }} />
+          <Box>
+            <Typography>{t("footer.workDays")}</Typography>
+            <Typography>{t("footer.workingHours")}</Typography>
+          </Box>
         </Box>
       </Box>
 
@@ -83,7 +91,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <Box sx={{ textAlign: "center", marginTop: "20px", fontSize: "14px" }}>
-        &copy; {new Date().getFullYear()} www.tarverdyan-projects.com
+        &copy; 2025 www.tarverdyan-projects.com
       </Box>
     </Box>
   );

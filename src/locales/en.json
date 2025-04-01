@@ -4,7 +4,8 @@
     "contact": "Contact Us",
     "phone": "Phone",
     "email": "Email",
-    "workingHours": "Working Hours: Mon - Sat",
+    "workingHours": "Mon - Sat : 10:00-20:00 ",
+    "workDays": "Working Hours",
     "address": "5 Dro Street, Yerevan"
   },
   "navbar": {
@@ -15,5 +16,19 @@
   },
   "header": {
     "address": "5 Dro Street, Yerevan"
-  }
+  },
+  "contactForm": {
+        "name": "Fullname",
+        "tel": "Tel. number",
+        "message": "Message",
+        "sendBtn": "Send",
+        "title": "Contact Us",
+        "nameRequired": "Name is required",
+        "emailRequired": "Email is required",
+        "emailInvalid": "Enter a valid email",
+        "telRequired":"Enter telephone number",
+        "messageRequired": "Message is required",
+        "success": "Message sent successfully!",
+        "failure": "Failed to send message. Please try again later."
+      }
 }

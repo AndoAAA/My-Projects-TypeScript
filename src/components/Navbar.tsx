@@ -20,7 +20,8 @@ import { NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
-  const { t } = useTranslation();
+  const { t }: { t: (key: string) => string } = useTranslation();
+
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -39,7 +40,7 @@ const Navbar = () => {
   return (
     <>
       <AppBar
-        position="sticky"
+        position="static"
         sx={{ background: "#fff", boxShadow: "0px 4px 10px rgba(0,0,0,0.1)" }}
       >
         <Toolbar
@@ -47,12 +48,13 @@ const Navbar = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            padding:"10px"
           }}
         >
           {/* Logo */}
           <NavLink to="/" style={{ display: "flex", alignItems: "center" }}>
             <Box>
-              <img src={Logo} alt="Company Logo" style={{ height: "120px" }} />
+              <img src={Logo} alt="Company Logo" style={{ height: "100px" }} />
             </Box>
           </NavLink>
 

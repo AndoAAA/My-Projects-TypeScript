@@ -16,54 +16,73 @@ import EmailIcon from "@mui/icons-material/Email";
 import InstagramIcon from "../assets/icons/instagram.png";
 import FacebookIcon from "../assets/icons/facebook.png";
 import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 const languageOptions = [
   {
     value: "en",
     label: (
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          cursor: "pointer",
+        }}
+      >
         <img
           src="https://flagcdn.com/w40/gb.png"
           alt="English"
           width="20"
           height="15"
         />
-        English
       </div>
     ),
   },
   {
     value: "hy",
     label: (
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          cursor: "pointer",
+        }}
+      >
         <img
           src="https://flagcdn.com/w40/am.png"
           alt="Armenian"
           width="20"
           height="15"
         />
-        Հայերեն
       </div>
     ),
   },
   {
     value: "ru",
     label: (
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          cursor: "pointer",
+        }}
+      >
         <img
           src="https://flagcdn.com/w40/ru.png"
           alt="Russian"
           width="20"
           height="15"
         />
-        Русский
       </div>
     ),
   },
 ];
 
 const Header = () => {
-  const { t, i18n } = useTranslation();
+  const { t }: { t: (key: string) => string } = useTranslation();
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -82,7 +101,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="sticky" sx={{ p: isMobile ? 1 : 2 }}>
+    <AppBar position="static" sx={{ p: isMobile ? 1 : 2 }}>
       <Toolbar
         sx={{
           display: "flex",
@@ -141,7 +160,7 @@ const Header = () => {
         </Box>
 
         {/* Language Selector */}
-        <Box sx={{ minWidth: 150 }}>
+        <Box>
           <Select
             options={languageOptions}
             value={selectedLanguage}
@@ -150,10 +169,10 @@ const Header = () => {
             styles={{
               control: (base) => ({
                 ...base,
-                width: 150,
                 borderRadius: "5px",
                 border: "1px solid #ccc",
                 boxShadow: "none",
+                cursor: "pointer",
               }),
               menu: (base) => ({
                 ...base,
