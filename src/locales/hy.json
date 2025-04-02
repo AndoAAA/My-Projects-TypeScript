@@ -39,5 +39,10 @@
     "surgicalProcedures": "Վիրաբուժություն",
     "pediatricDentistry": "Մանկական ստոմատոլոգիա",
     "endodontics": "Էնդոդոնտիա"
+  },
+  "stats": {
+    "patients": "Բուժառու",
+    "implants": "Իմպլանտներ",
+    "crowns": "Շապիկներ"
   }
 }

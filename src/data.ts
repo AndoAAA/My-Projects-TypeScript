@@ -3,6 +3,7 @@ import cosmeticCareImg from "./assets/CosmeticCare.jpg";
 import denturesImg from "./assets/Dentures.jpg";
 import surgicalProceduresImg from "./assets/surgicalProcedures.jpg";
 import pediatricDentistryImg from "./assets/pediatricImg.png";
+import endodonticsImg from "./assets/endodontia.png";
 
 export const services = [
   {
@@ -33,6 +34,6 @@ export const services = [
   {
     id: 5,
     title: "endodontics",
-    image: surgicalProceduresImg,
+    image: endodonticsImg,
   },
 ];

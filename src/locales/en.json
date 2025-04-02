@@ -40,5 +40,10 @@
     "surgicalProcedures": "Surgical Procedures",
     "pediatricDentistry": "Pediatric Dentistry",
     "endodontics": "Endodontics"
+  },
+  "stats": {
+    "patients": "Patients",
+    "implants": "Implants",
+    "crowns": "Crowns"
   }
 }

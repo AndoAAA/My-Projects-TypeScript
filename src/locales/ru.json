@@ -39,5 +39,10 @@
     "surgicalProcedures": "Хирургическая стоматология",
     "pediatricDentistry": "Детская стоматология",
     "endodontics": "Эндодонтия"
+  },
+  "stats": {
+    "patients": "Пациенты",
+    "implants": "Импланты",
+    "crowns": "Коронки"
   }
 }

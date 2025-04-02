@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Select, { SingleValue } from "react-select";
+import Select from "react-select";
 import {
   AppBar,
   Toolbar,
@@ -87,33 +86,23 @@ const Header = () => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [selectedLanguage, setSelectedLanguage] = useState(
-    languageOptions.find((lang) => lang.value === i18n.language) ||
-      languageOptions[0]
-  );
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
-  const handleLanguageChange = (
-    newValue: SingleValue<(typeof languageOptions)[0]>
-  ) => {
-    if (newValue) {
-      setSelectedLanguage(newValue);
-      i18n.changeLanguage(newValue.value);
-      localStorage.setItem("selectedLanguage", newValue.value);
-    }
+  const handleLanguageChange = (selectedOption: any) => {
+    i18n.changeLanguage(selectedOption.value);
+    localStorage.setItem("selectedLanguage", selectedOption.value);
   };
 
   return (
-    <AppBar
-      position="static"
-      sx={{ p: isMobile ? 1 : 2, background: colors.lightBlue }}
-    >
+    <AppBar position="static" sx={{ p: 1.5, background: colors.lightBlue }}>
       <Toolbar
         sx={{
           display: "flex",
           flexDirection: isMobile ? "column" : "row",
           alignItems: "center",
-          justifyContent: isMobile ? "center" : "space-between",
-          gap: isMobile ? 1.5 : 3,
+          justifyContent: "space-between",
+          gap: isMobile ? 1 : 2,
+          textAlign: "center",
         }}
       >
         {/* Contact Info */}
@@ -122,93 +111,103 @@ const Header = () => {
             display: "flex",
             flexDirection: isMobile ? "column" : "row",
             alignItems: "center",
-            gap: isMobile ? 1 : 3,
-            textAlign: "center",
+            gap: isMobile ? 0.8 : 3,
           }}
         >
-          <Typography
-            variant={isMobile ? "body2" : "body1"}
-            sx={{ display: "flex", alignItems: "center", gap: 1 }}
-          >
-            <LocalPhoneIcon
-              sx={{ color: "#25D366", fontSize: isMobile ? 18 : 24 }}
-            />{" "}
-            +374 (93) 39-14-81
-          </Typography>
-          <Typography
-            variant={isMobile ? "body2" : "body1"}
-            sx={{ display: "flex", alignItems: "center", gap: 1 }}
-          >
-            <WhatsAppIcon
-              sx={{ color: "#25D366", fontSize: isMobile ? 18 : 24 }}
-            />{" "}
-            +374 (93) 39-14-81
-          </Typography>
-          <Typography
-            variant={isMobile ? "body2" : "body1"}
-            sx={{ display: "flex", alignItems: "center", gap: 1 }}
-          >
-            <LocationOnIcon
-              sx={{ color: "#EA4335", fontSize: isMobile ? 18 : 24 }}
-            />
-            {t("header.address")}
-          </Typography>
-          <Typography
-            variant={isMobile ? "body2" : "body1"}
-            sx={{ display: "flex", alignItems: "center", gap: 1 }}
-          >
-            <EmailIcon sx={{ color: "orange", fontSize: isMobile ? 18 : 24 }} />{" "}
-            mmm@mmm.com
-          </Typography>
+          {[
+            {
+              icon: <LocalPhoneIcon sx={{ color: "#25D366" }} />,
+              text: "+374 (93) 39-14-81",
+            },
+            {
+              icon: <WhatsAppIcon sx={{ color: "#25D366" }} />,
+              text: "+374 (93) 39-14-81",
+            },
+            {
+              icon: <LocationOnIcon sx={{ color: "#EA4335" }} />,
+              text: t("header.address"),
+            },
+            {
+              icon: <EmailIcon sx={{ color: "orange" }} />,
+              text: "mmm@mmm.com",
+            },
+          ].map((item, index) => (
+            <Typography
+              key={index}
+              variant={isMobile ? "body2" : isTablet ? "body1" : "h6"}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                fontSize: isMobile ? 12 : 14,
+              }}
+            >
+              {item.icon} {item.text}
+            </Typography>
+          ))}
         </Box>
 
         {/* Language Selector */}
-        <Box>
+        <Box sx={{ minWidth: isMobile ? "" : isTablet ? "80px" : "80px" }}>
           <Select
             options={languageOptions}
-            value={selectedLanguage}
+            defaultValue={languageOptions.find(
+              (lang) => lang.value === i18n.language
+            )}
             onChange={handleLanguageChange}
             isSearchable={false}
             styles={{
               control: (base) => ({
                 ...base,
-                borderRadius: "5px",
-                border: "1px solid #ccc",
-                boxShadow: "none",
+                borderRadius: "8px",
+                border: "1px solid #ddd",
                 cursor: "pointer",
+                fontSize: isMobile ? 12 : 14,
               }),
-              menu: (base) => ({
-                ...base,
-                zIndex: 9999,
-              }),
+              menu: (base) => ({ ...base, zIndex: 9999 }),
             }}
           />
         </Box>
 
         {/* Social Media Links */}
         <Box
-          sx={{ display: "flex", alignItems: "center", gap: isMobile ? 2 : 3 }}
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: isMobile ? 1.5 : 3,
+          }}
         >
-          <Link
-            href="https://www.facebook.com/people/Spectra-Dental-Clinic/61564332775099/?_rdr"
-            target="_blank"
-          >
-            <img
-              src={FacebookIcon}
-              alt="facebook"
-              style={{ width: isMobile ? 25 : 30, height: isMobile ? 25 : 30 }}
-            />
-          </Link>
-          <Link
-            href="https://www.instagram.com/spectradental.clinic/"
-            target="_blank"
-          >
-            <img
-              src={InstagramIcon}
-              alt="instagram"
-              style={{ width: isMobile ? 25 : 30, height: isMobile ? 25 : 30 }}
-            />
-          </Link>
+          {[
+            {
+              href: "https://www.facebook.com/people/Spectra-Dental-Clinic/61564332775099/?_rdr",
+              icon: FacebookIcon,
+              alt: "Facebook",
+            },
+            {
+              href: "https://www.instagram.com/spectradental.clinic/",
+              icon: InstagramIcon,
+              alt: "Instagram",
+            },
+          ].map((item, index) => (
+            <Link
+              key={index}
+              href={item.href}
+              target="_blank"
+              sx={{
+                transition: "transform 0.2s ease-in-out",
+                "&:hover": { transform: "scale(1.15)" },
+              }}
+            >
+              <img
+                src={item.icon}
+                alt={item.alt}
+                style={{
+                  width: isMobile ? 22 : isTablet ? 26 : 30,
+                  height: isMobile ? 22 : isTablet ? 26 : 30,
+                }}
+              />
+            </Link>
+          ))}
         </Box>
       </Toolbar>
     </AppBar>
