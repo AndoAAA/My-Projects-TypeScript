@@ -1,16 +1,9 @@
 import React from "react";
 import { services } from "../data";
 import { useTranslation } from "react-i18next";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Typography,
-  Box,
-  Container,
-  Grid,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { colors } from "../assets/colors/colors";
+import ServiceItem from "../components/ServiceItem";
 
 const Service: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -18,50 +11,54 @@ const Service: React.FC = () => {
   return (
     <Box
       sx={{
-        padding: "40px 20px",
-        textAlign: "center",
-        backgroundColor: "#f5f5f5",
+        padding: "60px 20px",
+        backgroundColor: colors.lightBlue,
       }}
     >
       <Typography
         variant="h4"
-        sx={{ mb: 4, fontWeight: "bold", color: colors.darkBlue }}
+        sx={{
+          mb: 4,
+          fontWeight: "bold",
+          color: "white",
+          textAlign: "center",
+          fontSize: { xs: "2rem", sm: "2.5rem" },
+        }}
       >
         {t("navbar.service")}
       </Typography>
-      <Container>
-        <Grid container spacing={4} justifyContent="center">
-          {services.map((service) => (
-            <Grid item xs={12} sm={6} md={4} key={service.id}>
-              <Card
-                sx={{
-                  maxWidth: 345,
-                  margin: "auto",
-                  boxShadow: 3,
-                  borderRadius: 2,
-                }}
-              >
-                <CardMedia
-                  sx={{ height: 180 }}
-                  image={service.image || "https://via.placeholder.com/300"}
-                  title={t(`services.${service.title}`)}
-                />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h6"
-                    component="div"
-                    color={colors.darkBlue}
-                    sx={{ fontWeight: "bold" }}
-                  >
-                    {t(`services.${service.title}`)}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          gap: "24px",
+        }}
+      >
+        {services.map((service) => (
+          <Box
+            key={service.id}
+            sx={{
+              width: { xs: "100%", sm: "45%", md: "30%" },
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              transition: "transform 0.3s ease, box-shadow 0.3s ease",
+              "&:hover": {
+                transform: "scale(1.05)",
+                boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.15)",
+              },
+            }}
+          >
+            <ServiceItem
+              id={service.id.toString()}
+              title={t(`services.${service.title}`)}
+              image={service.image}
+            />
+          </Box>
+        ))}
+      </Box>
     </Box>
   );
 };

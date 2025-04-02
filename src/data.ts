@@ -2,6 +2,7 @@ import dentalImplantsImg from "./assets/DentalImplants.jpg";
 import cosmeticCareImg from "./assets/CosmeticCare.jpg";
 import denturesImg from "./assets/Dentures.jpg";
 import surgicalProceduresImg from "./assets/surgicalProcedures.jpg";
+import pediatricDentistryImg from "./assets/pediatricImg.png";
 
 export const services = [
   {
@@ -27,7 +28,7 @@ export const services = [
   {
     id: 4,
     title: "pediatricDentistry",
-    image: surgicalProceduresImg,
+    image: pediatricDentistryImg,
   },
   {
     id: 5,
