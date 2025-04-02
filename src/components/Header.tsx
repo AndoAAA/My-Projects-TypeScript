@@ -17,6 +17,7 @@ import InstagramIcon from "../assets/icons/instagram.png";
 import FacebookIcon from "../assets/icons/facebook.png";
 import { useTranslation } from "react-i18next";
 import i18n from "i18next";
+import { colors } from "../assets/colors/colors";
 
 const languageOptions = [
   {
@@ -97,11 +98,15 @@ const Header = () => {
     if (newValue) {
       setSelectedLanguage(newValue);
       i18n.changeLanguage(newValue.value);
+      localStorage.setItem("selectedLanguage", newValue.value);
     }
   };
 
   return (
-    <AppBar position="static" sx={{ p: isMobile ? 1 : 2 }}>
+    <AppBar
+      position="static"
+      sx={{ p: isMobile ? 1 : 2, background: colors.lightBlue }}
+    >
       <Toolbar
         sx={{
           display: "flex",
@@ -152,9 +157,7 @@ const Header = () => {
             variant={isMobile ? "body2" : "body1"}
             sx={{ display: "flex", alignItems: "center", gap: 1 }}
           >
-            <EmailIcon
-              sx={{ color: "#4285F4", fontSize: isMobile ? 18 : 24 }}
-            />{" "}
+            <EmailIcon sx={{ color: "orange", fontSize: isMobile ? 18 : 24 }} />{" "}
             mmm@mmm.com
           </Typography>
         </Box>

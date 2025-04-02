@@ -6,6 +6,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Logo from "../assets/logo.jpg";
 import { useTranslation } from "react-i18next";
+import { colors } from "../assets/colors/colors";
 
 const Footer = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -14,7 +15,7 @@ const Footer = () => {
     <Box
       sx={{
         padding: "40px 20px",
-        backgroundColor: "#1a237e",
+        backgroundColor: colors.darkBlue,
         color: "white",
         display: "flex",
         flexDirection: "column",

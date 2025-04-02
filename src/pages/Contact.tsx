@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import { useTranslation } from "react-i18next";
 import FacebookIcon from "../assets/icons/facebook.png";
 import InstagramIcon from "../assets/icons/instagram.png";
-import { TFunction } from "i18next";
+import { colors } from "../assets/colors/colors";
 
 type FormDataType = {
   name: string;
@@ -103,7 +103,7 @@ const Contact: React.FC = () => {
       sx={{
         padding: "80px 5%",
         textAlign: "center",
-        background: "linear-gradient(to right, rgba(25, 55, 109, 1), #5663a7)",
+        background: colors.darkBlue,
         color: "white",
       }}
     >
@@ -167,7 +167,7 @@ const Contact: React.FC = () => {
           gap: "20px",
           maxWidth: "500px",
           margin: "0 auto",
-          background: "rgba(255, 255, 255, 0.1)",
+          background: colors.lightBlue,
           padding: "30px",
           borderRadius: "10px",
         }}
@@ -179,6 +179,16 @@ const Contact: React.FC = () => {
           onChange={handleChange}
           error={Boolean(errors.name)}
           helperText={errors.name}
+          sx={{ background: "white", borderRadius: "5px" }}
+          fullWidth
+        />
+        <TextField
+          label={t("contactForm.email")}
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          error={Boolean(errors.email)}
+          helperText={errors.email}
           sx={{ background: "white", borderRadius: "5px" }}
           fullWidth
         />
@@ -210,7 +220,7 @@ const Contact: React.FC = () => {
           variant="contained"
           disabled={loading}
           sx={{
-            background: "rgba(25, 55, 109, 1)",
+            background: colors.darkBlue,
             color: "white",
             padding: "12px 30px",
             fontSize: "1.1rem",

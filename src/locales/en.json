@@ -4,7 +4,7 @@
     "contact": "Contact Us",
     "phone": "Phone",
     "email": "Email",
-    "workingHours": "Mon - Sat : 10:00-20:00 ",
+    "workingHours": "Mon - Sat : 09:00-21:00 ",
     "workDays": "Working Hours",
     "address": "5 Dro Street, Yerevan"
   },
@@ -30,6 +30,15 @@
     "title": "Contact Us",
     "name": "Name",
     "tel": "Telephone",
-    "message": "Message"
+    "message": "Message",
+    "email": "Email"
+  },
+  "services": {
+    "dentalImplants": "Dental Implants",
+    "cosmeticCare": "Cosmetic Dental Care Whitening",
+    "dentures": "Dentures",
+    "surgicalProcedures": "Surgical Procedures",
+    "pediatricDentistry": "Pediatric Dentistry",
+    "endodontics": "Endodontics"
   }
 }
