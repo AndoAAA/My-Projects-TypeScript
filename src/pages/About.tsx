@@ -3,6 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { doctors } from "../data";
 import { colors } from "../assets/colors/colors";
+import { NavLink } from "react-router-dom";
 
 const About: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -16,7 +17,10 @@ const About: React.FC = () => {
         minHeight: "100vh",
       }}
     >
-      <Container maxWidth="lg" sx={{ display: "flex", flexDirection:"column", gap:5 }}>
+      <Container
+        maxWidth="lg"
+        sx={{ display: "flex", flexDirection: "column", gap: 5 }}
+      >
         {/* About Section */}
         <Box sx={{ flex: 1, textAlign: { xs: "center", sm: "left" } }}>
           <Typography
@@ -105,25 +109,27 @@ const About: React.FC = () => {
                 >
                   {doctor.description}
                 </Typography>
-                <Box
-                  sx={{
-                    display: "inline-block",
-                    px: 3,
-                    py: 1,
-                    borderRadius: "20px",
-                    backgroundColor: colors.darkBlue,
-                    color: "white",
-                    fontSize: "0.9rem",
-                    fontWeight: 500,
-                    cursor: "pointer",
-                    transition: "background-color 0.3s",
-                    "&:hover": {
-                      backgroundColor: colors.lightBlue,
-                    },
-                  }}
-                >
-                  {t("about.moreInfo")}
-                </Box>
+                <NavLink to={`/about/${doctor.id}`}>
+                  <Box
+                    sx={{
+                      display: "inline-block",
+                      px: 3,
+                      py: 1,
+                      borderRadius: "20px",
+                      backgroundColor: colors.darkBlue,
+                      color: "white",
+                      fontSize: "0.9rem",
+                      fontWeight: 500,
+                      cursor: "pointer",
+                      transition: "background-color 0.3s",
+                      "&:hover": {
+                        backgroundColor: colors.lightBlue,
+                      },
+                    }}
+                  >
+                    {t("about.moreInfo")}
+                  </Box>
+                </NavLink>
               </Box>
             ))}
           </Box>

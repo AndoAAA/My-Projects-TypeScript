@@ -5,6 +5,7 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Service from "./pages/Service";
 import NotFound from "./pages/NotFound";
+import DoctorSinglePage from "./components/DoctorSinglePage";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="contact" element={<Contact />} />
           <Route path="about" element={<About />} />
+          <Route path="about/:id" element={<DoctorSinglePage />} />
           <Route path="service" element={<Service />} />
           <Route path="*" element={<NotFound />} />
         </Route>

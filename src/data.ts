@@ -9,32 +9,32 @@ import GayaneImage from "./assets/Gayane.jpg";
 
 export const services = [
   {
-    id: 0,
+    id: "0",
     title: "dentalImplants",
     image: dentalImplantsImg,
   },
   {
-    id: 1,
+    id: "1",
     title: "cosmeticCare",
     image: cosmeticCareImg,
   },
   {
-    id: 2,
+    id: "2",
     title: "dentures",
     image: denturesImg,
   },
   {
-    id: 3,
+    id: "3",
     title: "surgicalProcedures",
     image: surgicalProceduresImg,
   },
   {
-    id: 4,
+    id: "4",
     title: "pediatricDentistry",
     image: pediatricDentistryImg,
   },
   {
-    id: 5,
+    id: "5",
     title: "endodontics",
     image: endodonticsImg,
   },
@@ -42,13 +42,13 @@ export const services = [
 
 export const doctors = [
   {
-    id: 0,
+    id: "0",
     image: ManukImage,
     key: "manuk",
     description: "",
   },
   {
-    id: 1,
+    id: "1",
     image: GayaneImage,
     key: "gayane",
     description: "",
