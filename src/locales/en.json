@@ -45,5 +45,14 @@
     "patients": "Patients",
     "implants": "Implants",
     "crowns": "Crowns"
+  },
+  "about": {
+    "paragraph": "Welcome to one of the most reputable and successful dental clinics in Yerevan. Our dedicated team, led by Dr. Manuk Melkonyan and Dr. Gayane Barseghyan, is committed to providing top-quality dental care in a comfortable and professional environment.",
+    "names": {
+      "manuk": "Manuk Melkonyan",
+      "gayane": "Gayane Barseghyan"
+    },
+    "doctors": "Our doctors",
+    "moreInfo": "More Info"
   }
 }

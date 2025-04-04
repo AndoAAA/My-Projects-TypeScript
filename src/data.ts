@@ -4,6 +4,8 @@ import denturesImg from "./assets/Dentures.jpg";
 import surgicalProceduresImg from "./assets/surgicalProcedures.jpg";
 import pediatricDentistryImg from "./assets/pediatricImg.png";
 import endodonticsImg from "./assets/endodontia.png";
+import ManukImage from "./assets/Manuk.jpg";
+import GayaneImage from "./assets/Gayane.jpg";
 
 export const services = [
   {
@@ -35,5 +37,20 @@ export const services = [
     id: 5,
     title: "endodontics",
     image: endodonticsImg,
+  },
+];
+
+export const doctors = [
+  {
+    id: 0,
+    image: ManukImage,
+    key: "manuk",
+    description: "",
+  },
+  {
+    id: 1,
+    image: GayaneImage,
+    key: "gayane",
+    description: "",
   },
 ];
