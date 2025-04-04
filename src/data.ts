@@ -12,31 +12,37 @@ export const services = [
     id: "0",
     title: "dentalImplants",
     image: dentalImplantsImg,
+    description:""
   },
   {
     id: "1",
     title: "cosmeticCare",
     image: cosmeticCareImg,
+    description:""
   },
   {
     id: "2",
     title: "dentures",
     image: denturesImg,
+    description:""
   },
   {
     id: "3",
     title: "surgicalProcedures",
     image: surgicalProceduresImg,
+    description:""
   },
   {
     id: "4",
     title: "pediatricDentistry",
     image: pediatricDentistryImg,
+    description:""
   },
   {
     id: "5",
     title: "endodontics",
     image: endodonticsImg,
+    description:""
   },
 ];
 

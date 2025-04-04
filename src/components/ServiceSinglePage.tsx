@@ -1,20 +1,20 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { doctors } from "../data";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useParams } from "react-router-dom";
+import { services } from "../data";
 import { colors } from "../assets/colors/colors";
 
-const DoctorSinglePage: React.FC = () => {
+const ServiceSinglePage: React.FC = () => {
   const { id } = useParams();
   const { t }: { t: (key: string) => string } = useTranslation();
-  const doctor = doctors.find((d) => d.id === id);
+  const service = services.find((s) => s.id === id);
   const navigate = useNavigate();
 
-  if (!doctor) {
+  if (!service) {
     return (
       <Box sx={{ textAlign: "center", py: 4 }}>
-        <Typography variant="h4">Doctor not found</Typography>
+        <Typography variant="h4">Service not found</Typography>
       </Box>
     );
   }
@@ -32,8 +32,8 @@ const DoctorSinglePage: React.FC = () => {
       }}
     >
       <img
-        src={doctor.image}
-        alt={doctor.key}
+        src={service.image}
+        alt={t(service.title)}
         style={{
           width: "100%",
           maxWidth: "500px",
@@ -51,20 +51,23 @@ const DoctorSinglePage: React.FC = () => {
           maxWidth: "500px",
         }}
       >
-        <Typography variant="h4" sx={{ mt: 2, fontWeight: "bold" }}>
-          {t(`about.names.${doctor.key}`)}
+        <Typography
+          variant="h4"
+          sx={{ mt: 2, fontWeight: "bold", textAlign: "center" }}
+        >
+          {t(`services.${service.title}`)}
         </Typography>
         <Typography
           variant="body1"
           sx={{ mt: 2, color: "#555", textAlign: "center" }}
         >
-          {doctor.description}
+          {t(service.description)}
         </Typography>
         <Button
           variant="contained"
           color="primary"
           sx={{
-            display: "inline-block",
+            mt: 3,
             px: 3,
             py: 1,
             borderRadius: "20px",
@@ -78,7 +81,7 @@ const DoctorSinglePage: React.FC = () => {
               backgroundColor: colors.lightBlue,
             },
           }}
-          onClick={() => navigate("/about")}
+          onClick={() => navigate("/service")}
         >
           {t("about.back")}
         </Button>
@@ -87,4 +90,4 @@ const DoctorSinglePage: React.FC = () => {
   );
 };
 
-export default DoctorSinglePage;
+export default ServiceSinglePage;

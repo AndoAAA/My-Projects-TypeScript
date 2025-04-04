@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Box, Typography } from "@mui/material";
 import { colors } from "../assets/colors/colors";
 import ServiceItem from "../components/ServiceItem";
+import { NavLink } from "react-router-dom";
 
 const Service: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -41,9 +42,6 @@ const Service: React.FC = () => {
             key={service.id}
             sx={{
               width: { xs: "100%", sm: "45%", md: "30%" },
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
               transition: "transform 0.3s ease, box-shadow 0.3s ease",
               "&:hover": {
                 transform: "scale(1.05)",
@@ -51,11 +49,16 @@ const Service: React.FC = () => {
               },
             }}
           >
-            <ServiceItem
-              id={service.id.toString()}
-              title={t(`services.${service.title}`)}
-              image={service.image}
-            />
+            <NavLink
+              to={`/service/${service.id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <ServiceItem
+                id={service.id.toString()}
+                title={t(`services.${service.title}`)}
+                image={service.image}
+              />
+            </NavLink>
           </Box>
         ))}
       </Box>

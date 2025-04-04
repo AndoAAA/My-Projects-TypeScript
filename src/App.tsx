@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Service from "./pages/Service";
 import NotFound from "./pages/NotFound";
 import DoctorSinglePage from "./components/DoctorSinglePage";
+import ServiceSinglePage from "./components/ServiceSinglePage";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
           <Route path="about" element={<About />} />
           <Route path="about/:id" element={<DoctorSinglePage />} />
           <Route path="service" element={<Service />} />
+          <Route path="service/:id" element={<ServiceSinglePage />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
