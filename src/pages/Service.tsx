@@ -38,17 +38,7 @@ const Service: React.FC = () => {
         }}
       >
         {services.map((service) => (
-          <Box
-            key={service.id}
-            sx={{
-              width: { xs: "100%", sm: "45%", md: "30%" },
-              transition: "transform 0.3s ease, box-shadow 0.3s ease",
-              "&:hover": {
-                transform: "scale(1.05)",
-                boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.15)",
-              },
-            }}
-          >
+          <Box key={service.id}>
             <NavLink
               to={`/service/${service.id}`}
               style={{ textDecoration: "none" }}

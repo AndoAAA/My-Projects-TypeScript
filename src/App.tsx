@@ -7,10 +7,12 @@ import Service from "./pages/Service";
 import NotFound from "./pages/NotFound";
 import DoctorSinglePage from "./components/DoctorSinglePage";
 import ServiceSinglePage from "./components/ServiceSinglePage";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainLayouts />}>
           <Route index element={<Home />} />

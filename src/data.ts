@@ -2,8 +2,8 @@ import dentalImplantsImg from "./assets/DentalImplants.jpg";
 import cosmeticCareImg from "./assets/CosmeticCare.jpg";
 import denturesImg from "./assets/Dentures.jpg";
 import surgicalProceduresImg from "./assets/surgicalProcedures.jpg";
-import pediatricDentistryImg from "./assets/pediatricImg.png";
-import endodonticsImg from "./assets/endodontia.png";
+import pediatricDentistryImg from "./assets/pediatricImg.jpg";
+import endodonticsImg from "./assets/endodontia.jpg";
 import ManukImage from "./assets/Manuk.jpg";
 import GayaneImage from "./assets/Gayane.jpg";
 
