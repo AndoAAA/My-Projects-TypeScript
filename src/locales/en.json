@@ -2,7 +2,7 @@
   "hello": "Hello",
   "home": {
     "title": "Welcome to Our Clinic",
-    "text":"Your health is our priority."
+    "text": "Your health is our priority."
   },
   "footer": {
     "contact": "Contact Us",
