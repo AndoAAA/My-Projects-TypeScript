@@ -1,5 +1,9 @@
 {
   "hello": "Hello",
+  "home": {
+    "title": "Welcome to Our Clinic",
+    "text":"Your health is our priority."
+  },
   "footer": {
     "contact": "Contact Us",
     "phone": "Phone",
@@ -12,7 +16,7 @@
     "home": "Home",
     "contact": "Contact Us",
     "about": "About Us",
-    "service": "Services"
+    "service": "Our Services"
   },
   "header": {
     "address": "5 Dro Street, Yerevan"

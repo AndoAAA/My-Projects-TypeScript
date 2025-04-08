@@ -87,6 +87,7 @@ const Footer = () => {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
+          title="Clinic Location on Google Maps"
         />
       </Box>
 
