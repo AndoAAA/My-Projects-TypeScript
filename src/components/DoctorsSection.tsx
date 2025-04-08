@@ -1,14 +1,14 @@
 import React from "react";
 import { Box, Typography, Card, CardContent, CardMedia } from "@mui/material";
-import { services } from "../data";
+import { doctors } from "../data";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-const ServicesSection: React.FC = () => {
+const DoctorsSection: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
   return (
     <Box sx={{ padding: "50px 20px", textAlign: "center" }}>
       <Typography variant="h4" fontWeight="bold" mb={4}>
-        {t("navbar.service")}
+        {t("about.doctors")}
       </Typography>
 
       <Box
@@ -19,16 +19,16 @@ const ServicesSection: React.FC = () => {
           justifyContent: "center",
         }}
       >
-        {services.slice(0, 3).map((service, index) => (
+        {doctors.slice(0, 3).map((doctor, index) => (
           <NavLink
-            to={`/service/${service.id}`}
+            to={`/about/${doctor.id}`}
             style={{ textDecoration: "none" }}
           >
             <Card
               key={index}
               sx={{
                 width: 300,
-                height: 320,
+                height: 360,
                 borderRadius: 4,
                 boxShadow: 3,
                 transition: "transform 0.3s, box-shadow 0.3s",
@@ -40,16 +40,16 @@ const ServicesSection: React.FC = () => {
             >
               <CardMedia
                 component="img"
-                height="200"
-                image={service.image}
-                alt={service.title}
+                height="300"
+                image={doctor.image}
+                alt={doctor.key}
               />
               <CardContent>
                 <Typography variant="h6" fontWeight="bold">
-                  {t(`services.${service.title}`)}
+                  {t(`about.names.${doctor.key}`)}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {service.description}
+                  {doctor.description}
                 </Typography>
               </CardContent>
             </Card>
@@ -60,4 +60,4 @@ const ServicesSection: React.FC = () => {
   );
 };
 
-export default ServicesSection;
+export default DoctorsSection;

@@ -3,6 +3,7 @@ import StatsSection from "../components/Stats";
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import ServicesSection from "../components/ServicesSection";
+import DoctorsSection from "../components/DoctorsSection";
 
 const Home: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -29,7 +30,8 @@ const Home: React.FC = () => {
       {/* Stats Section */}
       <Box sx={{ padding: "50px" }}>
         <StatsSection />
-        <ServicesSection/>
+        <ServicesSection />
+        <DoctorsSection />
       </Box>
     </>
   );
