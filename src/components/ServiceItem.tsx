@@ -40,6 +40,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ id, title, image }) => {
           component="img"
           image={image}
           alt={title}
+          loading="lazy"
           sx={{
             width: "100%",
             height: "260px",

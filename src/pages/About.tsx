@@ -1,4 +1,4 @@
-import { Box, Typography, Container, useTheme } from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { doctors } from "../data";
@@ -7,7 +7,6 @@ import { NavLink } from "react-router-dom";
 
 const About: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
-  const theme = useTheme();
 
   return (
     <Box
@@ -78,8 +77,8 @@ const About: React.FC = () => {
               >
                 <Box
                   sx={{
-                    width: 140,
-                    height: 140,
+                    width: 240,
+                    height: 240,
                     mx: "auto",
                     borderRadius: "50%",
                     overflow: "hidden",
