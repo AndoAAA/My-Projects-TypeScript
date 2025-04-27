@@ -56,12 +56,12 @@ const StatsSection = () => {
     >
       <StatsCard
         title={t("stats.patients")}
-        end={100000}
+        end={44000}
         icon={<GroupsIcon fontSize="large" sx={{ width: 100, height: 100 }} />}
       />
       <StatsCard
         title={t("stats.implants")}
-        end={15000}
+        end={1200}
         icon={
           <img
             src={ImplantIcon}
@@ -72,7 +72,7 @@ const StatsSection = () => {
       />
       <StatsCard
         title={t("stats.crowns")}
-        end={60000}
+        end={19000}
         icon={
           <img
             src={DentalCrown}

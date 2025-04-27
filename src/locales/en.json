@@ -1,7 +1,7 @@
 {
   "hello": "Hello",
   "home": {
-    "title": "Welcome to Our Clinic",
+    "title": "Welcome to SPECTRA",
     "text": "Your health is our priority."
   },
   "footer": {
@@ -43,7 +43,10 @@
     "dentures": "Dentures",
     "surgicalProcedures": "Surgical Procedures",
     "pediatricDentistry": "Pediatric Dentistry",
-    "endodontics": "Endodontics"
+    "endodontics": "Endodontics",
+    "orthopedics": "Orthopedics",
+    "orthodontics": "Օrthodontics",
+    "veneer": "Veneer"
   },
   "stats": {
     "patients": "Patients",
@@ -54,7 +57,8 @@
     "paragraph": "Welcome to one of the most reputable and successful dental clinics in Yerevan. Our dedicated team, led by Dr. Manuk Melkonyan and Dr. Gayane Barseghyan, is committed to providing top-quality dental care in a comfortable and professional environment.",
     "names": {
       "manuk": "Manuk Melkonyan",
-      "gayane": "Gayane Barseghyan"
+      "gayane": "Gayane Barseghyan",
+      "aghasi": "Aghasi Gabrielyan"
     },
     "doctors": "Our doctors",
     "moreInfo": "More Info",

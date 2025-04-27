@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { doctors } from "../data";
 import { colors } from "../assets/colors/colors";
 import { NavLink } from "react-router-dom";
+import SterilSection from "../components/SterilSection";
 
 const About: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -77,8 +78,8 @@ const About: React.FC = () => {
               >
                 <Box
                   sx={{
-                    width: 240,
-                    height: 240,
+                    width: 340,
+                    height: 340,
                     mx: "auto",
                     borderRadius: "50%",
                     overflow: "hidden",
@@ -133,6 +134,7 @@ const About: React.FC = () => {
             ))}
           </Box>
         </Box>
+        <SterilSection/>
       </Container>
     </Box>
   );

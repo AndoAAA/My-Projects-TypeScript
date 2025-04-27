@@ -19,7 +19,7 @@ const ServicesSection: React.FC = () => {
           justifyContent: "center",
         }}
       >
-        {services.slice(0, 3).map((service, index) => (
+        {services.slice(0, 6).map((service, index) => (
           <NavLink
             to={`/service/${service.id}`}
             style={{ textDecoration: "none" }}
