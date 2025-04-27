@@ -10,8 +10,9 @@ import pediatricDentistryImg from "./assets/img/pediatricImg.jpg";
 import pediatricDentistryIcon from "./assets/icons/Pediatric.jpg";
 import endodonticsImg from "./assets/img/endodontia.jpg";
 import endodonticsIcon from "./assets/icons/Endodontia.jpg";
-import ManukImage from "./assets/Manuk.jpg";
-import GayaneImage from "./assets/Gayane.jpg";
+import ManukImage from "./assets/Manuk.JPG";
+import GayaneImage from "./assets/Gayane.JPG";
+import AghasiImage from "./assets/Aghasi.JPG";
 
 export const services = [
   {
@@ -30,30 +31,51 @@ export const services = [
   },
   {
     id: "2",
-    title: "dentures",
+    title: "veneer",
     image: denturesImg,
     icon: denturesIcon,
     description: "",
   },
   {
     id: "3",
+    title: "dentures",
+    image: denturesImg,
+    icon: denturesIcon,
+    description: "",
+  },
+  {
+    id: "4",
     title: "surgicalProcedures",
     image: surgicalProceduresImg,
     icon: surgicalProceduresIcon,
     description: "",
   },
   {
-    id: "4",
+    id: "5",
     title: "pediatricDentistry",
     image: pediatricDentistryImg,
     icon: pediatricDentistryIcon,
     description: "",
   },
   {
-    id: "5",
+    id: "6",
     title: "endodontics",
     image: endodonticsImg,
     icon: endodonticsIcon,
+    description: "",
+  },
+  {
+    id: "7",
+    title: "orthopedics",
+    image: dentalImplantsImg,
+    icon: dentalImplantsIcon,
+    description: "",
+  },
+  {
+    id: "8",
+    title: "orthodontics",
+    image: dentalImplantsImg,
+    icon: dentalImplantsIcon,
     description: "",
   },
 ];
@@ -69,6 +91,12 @@ export const doctors = [
     id: "1",
     image: GayaneImage,
     key: "gayane",
+    description: "",
+  },
+  {
+    id: "2",
+    image: AghasiImage,
+    key: "aghasi",
     description: "",
   },
 ];
