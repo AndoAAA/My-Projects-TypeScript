@@ -1,26 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Box, IconButton } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
-import mainImg1 from "../assets/main1.JPG";
-import mainImg2 from "../assets/main2.jpg";
-import mainImg3 from "../assets/main3.JPG";
-import mainImg4 from "../assets/main4.JPG";
-import mainImg5 from "../assets/main5.JPG";
-import mainImg6 from "../assets/main6.JPG";
-import mainImg7 from "../assets/main7.JPG";
+import { Box, IconButton } from "@mui/material";
+import React, { useState, useEffect, useRef } from "react";
+import aboutImg1 from "../assets/about1.JPG";
+import aboutImg2 from "../assets/about2.JPG";
+import aboutImg3 from "../assets/about3.JPG";
+import aboutImg4 from "../assets/about4.JPG";
 
-const images = [
-  mainImg1,
-  mainImg2,
-  mainImg3,
-  mainImg4,
-  mainImg5,
-  mainImg6,
-  mainImg7,
-];
+const images = [aboutImg1, aboutImg2, aboutImg3, aboutImg4];
 
-const HomeCarousel = () => {
+const AboutCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
 
   const nextImage = () => {
@@ -42,7 +32,7 @@ const HomeCarousel = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Handle touch for swipe
+  // Handle swipe (touch)
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -62,6 +52,7 @@ const HomeCarousel = () => {
 
   return (
     <Box
+      ref={carouselRef}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       sx={{
@@ -152,4 +143,4 @@ const HomeCarousel = () => {
   );
 };
 
-export default HomeCarousel;
+export default AboutCarousel;

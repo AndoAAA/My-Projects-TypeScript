@@ -2,8 +2,10 @@ import { Box, Typography } from "@mui/material";
 import React from "react";
 import sterilImg1 from "../assets/steril1.JPG";
 import sterilImg2 from "../assets/steril2.JPG";
+import { useTranslation } from "react-i18next";
 
 const SterilSection = () => {
+   const { t }: { t: (key: string) => string } = useTranslation();
   return (
     <Box sx={{ px: 4, py: 8, backgroundColor: "#f7f7f7" }}>
       {/* Վերնագիր */}
@@ -13,7 +15,7 @@ const SterilSection = () => {
         textAlign="center"
         gutterBottom
       >
-        Sterilization
+        {t("about.sterilization")}
       </Typography>
 
       {/* Նկարներ՝ կողք կողքի կամ բջջայինի վրա՝ մեկը մյուսի տակ */}

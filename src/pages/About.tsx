@@ -5,6 +5,7 @@ import { doctors } from "../data";
 import { colors } from "../assets/colors/colors";
 import { NavLink } from "react-router-dom";
 import SterilSection from "../components/SterilSection";
+import AboutCarousel from "../components/AboutCarousel";
 
 const About: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -35,6 +36,7 @@ const About: React.FC = () => {
             {t("about.paragraph")}
           </Typography>
         </Box>
+        <AboutCarousel />
 
         {/* Doctors Section */}
         <Box textAlign="center">
@@ -101,13 +103,7 @@ const About: React.FC = () => {
                   variant="h6"
                   sx={{ fontWeight: 600, fontSize: "1.25rem", mb: 1 }}
                 >
-                  {t(`about.names.${doctor.key}`)}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ color: "#555", fontSize: "0.95rem", mb: 2 }}
-                >
-                  {doctor.description}
+                  {t(`about.names.${doctor.key}.name`)}
                 </Typography>
                 <NavLink to={`/about/${doctor.id}`}>
                   <Box
@@ -134,7 +130,7 @@ const About: React.FC = () => {
             ))}
           </Box>
         </Box>
-        <SterilSection/>
+        <SterilSection />
       </Container>
     </Box>
   );

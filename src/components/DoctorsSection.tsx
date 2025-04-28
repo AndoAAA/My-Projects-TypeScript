@@ -46,7 +46,7 @@ const DoctorsSection: React.FC = () => {
               />
               <CardContent>
                 <Typography variant="h6" fontWeight="bold">
-                  {t(`about.names.${doctor.key}`)}
+                  {t(`about.names.${doctor.key}.name`)}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {doctor.description}

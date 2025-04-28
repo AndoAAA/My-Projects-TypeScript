@@ -56,12 +56,22 @@
   "about": {
     "paragraph": "Welcome to one of the most reputable and successful dental clinics in Yerevan. Our dedicated team, led by Dr. Manuk Melkonyan and Dr. Gayane Barseghyan, is committed to providing top-quality dental care in a comfortable and professional environment.",
     "names": {
-      "manuk": "Manuk Melkonyan",
-      "gayane": "Gayane Barseghyan",
-      "aghasi": "Aghasi Gabrielyan"
+      "manuk": {
+        "name": "Manuk Melkonyan",
+        "description": "Բժիշկ Մանուկ Մելքոնյանը ունի ավելի քան 15 տարվա փորձ ընդհանուր և իմպլանտացիոն ստոմատոլոգիայի ոլորտում։ Նրա նպատակն է յուրաքանչյուր բուժառուի ապահովել անհատական և բարձրակարգ սպասարկում։"
+      },
+      "gayane": {
+        "name": "Gayane Barseghyan",
+        "description": "Բժիշկ Գայանե Բարսեղյանը մասնագիտացած է էսթետիկ և մանկական ստոմատոլոգիայում՝ կենտրոնանալով առողջ և գեղեցիկ ժպիտների ստեղծման վրա։"
+      },
+      "aghasi": {
+        "name": "Aghasi Gabrielyan",
+        "description": "Բժիշկ Աղասի Գաբրիելյանը հայտնի է իր փորձառությամբ օրթոպեդիկ ստոմատոլոգիայում՝ ստեղծելով բարձր որակի շապիկներ և պրոթեզներ։"
+      }
     },
     "doctors": "Our doctors",
     "moreInfo": "More Info",
-    "back": "Back"
+    "back": "Back",
+    "sterilization": "Sterilization"
   }
 }
