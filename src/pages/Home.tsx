@@ -29,13 +29,30 @@ const Home: React.FC = () => {
         {/* Տեքստային հատված */}
         <Box>
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 3 }}
+            initial={{ x: "-100vw", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 50,
+              damping: 25,
+              duration: 1.5,
+            }}
           >
             <Typography variant="h3" fontWeight="bold" gutterBottom>
               {t("home.title")}
             </Typography>
+          </motion.div>
+
+          <motion.div
+            initial={{ x: "100vw", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 50,
+              damping: 25,
+              duration: 1.5,
+            }}
+          >
             <Typography variant="h6">{t("home.text")}</Typography>
           </motion.div>
         </Box>
