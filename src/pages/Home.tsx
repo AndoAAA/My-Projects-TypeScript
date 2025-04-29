@@ -14,7 +14,6 @@ const Home: React.FC = () => {
 
   return (
     <>
-      {/* Hero Section */}
       <Box
         sx={{
           px: 4,
@@ -26,7 +25,6 @@ const Home: React.FC = () => {
           gap: 4,
         }}
       >
-        {/* Տեքստային հատված */}
         <Box>
           <motion.div
             initial={{ x: "-100vw", opacity: 0 }}
@@ -57,14 +55,12 @@ const Home: React.FC = () => {
           </motion.div>
         </Box>
 
-        {/* Նկարը՝ img-ով */}
         <Box sx={{ width: "100%", maxWidth: "1100px" }}>
           <HomeCarousel />
         </Box>
       </Box>
 
-      {/* Մնացած բաժինները */}
-      <Box sx={{ px: 4, py: 6 }}>
+      <Box sx={{ px: 4, py: 0 }}>
         <Box ref={statsRef}>{statsVisible && <StatsSection />}</Box>
         <ServicesSection />
         <DoctorsSection />
