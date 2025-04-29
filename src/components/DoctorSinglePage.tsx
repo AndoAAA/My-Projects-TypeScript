@@ -30,10 +30,9 @@ const DoctorSinglePage: React.FC = () => {
         py: 4,
         gap: 4,
         px: 2,
-        textAlign:"center"
+        textAlign: "center",
       }}
     >
-      {/* ՄOTION ANIMATION FOR IMAGE */}
       <motion.img
         src={doctor.image}
         alt={doctor.key}
@@ -56,10 +55,9 @@ const DoctorSinglePage: React.FC = () => {
           justifyContent: "center",
           alignItems: "center",
           maxWidth: "500px",
-          gap:4
+          gap: 4,
         }}
       >
-        {/* MOTION ANIMATION FOR TEXT */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}

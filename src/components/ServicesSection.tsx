@@ -3,8 +3,10 @@ import { Box, Typography, Card, CardContent, CardMedia } from "@mui/material";
 import { services } from "../data";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
+
 const ServicesSection: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
+
   return (
     <Box sx={{ padding: "50px 20px", textAlign: "center" }}>
       <Typography variant="h4" fontWeight="bold" mb={4}>
@@ -19,13 +21,13 @@ const ServicesSection: React.FC = () => {
           justifyContent: "center",
         }}
       >
-        {services.slice(0, 6).map((service, index) => (
+        {services.slice(0, 6).map((service) => (
           <NavLink
             to={`/service/${service.id}`}
             style={{ textDecoration: "none" }}
+            key={service.id}
           >
             <Card
-              key={index}
               sx={{
                 width: 300,
                 height: 320,
@@ -41,15 +43,12 @@ const ServicesSection: React.FC = () => {
               <CardMedia
                 component="img"
                 height="200"
-                image={service.image}
-                alt={service.title}
+                image={service.image || "path/to/fallback-image.jpg"}
+                alt={t(`services.${service.title}.title`)}
               />
               <CardContent>
                 <Typography variant="h6" fontWeight="bold">
-                  {t(`services.${service.title}`)}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {service.description}
+                  {t(`services.${service.title}.title`)}
                 </Typography>
               </CardContent>
             </Card>

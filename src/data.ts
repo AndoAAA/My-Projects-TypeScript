@@ -85,18 +85,18 @@ export const doctors = [
     id: "0",
     image: ManukImage,
     key: "manuk",
-    description: "",
+    
   },
   {
     id: "1",
     image: GayaneImage,
     key: "gayane",
-    description: "",
+
   },
   {
     id: "2",
     image: AghasiImage,
     key: "aghasi",
-    description: "",
+
   },
 ];

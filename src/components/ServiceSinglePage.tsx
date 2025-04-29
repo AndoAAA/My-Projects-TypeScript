@@ -5,10 +5,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import { services } from "../data";
 import { colors } from "../assets/colors/colors";
 
+interface Service {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+}
+
 const ServiceSinglePage: React.FC = () => {
   const { id } = useParams();
   const { t }: { t: (key: string) => string } = useTranslation();
-  const service = services.find((s) => s.id === id);
+  const service = services.find((s: Service) => s.id === id);
   const navigate = useNavigate();
 
   if (!service) {
@@ -32,8 +39,8 @@ const ServiceSinglePage: React.FC = () => {
       }}
     >
       <img
-        src={service.image}
-        alt={t(service.title)}
+        src={service.image || "path/to/fallback-image.jpg"}
+        alt={t(`services.${service.title}.title`)}
         style={{
           width: "100%",
           maxWidth: "500px",
@@ -55,13 +62,13 @@ const ServiceSinglePage: React.FC = () => {
           variant="h4"
           sx={{ mt: 2, fontWeight: "bold", textAlign: "center" }}
         >
-          {t(`services.${service.title}`)}
+          {t(`services.${service.title}.title`)}
         </Typography>
         <Typography
           variant="body1"
           sx={{ mt: 2, color: "#555", textAlign: "center" }}
         >
-          {t(service.description)}
+          {t(`services.${service.title}.description`)}
         </Typography>
         <Button
           variant="contained"

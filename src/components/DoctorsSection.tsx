@@ -49,9 +49,6 @@ const DoctorsSection: React.FC = () => {
                 <Typography variant="h6" fontWeight="bold">
                   {t(`about.names.${doctor.key}.name`)}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {doctor.description}
-                </Typography>
               </CardContent>
             </Card>
           </NavLink>

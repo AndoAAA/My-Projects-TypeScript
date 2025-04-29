@@ -45,7 +45,7 @@ const Service: React.FC = () => {
             >
               <ServiceItem
                 id={service.id.toString()}
-                title={t(`services.${service.title}`)}
+                title={t(`services.${service.title}.title`)}
                 image={service.icon}
               />
             </NavLink>
