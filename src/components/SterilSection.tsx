@@ -5,10 +5,11 @@ import sterilImg2 from "../assets/steril2.JPG";
 import { useTranslation } from "react-i18next";
 
 const SterilSection = () => {
-   const { t }: { t: (key: string) => string } = useTranslation();
+  const { t }: { t: (key: string) => string } = useTranslation();
   return (
+
     <Box sx={{ px: 4, py: 8, backgroundColor: "#f7f7f7" }}>
-      {/* Վերնագիր */}
+
       <Typography
         variant="h4"
         fontWeight="bold"
@@ -18,7 +19,7 @@ const SterilSection = () => {
         {t("about.sterilization")}
       </Typography>
 
-      {/* Նկարներ՝ կողք կողքի կամ բջջայինի վրա՝ մեկը մյուսի տակ */}
+
       <Box
         sx={{
           display: "flex",
@@ -57,7 +58,7 @@ const SterilSection = () => {
         </Box>
       </Box>
 
-      {/* Տեքստային մաս */}
+
       <Box sx={{ mt: 6, maxWidth: "900px", mx: "auto" }}>
         <Typography variant="body1" fontSize="18px" textAlign="center">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Est adipisci

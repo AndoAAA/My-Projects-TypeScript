@@ -33,7 +33,7 @@ const HomeCarousel = () => {
     );
   };
 
-  // Auto-slide every 5 seconds
+
   useEffect(() => {
     const interval = setInterval(() => {
       nextImage();
@@ -42,7 +42,7 @@ const HomeCarousel = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Handle touch for swipe
+  
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartX.current = e.touches[0].clientX;
   };

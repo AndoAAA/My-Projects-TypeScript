@@ -23,7 +23,7 @@ const About: React.FC = () => {
         sx={{ display: "flex", flexDirection: "column", gap: 5 }}
       >
         {/* About Section */}
-        <Box sx={{ flex: 1, textAlign: { xs: "center", sm: "left" } }}>
+        <Box sx={{ flex: 1,  textAlign:"center" }}>
           <Typography
             variant="h6"
             sx={{

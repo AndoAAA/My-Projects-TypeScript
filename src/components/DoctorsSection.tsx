@@ -3,6 +3,7 @@ import { Box, Typography, Card, CardContent, CardMedia } from "@mui/material";
 import { doctors } from "../data";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
+
 const DoctorsSection: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
   return (
