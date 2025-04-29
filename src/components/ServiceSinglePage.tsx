@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { services } from "../data";
 import { colors } from "../assets/colors/colors";
+import { motion } from "framer-motion";
 
 interface Service {
   id: string;
@@ -38,8 +39,11 @@ const ServiceSinglePage: React.FC = () => {
         px: 2,
       }}
     >
-      <img
-        src={service.image || "path/to/fallback-image.jpg"}
+      <motion.img
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        src={service.image}
         alt={t(`services.${service.title}.title`)}
         style={{
           width: "100%",
@@ -49,50 +53,57 @@ const ServiceSinglePage: React.FC = () => {
           boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
         }}
       />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          maxWidth: "500px",
-        }}
+
+      <motion.div
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1.5 }}
       >
-        <Typography
-          variant="h4"
-          sx={{ mt: 2, fontWeight: "bold", textAlign: "center" }}
-        >
-          {t(`services.${service.title}.title`)}
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{ mt: 2, color: "#555", textAlign: "center" }}
-        >
-          {t(`services.${service.title}.description`)}
-        </Typography>
-        <Button
-          variant="contained"
-          color="primary"
+        <Box
           sx={{
-            mt: 3,
-            px: 3,
-            py: 1,
-            borderRadius: "20px",
-            backgroundColor: colors.darkBlue,
-            color: "white",
-            fontSize: "0.9rem",
-            fontWeight: 500,
-            cursor: "pointer",
-            transition: "background-color 0.3s",
-            "&:hover": {
-              backgroundColor: colors.lightBlue,
-            },
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            maxWidth: "500px",
           }}
-          onClick={() => navigate("/service")}
         >
-          {t("about.back")}
-        </Button>
-      </Box>
+          <Typography
+            variant="h4"
+            sx={{ mt: 2, fontWeight: "bold", textAlign: "center" }}
+          >
+            {t(`services.${service.title}.title`)}
+          </Typography>
+          <Typography
+            variant="body1"
+            sx={{ mt: 2, color: "#555", textAlign: "center" }}
+          >
+            {t(`services.${service.title}.description`)}
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              mt: 3,
+              px: 3,
+              py: 1,
+              borderRadius: "20px",
+              backgroundColor: colors.darkBlue,
+              color: "white",
+              fontSize: "0.9rem",
+              fontWeight: 500,
+              cursor: "pointer",
+              transition: "background-color 0.3s",
+              "&:hover": {
+                backgroundColor: colors.lightBlue,
+              },
+            }}
+            onClick={() => navigate("/service")}
+          >
+            {t("about.back")}
+          </Button>
+        </Box>
+      </motion.div>
     </Box>
   );
 };
