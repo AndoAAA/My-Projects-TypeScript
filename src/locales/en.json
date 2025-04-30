@@ -16,7 +16,8 @@
     "home": "Home",
     "contact": "Contact Us",
     "about": "About Us",
-    "service": "Our Services"
+    "service": "Our Services",
+    "price": "Prices"
   },
   "header": {
     "address": "5 Dro Street, Yerevan"
@@ -102,5 +103,8 @@
     "moreInfo": "More Info",
     "back": "Back",
     "sterilization": "Sterilization"
+  },
+  "price" :{
+    "title": "Prices"
   }
 }

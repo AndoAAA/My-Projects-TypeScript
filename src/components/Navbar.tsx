@@ -35,6 +35,7 @@ const Navbar = () => {
     { key: "about", path: "/about" },
     { key: "contact", path: "/contact" },
     { key: "service", path: "/service" },
+    { key: "price", path: "/price" },
   ];
 
   return (

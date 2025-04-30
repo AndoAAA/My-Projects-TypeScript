@@ -21,6 +21,7 @@ export const services = [
     image: dentalImplantsImg,
     icon: dentalImplantsIcon,
     description: "",
+    price: "֏ 120,000"
   },
   {
     id: "1",
@@ -28,6 +29,7 @@ export const services = [
     image: cosmeticCareImg,
     icon: cosmeticCareIcon,
     description: "",
+    price: "֏ 120,000"
   },
   {
     id: "2",
@@ -35,6 +37,7 @@ export const services = [
     image: denturesImg,
     icon: denturesIcon,
     description: "",
+    price: "֏ 120,000"
   },
   {
     id: "3",
@@ -42,6 +45,7 @@ export const services = [
     image: denturesImg,
     icon: denturesIcon,
     description: "",
+    price: "֏ 120,000"
   },
   {
     id: "4",
@@ -49,6 +53,7 @@ export const services = [
     image: surgicalProceduresImg,
     icon: surgicalProceduresIcon,
     description: "",
+    price: "֏ 120,000"
   },
   {
     id: "5",
@@ -56,6 +61,7 @@ export const services = [
     image: pediatricDentistryImg,
     icon: pediatricDentistryIcon,
     description: "",
+    price: "֏ 120,000"
   },
   {
     id: "6",
@@ -63,6 +69,7 @@ export const services = [
     image: endodonticsImg,
     icon: endodonticsIcon,
     description: "",
+    price: "֏ 120,000"
   },
   {
     id: "7",
@@ -70,6 +77,7 @@ export const services = [
     image: dentalImplantsImg,
     icon: dentalImplantsIcon,
     description: "",
+    price: "֏ 120,000"
   },
   {
     id: "8",
@@ -77,6 +85,7 @@ export const services = [
     image: dentalImplantsImg,
     icon: dentalImplantsIcon,
     description: "",
+    price: "֏ 120,000"
   },
 ];
 
@@ -100,3 +109,4 @@ export const doctors = [
 
   },
 ];
+

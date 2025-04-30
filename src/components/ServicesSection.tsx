@@ -42,7 +42,7 @@ const ServicesSection: React.FC = () => {
             >
               <CardMedia
                 component="img"
-                height="200"
+                height="240"
                 image={service.image || "path/to/fallback-image.jpg"}
                 alt={t(`services.${service.title}.title`)}
               />

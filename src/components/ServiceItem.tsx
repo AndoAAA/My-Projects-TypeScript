@@ -15,8 +15,8 @@ type ServiceItemProps = {
 };
 
 const ServiceItem: React.FC<ServiceItemProps> = ({ id, title, image }) => {
-  const fallbackImage = "path/to/fallback-image.jpg"; // Fallback image path
-  
+  const fallbackImage = "path/to/fallback-image.jpg";
+
   return (
     <Card
       sx={{
@@ -40,8 +40,8 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ id, title, image }) => {
       >
         <CardMedia
           component="img"
-          image={image || fallbackImage} // Fallback image logic
-          alt={title} // Alt text for better accessibility
+          image={image || fallbackImage}
+          alt={title}
           loading="lazy"
           sx={{
             width: "100%",
