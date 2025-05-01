@@ -45,13 +45,19 @@
       "description": "Dental implants are a long-lasting solution for replacing missing teeth with artificial ones that look and function like natural teeth."
     },
     "cosmeticCare": {
-      "title": "Cosmetic Dental Care Whitening",
+      "title": "Whitening (Opalescence boost)",
       "description": "Cosmetic dental care involves treatments like teeth whitening, bonding, and veneers to improve the appearance of your smile."
     },
     "veneer": {
-      "title": "Veneer",
+      "title": "Veneer (Emax)",
       "description": "Veneers are thin layers of porcelain or composite material that are applied to the front of the teeth to improve their appearance."
     },
+    "therapy": {
+      "title": "Therapy",
+      "aesthetic": "Aesthetic restoration of teeth",
+      "description": "Veneers are thin layers of porcelain or composite material that are applied to the front of the teeth to improve their appearance."
+    },
+
     "dentures": {
       "title": "Dentures",
       "description": "Dentures are removable replacements for missing teeth, designed to restore both function and aesthetics to your smile."
@@ -62,6 +68,8 @@
     },
     "pediatricDentistry": {
       "title": "Pediatric Dentistry",
+      "milk tooth extraction": "Milk tooth extraction 3000",
+      "tooth filing": "Tooth filing 8000",
       "description": "Pediatric dentistry focuses on the dental care of children, ensuring they maintain healthy teeth and gums as they grow."
     },
     "endodontics": {
@@ -70,6 +78,9 @@
     },
     "orthopedics": {
       "title": "Orthopedics",
+      "metal ceramic crown": "Metal ceramic crown 30.000",
+      "zirconia crown": "Zirconia crown 65.000",
+      "press ceramic crown": "Press ceramic crown 80.000",
       "description": "Orthopedics in dentistry focuses on the diagnosis, prevention, and treatment of misaligned teeth and jaw problems, including TMJ disorders."
     },
     "orthodontics": {
@@ -84,7 +95,7 @@
     "crowns": "Crowns"
   },
   "about": {
-    "paragraph": "Welcome to one of the most reputable and successful dental clinics in Yerevan. Our dedicated team, led by Dr. Manuk Melkonyan and Dr. Gayane Barseghyan, is committed to providing top-quality dental care in a comfortable and professional environment.",
+    "paragraph": "Welcome to one of the most reputable and successful dental clinics in Yerevan. Our dedicated team is committed to providing top-quality dental care in a comfortable and professional environment.",
     "names": {
       "manuk": {
         "name": "Manuk Melkonyan",
@@ -104,7 +115,8 @@
     "back": "Back",
     "sterilization": "Sterilization"
   },
-  "price" :{
-    "title": "Prices"
+  "price": {
+    "title": "Prices",
+    "start": "from"
   }
 }

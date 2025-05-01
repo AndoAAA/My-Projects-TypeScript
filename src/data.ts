@@ -21,7 +21,7 @@ export const services = [
     image: dentalImplantsImg,
     icon: dentalImplantsIcon,
     description: "",
-    price: "֏ 120,000"
+    price: "֏ 140,000",
   },
   {
     id: "1",
@@ -29,7 +29,7 @@ export const services = [
     image: cosmeticCareImg,
     icon: cosmeticCareIcon,
     description: "",
-    price: "֏ 120,000"
+    price: "֏ 70,000",
   },
   {
     id: "2",
@@ -37,55 +37,64 @@ export const services = [
     image: denturesImg,
     icon: denturesIcon,
     description: "",
-    price: "֏ 120,000"
+    price: "֏ 80,000",
   },
   {
     id: "3",
-    title: "dentures",
+    title: "therapy",
     image: denturesImg,
     icon: denturesIcon,
     description: "",
-    price: "֏ 120,000"
+    price: "֏ 15,000",
   },
   {
     id: "4",
-    title: "surgicalProcedures",
-    image: surgicalProceduresImg,
-    icon: surgicalProceduresIcon,
-    description: "",
-    price: "֏ 120,000"
-  },
-  {
-    id: "5",
-    title: "pediatricDentistry",
-    image: pediatricDentistryImg,
-    icon: pediatricDentistryIcon,
-    description: "",
-    price: "֏ 120,000"
-  },
-  {
-    id: "6",
     title: "endodontics",
     image: endodonticsImg,
     icon: endodonticsIcon,
     description: "",
-    price: "֏ 120,000"
+    price: "֏ 10,000",
+  },
+  {
+    id: "5",
+    title: "dentures",
+    image: denturesImg,
+    icon: denturesIcon,
+    description: "",
+    price: "֏ 65,000",
+  },
+  {
+    id: "6",
+    title: "surgicalProcedures",
+    image: surgicalProceduresImg,
+    icon: surgicalProceduresIcon,
+    description: "",
+    price: "֏ 5,000",
   },
   {
     id: "7",
+    title: "pediatricDentistry",
+    image: pediatricDentistryImg,
+    icon: pediatricDentistryIcon,
+    description: "",
+    price: "֏ 3,000",
+  },
+
+  {
+    id: "8",
     title: "orthopedics",
     image: dentalImplantsImg,
     icon: dentalImplantsIcon,
     description: "",
-    price: "֏ 120,000"
+    price: "֏ 30,000",
   },
   {
-    id: "8",
+    id: "9",
     title: "orthodontics",
     image: dentalImplantsImg,
     icon: dentalImplantsIcon,
     description: "",
-    price: "֏ 120,000"
+    price: "֏ 120,000",
   },
 ];
 
@@ -94,19 +103,15 @@ export const doctors = [
     id: "0",
     image: ManukImage,
     key: "manuk",
-    
   },
   {
     id: "1",
     image: GayaneImage,
     key: "gayane",
-
   },
   {
     id: "2",
     image: AghasiImage,
     key: "aghasi",
-
   },
 ];
-

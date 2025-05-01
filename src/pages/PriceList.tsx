@@ -64,7 +64,7 @@ const PriceList: React.FC = () => {
                       fontSize: { xs: "0.95rem", sm: "1rem", md: "1.25rem" },
                     }}
                   >
-                    {t(`services.${service.title}.title`)}
+                    {t(`services.${service.title}.title`)} ({t("price.start")})
                   </Typography>
                 </Box>
                 <Typography

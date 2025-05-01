@@ -7,15 +7,18 @@ import {
   Typography,
 } from "@mui/material";
 import { colors } from "../assets/colors/colors";
+import { useTranslation } from "react-i18next";
 
 type ServiceItemProps = {
   id: string;
   title: string;
   image: string;
+  price: string;
 };
 
-const ServiceItem: React.FC<ServiceItemProps> = ({ id, title, image }) => {
+const ServiceItem: React.FC<ServiceItemProps> = ({ id, title, image, price }) => {
   const fallbackImage = "path/to/fallback-image.jpg";
+  const { t } = useTranslation();
 
   return (
     <Card
@@ -40,24 +43,25 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ id, title, image }) => {
       >
         <CardMedia
           component="img"
-          image={image || fallbackImage}
+          image={image?.trim() ? image : fallbackImage}
           alt={title}
           loading="lazy"
           sx={{
             width: "100%",
-            height: "260px",
+            height: 260,
             objectFit: "cover",
-            borderTopLeftRadius: "16px",
-            borderTopRightRadius: "16px",
+            borderTopLeftRadius: 16,
+            borderTopRightRadius: 16,
           }}
         />
         <CardContent
           sx={{
             flexGrow: 1,
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            padding: "12px",
+            padding: 2,
           }}
         >
           <Typography
@@ -68,9 +72,13 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ id, title, image }) => {
               color: colors.lightBlue,
               textAlign: "center",
               lineHeight: 1.2,
+              mb: 1,
             }}
           >
             {title}
+          </Typography>
+          <Typography variant="body1" color="textSecondary">
+            ({t("price.start")}) {price}
           </Typography>
         </CardContent>
       </CardActionArea>
