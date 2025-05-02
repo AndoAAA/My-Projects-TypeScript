@@ -20,13 +20,13 @@ const DoctorsSection: React.FC = () => {
           justifyContent: "center",
         }}
       >
-        {doctors.slice(0, 3).map((doctor, index) => (
+        {doctors.slice(0, 3).map((doctor) => (
           <NavLink
+            key={doctor.id}
             to={`/about/${doctor.id}`}
             style={{ textDecoration: "none" }}
           >
             <Card
-              key={index}
               sx={{
                 width: 300,
                 height: 360,

@@ -46,6 +46,9 @@ export const services = [
     icon: denturesIcon,
     description: "",
     price: "֏ 15,000",
+    aesthetic: {
+      label: "Aesthetic restoration of teeth",
+    },
   },
   {
     id: "4",
@@ -78,6 +81,14 @@ export const services = [
     icon: pediatricDentistryIcon,
     description: "",
     price: "֏ 3,000",
+    milkToothExtraction: {
+      label: "Milk tooth extraction",
+      price: "֏ 3.000",
+    },
+    toothFiling: {
+      label: "Tooth filing",
+      price: "֏ 8.000",
+    },
   },
 
   {
@@ -87,6 +98,18 @@ export const services = [
     icon: dentalImplantsIcon,
     description: "",
     price: "֏ 30,000",
+    metalCeramicCrown: {
+      label: "Metal ceramic crown",
+      price: "֏ 30.000",
+    },
+    zirconiaCrown: {
+      label: "Zirconia crown",
+      price: "֏ 65.000",
+    },
+    pressCeramicCrown: {
+      label: "Press ceramic crown",
+      price: "֏ 80.000",
+    },
   },
   {
     id: "9",

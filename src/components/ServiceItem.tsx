@@ -16,7 +16,12 @@ type ServiceItemProps = {
   price: string;
 };
 
-const ServiceItem: React.FC<ServiceItemProps> = ({ id, title, image, price }) => {
+const ServiceItem: React.FC<ServiceItemProps> = ({
+  id,
+  title,
+  image,
+  price,
+}) => {
   const fallbackImage = "path/to/fallback-image.jpg";
   const { t } = useTranslation();
 
