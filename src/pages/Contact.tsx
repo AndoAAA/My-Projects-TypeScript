@@ -83,6 +83,7 @@ const Contact: React.FC = () => {
         {
           from_name: formData.name,
           from_tel: formData.tel,
+          from_email: formData.email,
           message: formData.message,
         },
         "W_R8qr82NdANY4Wtl"

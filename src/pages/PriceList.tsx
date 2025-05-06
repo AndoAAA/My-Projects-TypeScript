@@ -55,6 +55,8 @@ const PriceList: React.FC = () => {
                 <Typography
                   variant="h6"
                   sx={{
+                    width: { xs: "200px", sm: "auto" },
+                    whiteSpace: { xs: "normal", sm: "nowrap" },
                     fontSize: { xs: "0.95rem", sm: "1rem", md: "1.25rem" },
                   }}
                 >
