@@ -30,89 +30,100 @@ const PriceList: React.FC = () => {
       </motion.div>
 
       <Box>
-        {services.map((service, index) => (
-          <motion.div
-            key={service.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                py: 2,
-              }}
-            >
-              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                <img
-                  src={service.icon}
-                  alt={service.title}
-                  style={{ width: 32, height: 32 }}
-                />
-                <Typography
-                  variant="h6"
-                  sx={{
-                    width: { xs: "200px", sm: "auto" },
-                    whiteSpace: { xs: "normal", sm: "nowrap" },
-                    fontSize: { xs: "0.95rem", sm: "1rem", md: "1.25rem" },
-                  }}
-                >
-                  {t(`services.${service.title}.title`)}
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                <Typography>({t("price.start")})</Typography>
-                <Typography
-                  variant="h6"
-                  fontWeight="medium"
-                  sx={{
-                    fontSize: { xs: "0.95rem", sm: "1rem", md: "1.25rem" },
-                  }}
-                >
-                  {service.price}
-                </Typography>
-              </Box>
-            </Box>
+        {services.map((service, index) => {
+          const hasSubPrices = Object.entries(service).some(
+            ([key, value]) =>
+              typeof value === "object" && value !== null && "price" in value
+          );
 
-            {Object.entries(service)
-              .filter(
-                ([key, value]) =>
-                  typeof value === "object" &&
-                  value !== null &&
-                  "label" in value &&
-                  "price" in value
-              )
-              .map(([key, sub]) => (
-                <Box
-                  key={key}
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    px: 4,
-                    py: 1,
-                  }}
-                >
+          return (
+            <motion.div
+              key={service.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  py: 2,
+                }}
+              >
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <img
+                    src={service.icon}
+                    alt={service.title}
+                    style={{ width: 32, height: 32 }}
+                  />
                   <Typography
-                    variant="body1"
-                    sx={{ fontSize: { xs: "0.85rem", sm: "0.95rem" } }}
+                    variant="h6"
+                    sx={{
+                      width: { xs: "200px", sm: "auto" },
+                      whiteSpace: { xs: "normal", sm: "nowrap" },
+                      fontSize: { xs: "0.95rem", sm: "1rem", md: "1.25rem" },
+                    }}
                   >
-                    {t(`services.${service.title}.${key}.label`)}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{ fontSize: { xs: "0.85rem", sm: "0.95rem" } }}
-                  >
-                    {t(`services.${service.title}.${key}.price`)}
+                    {t(`services.${service.title}.title`)}
                   </Typography>
                 </Box>
-              ))}
 
-            <Divider />
-          </motion.div>
-        ))}
+                {!hasSubPrices && (
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                    <Typography>({t("price.start")})</Typography>
+                    <Typography
+                      variant="h6"
+                      fontWeight="medium"
+                      sx={{
+                        fontSize: { xs: "0.95rem", sm: "1rem", md: "1.25rem" },
+                      }}
+                    >
+                      {service.price}
+                    </Typography>
+                  </Box>
+                )}
+              </Box>
+
+              {hasSubPrices &&
+                Object.entries(service)
+                  .filter(
+                    ([key, value]) =>
+                      typeof value === "object" &&
+                      value !== null &&
+                      "label" in value &&
+                      "price" in value
+                  )
+                  .map(([key, sub]) => (
+                    <Box
+                      key={key}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        px: 4,
+                        py: 1,
+                      }}
+                    >
+                      <Typography
+                        variant="body1"
+                        sx={{ fontSize: { xs: "0.85rem", sm: "0.95rem" } }}
+                      >
+                        {t(`services.${service.title}.${key}.label`)}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{ fontSize: { xs: "0.85rem", sm: "0.95rem" } }}
+                      >
+                        {t(`services.${service.title}.${key}.price`)}
+                      </Typography>
+                    </Box>
+                  ))}
+
+              <Divider />
+            </motion.div>
+          );
+        })}
       </Box>
     </Box>
   );

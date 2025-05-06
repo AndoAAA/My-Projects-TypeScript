@@ -16,6 +16,22 @@ import AghasiImage from "./assets/Aghasi.JPG";
 
 export const services = [
   {
+    id: "10",
+    title: "diagnostics",
+    image: endodonticsImg,
+    icon: endodonticsIcon,
+    description: "",
+    price: "֏ 15,000",
+    consultation: {
+      label: "Consultation",
+      price: " For Free ",
+    },
+    xRay: {
+      label: "X-ray RVG)",
+      price: "֏ 1,000 ",
+    },
+  },
+  {
     id: "0",
     title: "dentalImplants",
     image: dentalImplantsImg,
@@ -48,6 +64,11 @@ export const services = [
     price: "֏ 15,000",
     aesthetic: {
       label: "Aesthetic restoration of teeth",
+      price: "֏ 15,000 ",
+    },
+    compositeVeneer: {
+      label: "Aesthetic restoration of teeth",
+      price: "֏ 20,000 ",
     },
   },
   {
@@ -73,6 +94,18 @@ export const services = [
     icon: surgicalProceduresIcon,
     description: "",
     price: "֏ 5,000",
+    extraction: {
+      label: "Extraction of teeth",
+      price: "(from) ֏ 5,000 ",
+    },
+    remove: {
+      label: "Removal of impacted teeth ",
+      price: "(from) ֏ 20,000 ",
+    },
+    gingival: {
+      label: "Gingival plasty",
+      price: "(from) ֏ 30,000 ",
+    },
   },
   {
     id: "7",

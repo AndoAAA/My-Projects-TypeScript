@@ -1,5 +1,4 @@
 {
-  
   "home": {
     "title": "Welcome to SPECTRA",
     "text": "Your health is our priority."
@@ -40,6 +39,18 @@
   },
 
   "services": {
+    "diagnostics": {
+      "title": "Diagnostics",
+      "consultation": {
+        "label": "Consultation",
+        "price": "For Free"
+      },
+      "xRay": {
+        "label": "X-ray (RVG)",
+        "price": "֏ 1,000 "
+      },
+      "description": "Restorative dental therapy aims to bring back the natural function and appearance of damaged or decayed teeth."
+    },
     "dentalImplants": {
       "title": "Dental Implants",
       "description": "Dental implants are a long-lasting solution for replacing missing teeth with artificial ones that look and function like natural teeth."
@@ -55,7 +66,12 @@
     "therapy": {
       "title": "Therapy",
       "aesthetic": {
-        "label": "Aesthetic restoration of teeth"
+        "label": "Aesthetic restoration of teeth",
+        "price": "(from) ֏ 15,000 "
+      },
+      "compositeVeneer": {
+        "label": "Composite veneer",
+        "price": "(from) ֏ 20,000 "
       },
       "description": "Restorative dental therapy aims to bring back the natural function and appearance of damaged or decayed teeth."
     },
@@ -64,7 +80,19 @@
       "description": "Dentures are removable replacements for missing teeth, designed to restore both function and aesthetics to your smile."
     },
     "surgicalProcedures": {
-      "title": "Surgical Procedures",
+      "title": "Dental Surgery",
+      "extraction": {
+        "label": "Extraction of teeth",
+        "price": "(from) ֏ 5,000 "
+      },
+      "remove": {
+        "label": "Removal of impacted teeth ",
+        "price": "(from) ֏ 20,000 "
+      },
+      "gingival": {
+        "label": "Gingival plasty",
+        "price": "(from) ֏ 30,000 "
+      },
       "description": "Surgical procedures in dentistry include tooth extractions, gum surgery, and other interventions to treat various dental conditions."
     },
     "pediatricDentistry": {
@@ -72,11 +100,11 @@
       "description": "Pediatric dentistry focuses on the dental care of children, ensuring they maintain healthy teeth and gums as they grow.",
       "milkToothExtraction": {
         "label": "Milk tooth extraction",
-        "price": "֏ 3.000"
+        "price": "(from) ֏ 3.000"
       },
       "toothFiling": {
         "label": "Tooth filing",
-        "price": "֏ 8.000"
+        "price": "(from) ֏ 8.000"
       }
     },
     "endodontics": {
@@ -88,15 +116,15 @@
       "description": "Orthopedics in dentistry focuses on the restoration of missing teeth using prosthetics such as crowns and bridges.",
       "metalCeramicCrown": {
         "label": "Metal ceramic crown",
-        "price": "֏ 30.000"
+        "price": "(from) ֏ 30.000"
       },
       "zirconiaCrown": {
         "label": "Zirconia crown",
-        "price": "֏ 65.000"
+        "price": "(from) ֏ 65.000"
       },
       "pressCeramicCrown": {
         "label": "Press ceramic crown",
-        "price": "֏ 80.000"
+        "price": "(from) ֏ 80.000"
       }
     },
     "orthodontics": {
