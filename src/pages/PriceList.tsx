@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Divider } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { services } from "../data";
@@ -10,12 +10,10 @@ const PriceList: React.FC = () => {
   return (
     <Box
       sx={{
-        display: "flex",
-        flexDirection: "column",
         minHeight: "100vh",
-        px: { xs: 3, md: 6 },
+        px: { xs: 2, md: 6 },
         py: 10,
-        backgroundColor: "#f4f6f8",
+        backgroundColor: "#f8f9fb",
       }}
     >
       <motion.div
@@ -29,11 +27,14 @@ const PriceList: React.FC = () => {
         </Typography>
       </motion.div>
 
-      <Box>
+      <Box display="flex" flexDirection="column" gap={4}>
         {services.map((service, index) => {
           const hasSubPrices = Object.entries(service).some(
-            ([key, value]) =>
-              typeof value === "object" && value !== null && "price" in value
+            ([, value]) =>
+              typeof value === "object" &&
+              value !== null &&
+              "label" in value &&
+              "price" in value
           );
 
           return (
@@ -46,81 +47,103 @@ const PriceList: React.FC = () => {
             >
               <Box
                 sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
+                  px: { xs: 2, sm: 4 },
                   py: 2,
+                  borderLeft: "4px solid #1976d2",
+                  borderRight: "4px solid #1976d2",
+                  backgroundColor: "#ffffff",
+                  borderRadius: 2,
+                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
+                  transition: "all 0.3s ease",
+                  "&:hover": {
+                    boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
+                    transform: "translateY(-2px)",
+                  },
                 }}
               >
-                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                  <img
-                    src={service.icon}
-                    alt={service.title}
-                    style={{ width: 32, height: 32 }}
-                  />
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      width: { xs: "200px", sm: "auto" },
-                      whiteSpace: { xs: "normal", sm: "nowrap" },
-                      fontSize: { xs: "0.95rem", sm: "1rem", md: "1.25rem" },
-                    }}
-                  >
-                    {t(`services.${service.title}.title`)}
-                  </Typography>
-                </Box>
-
-                {!hasSubPrices && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: { xs: "center", sm: "center" },
+                    flexDirection: { xs: "row", sm: "row" },
+                    gap: 1,
+                  }}
+                >
                   <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                    <Typography>({t("price.start")})</Typography>
+                    <img
+                      src={service.icon}
+                      alt={service.title}
+                      style={{ width: 32, height: 32 }}
+                    />
                     <Typography
                       variant="h6"
-                      fontWeight="medium"
                       sx={{
-                        fontSize: { xs: "0.95rem", sm: "1rem", md: "1.25rem" },
+                        fontSize: {
+                          xs: "1rem",
+                          sm: "1.1rem",
+                          md: "1.2rem",
+                        },
+                        fontWeight: 600,
+                        wordBreak: "break-word",
+                        whiteSpace: "normal",
+                        flex: 1,
+                        mb: { xs: 0.5, sm: 0 },
                       }}
                     >
-                      {service.price}
+                      {t(`services.${service.title}.title`)}
                     </Typography>
+                  </Box>
+
+                  {!hasSubPrices && (
+                    <Typography variant="body1" sx={{ fontWeight: 500 }}>
+                      ({t("price.start")}) {service.price}
+                    </Typography>
+                  )}
+                </Box>
+
+                {hasSubPrices && (
+                  <Box mt={2}>
+                    {Object.entries(service)
+                      .filter(
+                        ([, value]) =>
+                          typeof value === "object" &&
+                          value !== null &&
+                          "label" in value &&
+                          "price" in value
+                      )
+                      .map(([key]) => (
+                        <Box
+                          key={key}
+                          sx={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            py: 1,
+                            borderBottom: "1px dashed #ddd",
+                          }}
+                        >
+                          <Typography
+                            variant="body1"
+                            sx={{
+                              fontSize: "0.95rem",
+                              wordBreak: "break-word",
+                              whiteSpace: "normal",
+                              flex: 1,
+                              mb: { xs: 0.5, sm: 0 },
+                            }}
+                          >
+                            {t(`services.${service.title}.${key}.label`)}
+                          </Typography>
+
+                          <Typography variant="body1">
+                            {t(`services.${service.title}.${key}.price`)}
+                          </Typography>
+                        </Box>
+                      ))}
                   </Box>
                 )}
               </Box>
-
-              {hasSubPrices &&
-                Object.entries(service)
-                  .filter(
-                    ([key, value]) =>
-                      typeof value === "object" &&
-                      value !== null &&
-                      "label" in value &&
-                      "price" in value
-                  )
-                  .map(([key, sub]) => (
-                    <Box
-                      key={key}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        px: 4,
-                        py: 1,
-                      }}
-                    >
-                      <Typography
-                        variant="body1"
-                        sx={{ fontSize: { xs: "0.85rem", sm: "0.95rem" } }}
-                      >
-                        {t(`services.${service.title}.${key}.label`)}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        sx={{ fontSize: { xs: "0.85rem", sm: "0.95rem" } }}
-                      >
-                        {t(`services.${service.title}.${key}.price`)}
-                      </Typography>
-                    </Box>
-                  ))}
-
-              <Divider />
             </motion.div>
           );
         })}
