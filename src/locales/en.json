@@ -49,19 +49,19 @@
         "label": "X-ray (RVG)",
         "price": "֏ 1,000 "
       },
-      "description": "Restorative dental therapy aims to bring back the natural function and appearance of damaged or decayed teeth."
+      "description": "The foundation of a healthy smile is accurate diagnosis. We use advanced technologies and experienced approaches to treat problems more effectively."
     },
     "dentalImplants": {
       "title": "Dental Implants",
-      "description": "Dental implants are a long-lasting solution for replacing missing teeth with artificial ones that look and function like natural teeth."
+      "description": "Tooth replacement with high-quality implants that look and function naturally. Restore your full smile with confidence and security."
     },
     "cosmeticCare": {
       "title": "Whitening (Opalescence Boost)",
-      "description": "Cosmetic dental care involves treatments like teeth whitening, bonding, and veneers to improve the appearance of your smile."
+      "description": "Safe and effective whitening methods for a smooth, bright, and healthy smile."
     },
     "veneer": {
       "title": "Veneer (Emax)",
-      "description": "Veneers are thin layers of porcelain or composite material that are applied to the front of the teeth to improve their appearance."
+      "description": "Thin ceramic veneers to shape the perfect smile. The ideal solution for aesthetic imperfections without extensive procedures."
     },
     "therapy": {
       "title": "Therapy",
@@ -73,11 +73,11 @@
         "label": "Composite veneer",
         "price": "(from) ֏ 20,000 "
       },
-      "description": "Restorative dental therapy aims to bring back the natural function and appearance of damaged or decayed teeth."
+      "description": "There’s no need to endure pain — with modern therapeutic treatments, we ensure healthy teeth without fear or discomfort."
     },
     "dentures": {
       "title": "Dentures",
-      "description": "Dentures are removable replacements for missing teeth, designed to restore both function and aesthetics to your smile."
+      "description": "Modern and comfortable solutions for replacing missing teeth — with elegant, functional, and durable results."
     },
     "surgicalProcedures": {
       "title": "Dental Surgery",
@@ -93,11 +93,11 @@
         "label": "Gingival plasty",
         "price": "(from) ֏ 30,000 "
       },
-      "description": "Surgical procedures in dentistry include tooth extractions, gum surgery, and other interventions to treat various dental conditions."
+      "description": "Complex and surgical procedures are performed by experienced specialists — with accurate diagnostics, safety, and a professional approach."
     },
     "pediatricDentistry": {
       "title": "Pediatric Dentistry",
-      "description": "Pediatric dentistry focuses on the dental care of children, ensuring they maintain healthy teeth and gums as they grow.",
+      "description": "For little ones — with great care. Children’s dental care in a nurturing atmosphere, playful environment, and completely stress-free.",
       "milkToothExtraction": {
         "label": "Milk tooth extraction",
         "price": "(from) ֏ 3.000"
@@ -109,7 +109,7 @@
     },
     "endodontics": {
       "title": "Endodontics",
-      "description": "Endodontics involves treatments related to the inside of the tooth, including root canals and other procedures to save damaged or infected teeth."
+      "description": "Root canal treatment performed with exceptional precision — a painless and effective method to preserve your natural tooth for as long as possible."
     },
     "orthopedics": {
       "title": "Orthopedics",
@@ -139,7 +139,7 @@
     "crowns": "Crowns"
   },
   "about": {
-    "paragraph": "Welcome to one of the most reputable and successful dental clinics in Yerevan. Our dedicated team is committed to providing top-quality dental care in a comfortable and professional environment.",
+    "paragraph": "Welcome to Spectra Dental Clinic – where healthy and confident smiles begin. High-quality dental services in a comfortable environment, with modern solutions and personalized care.",
     "names": {
       "manuk": {
         "name": "Manuk Melkonyan",
