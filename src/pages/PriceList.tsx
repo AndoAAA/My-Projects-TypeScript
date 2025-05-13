@@ -13,7 +13,7 @@ const PriceList: React.FC = () => {
         minHeight: "100vh",
         px: { xs: 2, md: 6 },
         py: 10,
-        backgroundColor: "#f8f9fb",
+        backgroundColor: "#e9f2fc",
       }}
     >
       <motion.div

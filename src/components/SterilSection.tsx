@@ -61,10 +61,8 @@ const SterilSection = () => {
 
       <Box sx={{ mt: 6, maxWidth: "900px", mx: "auto" }}>
         <Typography variant="body1" fontSize="18px" textAlign="center">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est adipisci
-          nisi dignissimos, sunt, laboriosam ea reiciendis inventore et tempore
-          iusto ipsa officia nihil quae, porro incidunt corrupti excepturi iure
-          consequuntur?
+          
+          {t("sterilization")}
         </Typography>
       </Box>
     </Box>

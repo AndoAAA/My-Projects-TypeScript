@@ -5,6 +5,7 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import ImplantIcon from "../assets/icons/implant.png";
 import DentalCrown from "../assets/icons/dental-crown.png";
 import { useTranslation } from "react-i18next";
+import { colors } from "../assets/colors/colors";
 
 interface StatsCardProps {
   title: string;
@@ -20,7 +21,7 @@ const StatsCard: React.FC<StatsCardProps> = ({ title, end, icon }) => {
         textAlign: "center",
         p: 3,
         borderRadius: "16px",
-        background: "linear-gradient(135deg, #1e10e0 0%, #2575fc 100%)",
+        background: colors.lightBlue,
         color: "white",
         boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
         transition: "transform 0.3s ease-in-out",
