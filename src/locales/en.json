@@ -139,7 +139,7 @@
     "crowns": "Crowns"
   },
   "about": {
-    "paragraph": "Welcome to Spectra Dental Clinic – where healthy and confident smiles begin. High-quality dental services in a comfortable environment, with modern solutions and personalized care.",
+    "paragraph": "Welcome to <span>Spectra Dental Clinic</span> – where healthy and confident smiles begin. High-quality dental services in a comfortable environment, with modern solutions and personalized care.",
     "names": {
       "manuk": {
         "name": "Manuk Melkonyan",

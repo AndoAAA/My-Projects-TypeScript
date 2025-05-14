@@ -1,6 +1,6 @@
 import { Box, Typography, Container } from "@mui/material";
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { doctors } from "../data";
 import { colors } from "../assets/colors/colors";
 import { NavLink } from "react-router-dom";
@@ -23,17 +23,24 @@ const About: React.FC = () => {
         sx={{ display: "flex", flexDirection: "column", gap: 5 }}
       >
         {/* About Section */}
-        <Box sx={{ flex: 1,  textAlign:"center" }}>
+        <Box sx={{ flex: 1, textAlign: "center" }}>
           <Typography
-            variant="h6"
+            variant="h4"
+            fontWeight="bold"
+            gutterBottom
             sx={{
-              fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.8rem" },
-              fontWeight: "medium",
-              lineHeight: 1.6,
-              color: "#333",
+              mt: 2,
+              textAlign: "center",
+              "& .highlight": {
+                color: colors.darkBlue,
+                fontWeight: "bold",
+              },
             }}
           >
-            {t("about.paragraph")}
+            <Trans
+              i18nKey="about.paragraph"
+              components={{ span: <span className="highlight" /> }}
+            />
           </Typography>
         </Box>
         <AboutCarousel />
