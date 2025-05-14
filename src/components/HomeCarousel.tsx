@@ -33,7 +33,6 @@ const HomeCarousel = () => {
     );
   };
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       nextImage();
@@ -42,7 +41,6 @@ const HomeCarousel = () => {
     return () => clearInterval(interval);
   }, []);
 
-  
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -95,6 +93,7 @@ const HomeCarousel = () => {
           transform: "translateY(-50%)",
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           color: "#fff",
+          p: { xs: "4px", sm: "8px" },
           "&:hover": {
             backgroundColor: "rgba(0, 0, 0, 0.7)",
           },
@@ -113,6 +112,7 @@ const HomeCarousel = () => {
           transform: "translateY(-50%)",
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           color: "#fff",
+          p: { xs: "4px", sm: "8px" },
           "&:hover": {
             backgroundColor: "rgba(0, 0, 0, 0.7)",
           },
@@ -137,8 +137,8 @@ const HomeCarousel = () => {
             key={index}
             onClick={() => setCurrentIndex(index)}
             sx={{
-              width: 10,
-              height: 10,
+              width: { xs: 8, sm: 10 },
+              height: { xs: 8, sm: 10 },
               borderRadius: "50%",
               backgroundColor: currentIndex === index ? "#1976d2" : "#ccc",
               cursor: "pointer",

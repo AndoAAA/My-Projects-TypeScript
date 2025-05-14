@@ -5,7 +5,8 @@ const useInView = (options: IntersectionObserverInit = {}) => {
   const [isIntersecting, setIsIntersecting] = useState(false);
 
   useEffect(() => {
-    if (!ref.current) return;
+    const node = ref.current;
+    if (!node) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -14,13 +15,12 @@ const useInView = (options: IntersectionObserverInit = {}) => {
       options
     );
 
-    const currentRef = ref.current;
-    observer.observe(currentRef);
+    observer.observe(node);
 
     return () => {
-      observer.unobserve(currentRef);
+      observer.disconnect();
     };
-  }, [options]);
+  }, [ref.current, JSON.stringify(options)]);
 
   return [ref, isIntersecting] as const;
 };
