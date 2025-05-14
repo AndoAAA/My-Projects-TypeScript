@@ -12,7 +12,7 @@ import ManukImage from "./assets/Manuk.JPG";
 import GayaneImage from "./assets/Gayane.JPG";
 import AghasiImage from "./assets/Aghasi.JPG";
 import diagnosticIcon from "./assets/icons/diagnosticIcon.jpg";
-import diagnosticImg from "./assets/img/diagnosticImg.jpg"
+import diagnosticImg from "./assets/img/diagnosticImg.jpg";
 import implantIcon from "./assets/icons/implantIcon.jpg";
 import venirIcon from "./assets/icons/venirIcon.jpg";
 import venirImg from "./assets/img/venirImg.jpg";
@@ -32,8 +32,6 @@ export const services = [
     title: "diagnostics",
     image: diagnosticImg,
     icon: diagnosticIcon,
-    description: "",
-    price: "",
     consultation: {
       label: "Consultation",
       price: " For Free ",
@@ -48,7 +46,6 @@ export const services = [
     title: "dentalImplants",
     image: dentalImplantsImg,
     icon: implantIcon,
-    description: "",
     price: "֏ 140,000",
   },
   {
@@ -56,7 +53,6 @@ export const services = [
     title: "cosmeticCare",
     image: cosmeticCareImg,
     icon: cosmeticCareIcon,
-    description: "",
     price: "֏ 70,000",
   },
   {
@@ -64,7 +60,6 @@ export const services = [
     title: "veneer",
     image: venirImg,
     icon: venirIcon,
-    description: "",
     price: "֏ 80,000",
   },
   {
@@ -72,7 +67,6 @@ export const services = [
     title: "therapy",
     image: therapyIcon,
     icon: therapyImg,
-    description: "",
     price: "֏ 15,000",
     aesthetic: {
       label: "Aesthetic restoration of teeth",
@@ -88,7 +82,6 @@ export const services = [
     title: "endodontics",
     image: endodonticsImg,
     icon: endodonticsIcon,
-    description: "",
     price: "֏ 10,000",
   },
   {
@@ -96,7 +89,6 @@ export const services = [
     title: "dentures",
     image: denturesImg,
     icon: denturesIcon,
-    description: "",
     price: "֏ 65,000",
   },
   {
@@ -104,7 +96,6 @@ export const services = [
     title: "surgicalProcedures",
     image: surgicalProceduresImg,
     icon: surgicalProceduresIcon,
-    description: "",
     price: "֏ 5,000",
     extraction: {
       label: "Extraction of teeth",
@@ -124,7 +115,6 @@ export const services = [
     title: "pediatricDentistry",
     image: pediatricDentistryImg,
     icon: pediatricDentistryIcon,
-    description: "",
     price: "֏ 3,000",
     milkToothExtraction: {
       label: "Milk tooth extraction",
@@ -141,7 +131,6 @@ export const services = [
     title: "orthopedics",
     image: orthopedicsImg,
     icon: orthopedicsIcon,
-    description: "",
     price: "֏ 30,000",
     metalCeramicCrown: {
       label: "Metal ceramic crown",
@@ -161,7 +150,6 @@ export const services = [
     title: "orthodontics",
     image: orthodonticsImg,
     icon: orthodonticsIcon,
-    description: "",
     price: "֏ 120,000",
   },
 ];

@@ -13,7 +13,7 @@ type ServiceItemProps = {
   id: string;
   title: string;
   image: string;
-  price: string;
+  price?: string;
 };
 
 const ServiceItem: React.FC<ServiceItemProps> = ({
@@ -82,9 +82,12 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
           >
             {title}
           </Typography>
-          <Typography variant="body1" color="textSecondary">
-            ({t("price.start")}) {price}
-          </Typography>
+
+          {price && (
+            <Typography variant="body1" color="textSecondary">
+              ({t("price.start")}) {price}
+            </Typography>
+          )}
         </CardContent>
       </CardActionArea>
     </Card>

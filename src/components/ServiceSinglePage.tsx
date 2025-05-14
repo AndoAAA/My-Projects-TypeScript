@@ -9,8 +9,8 @@ import { motion } from "framer-motion";
 interface Service {
   id: string;
   title: string;
-  description: string;
   image: string;
+  price?: string;
 }
 
 const ServiceSinglePage: React.FC = () => {
@@ -26,6 +26,10 @@ const ServiceSinglePage: React.FC = () => {
       </Box>
     );
   }
+
+  const translatedDescription = t(`services.${service.title}.description`);
+  const hasDescription =
+    translatedDescription !== `services.${service.title}.description`;
 
   return (
     <Box
@@ -74,12 +78,16 @@ const ServiceSinglePage: React.FC = () => {
           >
             {t(`services.${service.title}.title`)}
           </Typography>
-          <Typography
-            variant="body1"
-            sx={{ mt: 2, color: "#555", textAlign: "center" }}
-          >
-            {t(`services.${service.title}.description`)}
-          </Typography>
+
+          {hasDescription && (
+            <Typography
+              variant="body1"
+              sx={{ mt: 2, color: "#555", textAlign: "center" }}
+            >
+              {translatedDescription}
+            </Typography>
+          )}
+
           <Button
             variant="contained"
             color="primary"
