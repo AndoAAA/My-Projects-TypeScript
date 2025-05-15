@@ -10,6 +10,10 @@ import AboutCarousel from "../components/AboutCarousel";
 const About: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
 
+  const allImages = doctors.flatMap((doctor) =>
+    Object.values(doctor.images || {})
+  );
+
   return (
     <Box
       sx={{
@@ -22,7 +26,7 @@ const About: React.FC = () => {
         maxWidth="lg"
         sx={{ display: "flex", flexDirection: "column", gap: 5 }}
       >
-        {/* About Section */}
+        {/* About Text Section */}
         <Box sx={{ flex: 1, textAlign: "center" }}>
           <Typography
             variant="h4"
@@ -43,7 +47,9 @@ const About: React.FC = () => {
             />
           </Typography>
         </Box>
-        <AboutCarousel />
+
+        {/* About Carousel with all doctor images */}
+        <AboutCarousel images={allImages} />
 
         {/* Doctors Section */}
         <Box textAlign="center">
@@ -97,7 +103,7 @@ const About: React.FC = () => {
                   }}
                 >
                   <img
-                    src={doctor.image}
+                    src={doctor.images[0]}
                     alt={doctor.key}
                     style={{
                       width: "100%",
@@ -137,6 +143,8 @@ const About: React.FC = () => {
             ))}
           </Box>
         </Box>
+
+        {/* Sterilization Section */}
         <SterilSection />
       </Container>
     </Box>

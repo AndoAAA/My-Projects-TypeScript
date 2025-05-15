@@ -3,11 +3,13 @@ import { Box, IconButton } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import mainImg1 from "../assets/main1.JPG";
 import mainImg2 from "../assets/main2.jpg";
-import mainImg3 from "../assets/main3.JPG";
+import mainImg3 from "../assets/main3.jpg";
 import mainImg4 from "../assets/main4.JPG";
 import mainImg5 from "../assets/main5.JPG";
 import mainImg6 from "../assets/main6.JPG";
 import mainImg7 from "../assets/main7.JPG";
+import mainImg8 from "../assets/main8.JPG";
+
 
 const images = [
   mainImg1,
@@ -17,6 +19,7 @@ const images = [
   mainImg5,
   mainImg6,
   mainImg7,
+  mainImg8
 ];
 
 const HomeCarousel = () => {

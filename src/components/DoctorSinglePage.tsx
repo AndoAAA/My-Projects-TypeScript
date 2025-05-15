@@ -5,9 +5,12 @@ import { doctors } from "../data";
 import { useTranslation } from "react-i18next";
 import { colors } from "../assets/colors/colors";
 import { motion } from "framer-motion";
+import DoctorImgCarousel from "../components/DoctorsImgCarousel";
+
+
 
 const DoctorSinglePage: React.FC = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const { t }: { t: (key: string) => string } = useTranslation();
   const doctor = doctors.find((d) => d.id === id);
   const navigate = useNavigate();
@@ -24,38 +27,22 @@ const DoctorSinglePage: React.FC = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        justifyContent: "space-around",
         alignItems: "center",
         py: 4,
-        gap: 4,
         px: 2,
-        textAlign: "center",
+        gap: 4,
       }}
     >
-      <motion.img
-        src={doctor.image}
-        alt={doctor.key}
-        style={{
-          width: "100%",
-          maxWidth: "500px",
-          height: "auto",
-          borderRadius: "8px",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-        }}
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1.5 }}
-      />
+      <DoctorImgCarousel images={Object.values(doctor.images)} />
 
       <Box
         sx={{
+          maxWidth: "700px",
+          textAlign: "center",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
           alignItems: "center",
-          maxWidth: "500px",
-          gap: 4,
+          gap: 3,
         }}
       >
         <motion.div
@@ -63,12 +50,12 @@ const DoctorSinglePage: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5 }}
         >
-          <Typography variant="h4" sx={{ mt: 2, fontWeight: "bold" }}>
+          <Typography variant="h4" sx={{ fontWeight: "bold" }}>
             {t(`about.names.${doctor.key}.name`)}
           </Typography>
           <Typography
             variant="body1"
-            sx={{ mt: 2, color: "#555", textAlign: "center" }}
+            sx={{ color: "#555", textAlign: "center" }}
           >
             {t(`about.names.${doctor.key}.description`)}
           </Typography>
@@ -76,9 +63,7 @@ const DoctorSinglePage: React.FC = () => {
 
         <Button
           variant="contained"
-          color="primary"
           sx={{
-            display: "inline-block",
             px: 3,
             py: 1,
             borderRadius: "20px",
@@ -86,7 +71,6 @@ const DoctorSinglePage: React.FC = () => {
             color: "white",
             fontSize: "0.9rem",
             fontWeight: 500,
-            cursor: "pointer",
             transition: "background-color 0.3s",
             "&:hover": {
               backgroundColor: colors.lightBlue,

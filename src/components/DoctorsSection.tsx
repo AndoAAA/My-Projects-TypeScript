@@ -42,7 +42,7 @@ const DoctorsSection: React.FC = () => {
               <CardMedia
                 component="img"
                 height="300"
-                image={doctor.image}
+                image={doctor.images[0]}
                 alt={doctor.key}
               />
               <CardContent>

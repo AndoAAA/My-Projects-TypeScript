@@ -1,40 +1,34 @@
+"use client";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { Box, IconButton } from "@mui/material";
-import React, { useState, useEffect, useRef } from "react";
-import aboutImg1 from "../assets/about1.JPG";
-import aboutImg2 from "../assets/about2.JPG";
-import aboutImg3 from "../assets/about3.JPG";
-import aboutImg4 from "../assets/about4.JPG";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
-const images = [aboutImg1, aboutImg2, aboutImg3, aboutImg4];
-
-interface AboutCarouselProps {
+interface CarouselProps {
   images: string[];
 }
 
-const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
+const AboutCarousel: React.FC<CarouselProps> = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  }, [images.length]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     setCurrentIndex(
       (prevIndex) => (prevIndex - 1 + images.length) % images.length
     );
-  };
-
+  }, [images.length]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       nextImage();
-    }, 4000);
+    }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [nextImage]);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartX.current = e.touches[0].clientX;
@@ -53,6 +47,8 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
     }
   };
 
+  if (images.length === 0) return null;
+
   return (
     <Box
       ref={carouselRef}
@@ -61,7 +57,7 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
       sx={{
         position: "relative",
         width: "100%",
-        maxWidth: "500px",
+        maxWidth: "400px",
         mx: "auto",
         overflow: "hidden",
         borderRadius: "16px",
@@ -79,7 +75,6 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
         }}
       />
 
-      {/* Left Arrow */}
       <IconButton
         onClick={prevImage}
         sx={{
@@ -97,7 +92,6 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
         <ChevronLeft />
       </IconButton>
 
-      {/* Right Arrow */}
       <IconButton
         onClick={nextImage}
         sx={{
@@ -115,7 +109,6 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
         <ChevronRight />
       </IconButton>
 
-      {/* Dots */}
       <Box
         sx={{
           display: "flex",

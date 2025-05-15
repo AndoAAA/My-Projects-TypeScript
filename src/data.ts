@@ -8,9 +8,6 @@ import surgicalProceduresIcon from "./assets/icons/SurgicalProcedures.jpg";
 import pediatricDentistryImg from "./assets/img/pediatricDentistryImg.jpg";
 import pediatricDentistryIcon from "./assets/icons/pediatricDentistryIcon.jpg";
 import endodonticsImg from "./assets/img/endodonticsImg.jpg";
-import ManukImage from "./assets/Manuk.JPG";
-import GayaneImage from "./assets/Gayane.JPG";
-import AghasiImage from "./assets/Aghasi.JPG";
 import diagnosticIcon from "./assets/icons/diagnosticIcon.jpg";
 import diagnosticImg from "./assets/img/diagnosticImg.jpg";
 import implantIcon from "./assets/icons/implantIcon.jpg";
@@ -23,8 +20,21 @@ import orthopedicsIcon from "./assets/icons/orthopedicsIcon.jpg";
 import orthopedicsImg from "./assets/img/orthopedicsImg.jpg";
 import orthodonticsIcon from "./assets/icons/orthodonticsIcon.jpg";
 import orthodonticsImg from "./assets/img/orthodonticsImg.jpg";
-
-
+import ManukImage0 from "./assets/doctors/Manuk4.JPG";
+import ManukImage1 from "./assets/doctors/Manuk1.jpg";
+import ManukImage2 from "./assets/doctors/Manuk2.jpg";
+import ManukImage3 from "./assets/doctors/Manuk3.jpg";
+import ManukImage4 from "./assets/doctors/Manuk0.jpg";
+import GayaneImage0 from "./assets/doctors/Gayane8.JPG";
+import GayaneImage1 from "./assets/doctors/Gayane1.jpg";
+import GayaneImage2 from "./assets/doctors/Gayane2.jpg";
+import GayaneImage3 from "./assets/doctors/Gayane3.jpg";
+import GayaneImage4 from "./assets/doctors/Gayane4.jpg";
+import AghasiImage0 from "./assets/doctors/Aghasi5.JPG";
+import AghasiImage1 from "./assets/doctors/Aghasi1.jpg";
+import AghasiImage2 from "./assets/doctors/Aghasi2.jpg";
+import AghasiImage3 from "./assets/doctors/Aghasi3.jpg";
+import AghasiImage4 from "./assets/doctors/Aghasi4.jpg";
 
 export const services = [
   {
@@ -157,17 +167,29 @@ export const services = [
 export const doctors = [
   {
     id: "0",
-    image: ManukImage,
+    images: [ManukImage0, ManukImage1, ManukImage2, ManukImage3, ManukImage4],
     key: "manuk",
   },
   {
     id: "1",
-    image: GayaneImage,
+    images: [
+      GayaneImage0,
+      GayaneImage1,
+      GayaneImage2,
+      GayaneImage3,
+      GayaneImage4,
+    ],
     key: "gayane",
   },
   {
     id: "2",
-    image: AghasiImage,
+    images: [
+      AghasiImage0,
+      AghasiImage1,
+      AghasiImage2,
+      AghasiImage3,
+      AghasiImage4,
+    ],
     key: "aghasi",
   },
 ];
