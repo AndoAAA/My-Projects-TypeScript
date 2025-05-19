@@ -5,11 +5,9 @@ import sterilImg2 from "../assets/steril2.JPG";
 import { useTranslation } from "react-i18next";
 
 const SterilSection = () => {
-  const { t }: { t: (key: string) => string } = useTranslation();
+  const { t } = useTranslation();
   return (
-
-    <Box sx={{ px: 4, py: 8, backgroundColor: "#f7f7f7" }}>
-
+    <Box sx={{  backgroundColor: "#f7f7f7" }}>
       <Typography
         variant="h4"
         fontWeight="bold"
@@ -18,7 +16,6 @@ const SterilSection = () => {
       >
         {t("about.sterilization")}
       </Typography>
-
 
       <Box
         sx={{
@@ -58,10 +55,8 @@ const SterilSection = () => {
         </Box>
       </Box>
 
-
       <Box sx={{ mt: 6, maxWidth: "900px", mx: "auto" }}>
         <Typography variant="body1" fontSize="18px" textAlign="center">
-          
           {t("sterilization")}
         </Typography>
       </Box>

@@ -142,7 +142,8 @@
     "paragraph": "Welcome to <span>Spectra Dental Clinic</span> – where healthy and confident smiles begin. High-quality dental services in a comfortable environment, with modern solutions and personalized care.",
     "names": {
       "manuk": {
-        "name": "Manuk Melkonyan – Founder of the clinic",
+        "name": "Manuk Melkonyan",
+        "founder":"Founder of the clinic",
         "description": "Manuk Melkonyan graduated from the Faculty of Dentistry at Yerevan State Medical University named after M. Heratsi (2004–2009), then continued his studies in the university’s residency program, specializing in family dentistry (2009–2011). From 2011 to 2013, he served in the Armenian Army as a dental surgeon, combining his professional duties with military responsibility. Throughout his professional development, he has undergone training in Italy, France, and Spain, and participated in numerous international congresses and conferences. Dr. Melkonyan is a member of the Armenian Endodontists Association and has 14 years of professional experience, having helped tens of thousands of patients regain their healthy and confident smile."
       },
       "gayane": {

@@ -77,7 +77,7 @@ const About: React.FC = () => {
               flexWrap: "wrap",
               justifyContent: "center",
               gap: 4,
-              pb: 6,
+              
             }}
           >
             {doctors.map((doctor) => (

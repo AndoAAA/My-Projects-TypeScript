@@ -9,7 +9,7 @@ import Carousel from "./Carousel";
 
 const DoctorSinglePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { t }: { t: (key: string) => string } = useTranslation();
+  const { t } = useTranslation();
   const doctor = doctors.find((d) => d.id === id);
   const navigate = useNavigate();
 
@@ -20,6 +20,8 @@ const DoctorSinglePage: React.FC = () => {
       </Box>
     );
   }
+
+  const founderText = t(`about.names.${doctor.key}.founder`, "");
 
   return (
     <Box
@@ -63,6 +65,16 @@ const DoctorSinglePage: React.FC = () => {
           <Typography variant="h4" sx={{ fontWeight: "bold" }}>
             {t(`about.names.${doctor.key}.name`)}
           </Typography>
+
+          {founderText && (
+            <Typography
+              variant="subtitle1"
+              sx={{ fontWeight: 500, color: colors.darkBlue }}
+            >
+              {founderText}
+            </Typography>
+          )}
+
           <Typography
             variant="body1"
             sx={{ color: "#555", textAlign: "center" }}
