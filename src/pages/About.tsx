@@ -5,7 +5,13 @@ import { doctors } from "../data";
 import { colors } from "../assets/colors/colors";
 import { NavLink } from "react-router-dom";
 import SterilSection from "../components/SterilSection";
-import AboutCarousel from "../components/AboutCarousel";
+import Carousel from "../components/Carousel";
+import aboutImg1 from "../assets/about1.JPG";
+import aboutImg2 from "../assets/about2.JPG";
+import aboutImg3 from "../assets/about3.JPG";
+import aboutImg4 from "../assets/about4.JPG";
+
+const images = [aboutImg1, aboutImg2, aboutImg3, aboutImg4];
 
 const About: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -49,7 +55,7 @@ const About: React.FC = () => {
         </Box>
 
         {/* About Carousel with all doctor images */}
-        <AboutCarousel images={allImages} />
+        <Carousel images={images} height={600} />
 
         {/* Doctors Section */}
         <Box textAlign="center">

@@ -1,20 +1,14 @@
-import { ChevronLeft, ChevronRight } from "@mui/icons-material";
-import { Box, IconButton } from "@mui/material";
 import React, { useState, useEffect, useRef } from "react";
-import aboutImg1 from "../assets/about1.JPG";
-import aboutImg2 from "../assets/about2.JPG";
-import aboutImg3 from "../assets/about3.JPG";
-import aboutImg4 from "../assets/about4.JPG";
+import { Box, IconButton } from "@mui/material";
+import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
-const images = [aboutImg1, aboutImg2, aboutImg3, aboutImg4];
-
-interface AboutCarouselProps {
+interface CarouselProps {
   images: string[];
+  height?: number;
 }
 
-const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
+const Carousel: React.FC<CarouselProps> = ({ images, height = 600 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const carouselRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
 
   const nextImage = () => {
@@ -27,12 +21,10 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
     );
   };
 
-
   useEffect(() => {
     const interval = setInterval(() => {
       nextImage();
     }, 4000);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -55,28 +47,30 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
 
   return (
     <Box
-      ref={carouselRef}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       sx={{
         position: "relative",
         width: "100%",
-        maxWidth: "500px",
+        maxWidth: "1000px",
         mx: "auto",
         overflow: "hidden",
         borderRadius: "16px",
+        height: { xs: 300, sm: height },
       }}
     >
       <img
         src={images[currentIndex]}
-        alt="Carousel"
+        alt={`Carousel image ${currentIndex + 1}`}
         style={{
           width: "100%",
-          height: "auto",
+          height: "100%",
+          objectFit: "contain",
           borderRadius: "16px",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-          transition: "transform 0.5s ease",
+          userSelect: "none",
+          pointerEvents: "none",
         }}
+        draggable={false}
       />
 
       {/* Left Arrow */}
@@ -89,6 +83,7 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
           transform: "translateY(-50%)",
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           color: "#fff",
+          p: { xs: "4px", sm: "8px" },
           "&:hover": {
             backgroundColor: "rgba(0, 0, 0, 0.7)",
           },
@@ -107,6 +102,7 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
           transform: "translateY(-50%)",
           backgroundColor: "rgba(0, 0, 0, 0.5)",
           color: "#fff",
+          p: { xs: "4px", sm: "8px" },
           "&:hover": {
             backgroundColor: "rgba(0, 0, 0, 0.7)",
           },
@@ -120,7 +116,6 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
         sx={{
           display: "flex",
           justifyContent: "center",
-          mt: 2,
           position: "absolute",
           bottom: "10px",
           width: "100%",
@@ -131,8 +126,8 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
             key={index}
             onClick={() => setCurrentIndex(index)}
             sx={{
-              width: 10,
-              height: 10,
+              width: { xs: 8, sm: 10 },
+              height: { xs: 8, sm: 10 },
               borderRadius: "50%",
               backgroundColor: currentIndex === index ? "#1976d2" : "#ccc",
               cursor: "pointer",
@@ -146,4 +141,4 @@ const AboutCarousel: React.FC<AboutCarouselProps> = ({ images }) => {
   );
 };
 
-export default AboutCarousel;
+export default Carousel;

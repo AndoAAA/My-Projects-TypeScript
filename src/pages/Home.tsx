@@ -5,9 +5,28 @@ import { motion } from "framer-motion";
 import StatsSection from "../components/Stats";
 import ServicesSection from "../components/ServicesSection";
 import DoctorsSection from "../components/DoctorsSection";
-import HomeCarousel from "../components/HomeCarousel";
 import useInView from "../hooks/useInView";
 import { colors } from "../assets/colors/colors";
+import Carousel from "../components/Carousel";
+import mainImg1 from "../assets/main1.JPG";
+import mainImg2 from "../assets/main2.jpg";
+import mainImg3 from "../assets/main3.jpg";
+import mainImg4 from "../assets/main4.JPG";
+import mainImg5 from "../assets/main5.JPG";
+import mainImg6 from "../assets/main6.JPG";
+import mainImg7 from "../assets/main7.JPG";
+import mainImg8 from "../assets/main8.JPG";
+
+const images = [
+  mainImg1,
+  mainImg2,
+  mainImg3,
+  mainImg4,
+  mainImg5,
+  mainImg6,
+  mainImg7,
+  mainImg8,
+];
 
 const Home: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -91,7 +110,7 @@ const Home: React.FC = () => {
 
         {/* Carousel Section */}
         <Box sx={{ width: "100%", maxWidth: "1100px" }}>
-          <HomeCarousel />
+          <Carousel images={images} height={600} />
         </Box>
       </Box>
 

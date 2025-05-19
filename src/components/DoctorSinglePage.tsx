@@ -5,9 +5,7 @@ import { doctors } from "../data";
 import { useTranslation } from "react-i18next";
 import { colors } from "../assets/colors/colors";
 import { motion } from "framer-motion";
-import DoctorImgCarousel from "../components/DoctorsImgCarousel";
-
-
+import Carousel from "./Carousel";
 
 const DoctorSinglePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -27,14 +25,26 @@ const DoctorSinglePage: React.FC = () => {
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
+        justifyContent: "center",
         py: 4,
         px: 2,
         gap: 4,
       }}
     >
-      <DoctorImgCarousel images={Object.values(doctor.images)} />
+      {/* Carousel container with responsive fixed height */}
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: { xs: "100%", md: "600px" },
+          height: { xs: 400, sm: 500, md: 600 },
+        }}
+      >
+        <Carousel images={Object.values(doctor.images)} />
+      </Box>
 
+      {/* Doctor info */}
       <Box
         sx={{
           maxWidth: "700px",
