@@ -66,7 +66,7 @@ const Carousel: React.FC<CarouselProps> = ({
     >
       <img
         src={images[currentIndex]}
-         alt={altTexts ? altTexts[currentIndex] : `slide-${currentIndex}`}
+        alt={altTexts?.[currentIndex] ?? `Slide ${currentIndex + 1}`}
         style={{
           width: "100%",
           height: "100%",

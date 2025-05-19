@@ -14,6 +14,7 @@ type ServiceItemProps = {
   title: string;
   image: string;
   price?: string;
+  alt?: string;
 };
 
 const ServiceItem: React.FC<ServiceItemProps> = ({
@@ -21,6 +22,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
   title,
   image,
   price,
+  alt,
 }) => {
   const fallbackImage = "path/to/fallback-image.jpg";
   const { t } = useTranslation();
@@ -49,7 +51,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
         <CardMedia
           component="img"
           image={image?.trim() ? image : fallbackImage}
-          alt={title}
+          alt={alt || title}
           loading="lazy"
           sx={{
             width: "100%",

@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import FacebookIcon from "../assets/icons/facebook.png";
 import InstagramIcon from "../assets/icons/instagram.png";
 import { colors } from "../assets/colors/colors";
+import { Helmet } from "react-helmet-async";
 
 type FormDataType = {
   name: string;
@@ -16,7 +17,7 @@ type FormDataType = {
 
 const contactLinks = [
   {
-    icon: <EmailIcon fontSize="large" aria-hidden="true" />,
+    icon: <EmailIcon fontSize="large" aria-label="Email icon" />,
     label: "Email",
     link: "mailto:tarverdyan070@gmail.com",
   },
@@ -57,7 +58,10 @@ const Contact: React.FC = () => {
     }
     if (!formData.tel.trim()) {
       tempErrors.tel = t("contactForm.telRequired") || "";
+    } else if (!/^[0-9+\-\s]+$/.test(formData.tel)) {
+      tempErrors.tel = t("contactForm.telInvalid") || "";
     }
+
     if (!formData.email.trim()) {
       tempErrors.email = t("contactForm.emailRequired") || "";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -108,6 +112,23 @@ const Contact: React.FC = () => {
         color: "white",
       }}
     >
+      <Helmet>
+        <title>{t("meta.contactTitle")}</title>
+        <meta name="description" content={t("meta.contactDescription")} />
+        {/* Open Graph */}
+        <meta property="og:title" content={t("meta.contactTitle")} />
+        <meta
+          property="og:description"
+          content={t("meta.contactDescription")}
+        />
+        <meta property="og:type" content="website" />
+        {/* Twitter */}
+        <meta name="twitter:title" content={t("meta.contactTitle")} />
+        <meta
+          name="twitter:description"
+          content={t("meta.contactDescription")}
+        />
+      </Helmet>
       <Typography
         variant="h2"
         sx={{
@@ -196,7 +217,8 @@ const Contact: React.FC = () => {
         <TextField
           label={t("contactForm.tel")}
           name="tel"
-          type="number"
+          type="tel"
+          inputProps={{ pattern: "[0-9+\\- ]*" }}
           value={formData.tel}
           onChange={handleChange}
           error={Boolean(errors.tel)}

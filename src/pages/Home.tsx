@@ -17,6 +17,8 @@ import mainImg6 from "../assets/main6.JPG";
 import mainImg7 from "../assets/main7.JPG";
 import mainImg8 from "../assets/main8.JPG";
 
+import { Helmet } from "react-helmet-async";
+
 const images = [
   { src: mainImg1, alt: "Clinic Hall" },
   { src: mainImg2, alt: "Doctor with patient" },
@@ -34,6 +36,70 @@ const Home: React.FC = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{t("meta.homeTitle") || "Welcome to [Clinic Name]"}</title>
+
+        <meta
+          name="description"
+          content={
+            t("meta.homeDescription") ||
+            "Experience quality healthcare services at our trusted clinic."
+          }
+        />
+        <meta
+          name="keywords"
+          content="clinic, healthcare, medical services, doctors, health"
+        />
+
+        <meta
+          property="og:title"
+          content={t("meta.homeTitle") || "Welcome to [Clinic Name]"}
+        />
+        <meta
+          property="og:description"
+          content={
+            t("meta.homeDescription") ||
+            "Experience quality healthcare services at our trusted clinic."
+          }
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://yourwebsite.com/" />
+        <meta property="og:image" content="https://yourwebsite.com/cover.jpg" />
+
+        <meta
+          name="twitter:title"
+          content={t("meta.homeTitle") || "Welcome to [Clinic Name]"}
+        />
+        <meta
+          name="twitter:description"
+          content={
+            t("meta.homeDescription") ||
+            "Experience quality healthcare services at our trusted clinic."
+          }
+        />
+        <meta
+          name="twitter:image"
+          content="https://yourwebsite.com/cover.jpg"
+        />
+
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "[Clinic Name]",
+            url: "https://yourwebsite.com",
+            description:
+              t("meta.homeDescription") ||
+              "Experience quality healthcare services at our trusted clinic.",
+            image: "https://yourwebsite.com/logo.jpg",
+            sameAs: [
+              "https://www.facebook.com/yourpage",
+              "https://www.instagram.com/yourpage",
+            ],
+          })}
+        </script>
+      </Helmet>
+
       {/* Hero Section */}
       <Box
         sx={{

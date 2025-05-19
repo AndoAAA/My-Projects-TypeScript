@@ -132,6 +132,16 @@
       "description": "Orthodontics focuses on the correction of irregularities in teeth and jaws using braces, aligners, and other corrective devices."
     }
   },
+  "meta": {
+    "homeTitle": "Welcome to [Clinic Name]",
+    "homeDescription": "Experience quality healthcare services at our trusted clinic.",
+    "aboutTitle": "About Us - [Clinic Name]",
+    "aboutDescription": "Learn more about our experienced team, values, and mission.",
+    "contactTitle": "Contact the Clinic - [Clinic Name]",
+    "contactDescription": "Get in touch with us for inquiries and appointments. We are always ready to help.",
+    "servicesTitle": "Our Services - [Clinic Name]",
+    "servicesDescription": "Discover our professional services tailored for your health needs."
+  },
 
   "stats": {
     "patients": "Patients",
@@ -143,7 +153,7 @@
     "names": {
       "manuk": {
         "name": "Manuk Melkonyan",
-        "founder":"Founder of the clinic",
+        "founder": "Founder of the clinic",
         "description": "Manuk Melkonyan graduated from the Faculty of Dentistry at Yerevan State Medical University named after M. Heratsi (2004–2009), then continued his studies in the university’s residency program, specializing in family dentistry (2009–2011). From 2011 to 2013, he served in the Armenian Army as a dental surgeon, combining his professional duties with military responsibility. Throughout his professional development, he has undergone training in Italy, France, and Spain, and participated in numerous international congresses and conferences. Dr. Melkonyan is a member of the Armenian Endodontists Association and has 14 years of professional experience, having helped tens of thousands of patients regain their healthy and confident smile."
       },
       "gayane": {
