@@ -4,10 +4,15 @@ import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 
 interface CarouselProps {
   images: string[];
+  altTexts?: string[];
   height?: number;
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images, height = 600 }) => {
+const Carousel: React.FC<CarouselProps> = ({
+  images,
+  height = 600,
+  altTexts,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef<number | null>(null);
 
@@ -23,10 +28,10 @@ const Carousel: React.FC<CarouselProps> = ({ images, height = 600 }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextImage();
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartX.current = e.touches[0].clientX;
@@ -56,12 +61,12 @@ const Carousel: React.FC<CarouselProps> = ({ images, height = 600 }) => {
         mx: "auto",
         overflow: "hidden",
         borderRadius: "16px",
-        height: { xs: 300, sm: height },
+        height: { xs: 350, sm: height },
       }}
     >
       <img
         src={images[currentIndex]}
-        alt={`Carousel image ${currentIndex + 1}`}
+         alt={altTexts ? altTexts[currentIndex] : `slide-${currentIndex}`}
         style={{
           width: "100%",
           height: "100%",

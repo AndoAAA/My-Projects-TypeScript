@@ -40,10 +40,15 @@ const DoctorSinglePage: React.FC = () => {
         sx={{
           width: "100%",
           maxWidth: { xs: "100%", md: "600px" },
-          height: { xs: 400, sm: 500, md: 600 },
+          height: { xs: 350, sm: 500, md: 600 },
         }}
       >
-        <Carousel images={Object.values(doctor.images)} />
+        <Carousel
+          images={doctor.images}
+          altTexts={doctor.images.map(
+            (_, idx) => `${doctor.key} image ${idx + 1}`
+          )}
+        />
       </Box>
 
       {/* Doctor info */}

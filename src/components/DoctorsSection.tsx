@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 const DoctorsSection: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
   return (
-    <Box sx={{ padding: "50px 20px", textAlign: "center" }}>
+    <Box sx={{ padding: "20px 20px", textAlign: "center" }}>
       <Typography variant="h4" fontWeight="bold" mb={4}>
         {t("about.doctors")}
       </Typography>

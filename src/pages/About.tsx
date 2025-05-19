@@ -1,5 +1,6 @@
 import { Box, Typography, Container } from "@mui/material";
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { Trans, useTranslation } from "react-i18next";
 import { doctors } from "../data";
 import { colors } from "../assets/colors/colors";
@@ -11,14 +12,15 @@ import aboutImg2 from "../assets/about2.JPG";
 import aboutImg3 from "../assets/about3.JPG";
 import aboutImg4 from "../assets/about4.JPG";
 
-const images = [aboutImg1, aboutImg2, aboutImg3, aboutImg4];
+const images = [
+  { src: aboutImg1, alt: "Clinic Hall" },
+  { src: aboutImg2, alt: "Doctor with patient" },
+  { src: aboutImg3, alt: "Clinic Hall" },
+  { src: aboutImg4, alt: "Clinic Hall" },
+];
 
 const About: React.FC = () => {
-  const { t }: { t: (key: string) => string } = useTranslation();
-
-  const allImages = doctors.flatMap((doctor) =>
-    Object.values(doctor.images || {})
-  );
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -28,9 +30,41 @@ const About: React.FC = () => {
         minHeight: "100vh",
       }}
     >
+      {/* ✅ SEO Meta Tags */}
+      <Helmet>
+        <title>{t("about.doctors")} | Spectra Dental Clinic</title>
+        <meta
+          name="description"
+          content="Meet our experienced dental professionals who provide personalized and modern care at Spectra Dental Clinic."
+        />
+        <meta
+          name="keywords"
+          content="Spectra Dental, dental clinic, doctors, Yerevan, dentistry, orthodontics, pediatric dentistry"
+        />
+        <meta name="robots" content="index, follow" />
+        <meta
+          property="og:title"
+          content="Our Doctors | Spectra Dental Clinic"
+        />
+        <meta
+          property="og:description"
+          content="Get to know our team of experienced dentists at Spectra Dental Clinic."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://yourdomain.com/about" />
+        <meta
+          property="og:image"
+          content="https://yourdomain.com/assets/preview.jpg"
+        />
+      </Helmet>
+
       <Container
         maxWidth="lg"
-        sx={{ display: "flex", flexDirection: "column", gap: 5 }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: { xs: 0, sm: 3, md: 5 },
+        }}
       >
         {/* About Text Section */}
         <Box sx={{ flex: 1, textAlign: "center" }}>
@@ -55,7 +89,11 @@ const About: React.FC = () => {
         </Box>
 
         {/* About Carousel with all doctor images */}
-        <Carousel images={images} height={600} />
+        <Carousel
+          images={images.map((img) => img.src)}
+          altTexts={images.map((img) => img.alt)}
+          height={600}
+        />
 
         {/* Doctors Section */}
         <Box textAlign="center">
@@ -77,7 +115,6 @@ const About: React.FC = () => {
               flexWrap: "wrap",
               justifyContent: "center",
               gap: 4,
-              
             }}
           >
             {doctors.map((doctor) => (
@@ -110,7 +147,8 @@ const About: React.FC = () => {
                 >
                   <img
                     src={doctor.images[0]}
-                    alt={doctor.key}
+                    alt={t(`about.names.${doctor.key}.name`)}
+                    loading="lazy"
                     style={{
                       width: "100%",
                       height: "100%",

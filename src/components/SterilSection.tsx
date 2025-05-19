@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 const SterilSection = () => {
   const { t } = useTranslation();
   return (
-    <Box sx={{  backgroundColor: "#f7f7f7" }}>
+    <Box sx={{ px: 4, py: 4, backgroundColor: "#f7f7f7" }}>
       <Typography
         variant="h4"
         fontWeight="bold"

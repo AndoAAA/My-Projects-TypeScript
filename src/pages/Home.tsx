@@ -18,14 +18,14 @@ import mainImg7 from "../assets/main7.JPG";
 import mainImg8 from "../assets/main8.JPG";
 
 const images = [
-  mainImg1,
-  mainImg2,
-  mainImg3,
-  mainImg4,
-  mainImg5,
-  mainImg6,
-  mainImg7,
-  mainImg8,
+  { src: mainImg1, alt: "Clinic Hall" },
+  { src: mainImg2, alt: "Doctor with patient" },
+  { src: mainImg3, alt: "Clinic Hall" },
+  { src: mainImg4, alt: "Clinic Hall" },
+  { src: mainImg5, alt: "Clinic Hall" },
+  { src: mainImg6, alt: "Clinic Hall" },
+  { src: mainImg7, alt: "Clinic Hall" },
+  { src: mainImg8, alt: "Clinic Hall" },
 ];
 
 const Home: React.FC = () => {
@@ -38,7 +38,7 @@ const Home: React.FC = () => {
       <Box
         sx={{
           px: 4,
-          py: 10,
+          py: 5,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -110,7 +110,11 @@ const Home: React.FC = () => {
 
         {/* Carousel Section */}
         <Box sx={{ width: "100%", maxWidth: "1100px" }}>
-          <Carousel images={images} height={600} />
+          <Carousel
+            images={images.map((img) => img.src)}
+            altTexts={images.map((img) => img.alt)}
+            height={600}
+          />
         </Box>
       </Box>
 
