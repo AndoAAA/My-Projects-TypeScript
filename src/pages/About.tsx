@@ -4,13 +4,13 @@ import { Helmet } from "react-helmet-async";
 import { Trans, useTranslation } from "react-i18next";
 import { doctors } from "../data";
 import { colors } from "../assets/colors/colors";
-import { NavLink } from "react-router-dom";
 import SterilSection from "../components/SterilSection";
 import Carousel from "../components/Carousel";
 import aboutImg1 from "../assets/about1.JPG";
 import aboutImg2 from "../assets/about2.JPG";
 import aboutImg3 from "../assets/about3.JPG";
 import aboutImg4 from "../assets/about4.JPG";
+import Doctor from "../components/Doctor";
 
 const images = [
   { src: aboutImg1, alt: "Clinic Hall" },
@@ -118,72 +118,12 @@ const About: React.FC = () => {
             }}
           >
             {doctors.map((doctor) => (
-              <Box
+              <Doctor
                 key={doctor.id}
-                sx={{
-                  width: { xs: "100%", sm: "45%", md: "30%" },
-                  backgroundColor: "#fff",
-                  borderRadius: 3,
-                  p: 3,
-                  textAlign: "center",
-                  transition: "transform 0.3s, box-shadow 0.3s",
-                  boxShadow: 2,
-                  "&:hover": {
-                    transform: "translateY(-5px)",
-                    boxShadow: "0 8px 20px rgba(0, 0, 0, 0.15)",
-                  },
-                }}
-              >
-                <Box
-                  sx={{
-                    width: 340,
-                    height: 340,
-                    mx: "auto",
-                    borderRadius: "50%",
-                    overflow: "hidden",
-                    mb: 2,
-                    boxShadow: 1,
-                  }}
-                >
-                  <img
-                    src={doctor.images[0]}
-                    alt={t(`about.names.${doctor.key}.name`)}
-                    loading="lazy"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                </Box>
-                <Typography
-                  variant="h6"
-                  sx={{ fontWeight: 600, fontSize: "1.25rem", mb: 1 }}
-                >
-                  {t(`about.names.${doctor.key}.name`)}
-                </Typography>
-                <NavLink to={`/about/${doctor.id}`}>
-                  <Box
-                    sx={{
-                      display: "inline-block",
-                      px: 3,
-                      py: 1,
-                      borderRadius: "20px",
-                      backgroundColor: colors.darkBlue,
-                      color: "white",
-                      fontSize: "0.9rem",
-                      fontWeight: 500,
-                      cursor: "pointer",
-                      transition: "background-color 0.3s",
-                      "&:hover": {
-                        backgroundColor: colors.lightBlue,
-                      },
-                    }}
-                  >
-                    {t("about.moreInfo")}
-                  </Box>
-                </NavLink>
-              </Box>
+                id={doctor.id}
+                name={t(`about.names.${doctor.key}.name`)}
+                image={doctor.images[0]}
+              />
             ))}
           </Box>
         </Box>

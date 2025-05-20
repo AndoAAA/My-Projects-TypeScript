@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Box, Typography } from "@mui/material";
 import { colors } from "../assets/colors/colors";
 import ServiceItem from "../components/ServiceItem";
-import { NavLink } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 const Service: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -13,7 +13,7 @@ const Service: React.FC = () => {
   return (
     <Box
       sx={{
-        padding: "60px 20px",
+        padding: { xs: "40px 16px", sm: "60px 32px" },
         backgroundColor: colors.lightBlue,
       }}
     >
@@ -108,19 +108,18 @@ const Service: React.FC = () => {
         }}
       >
         {services.map((service) => (
-          <Box key={service.id}>
-            <NavLink
-              to={`/service/${service.id}`}
-              style={{ textDecoration: "none" }}
-            >
-              <ServiceItem
-                id={service.id.toString()}
-                title={t(`services.${service.title}.title`)}
-                image={service.icon}
-                price={service.price}
-              />
-            </NavLink>
-          </Box>
+          <Link
+            key={service.id}
+            to={`/service/${service.id}`}
+            style={{ textDecoration: "none" }}
+          >
+            <ServiceItem
+              id={service.id.toString()}
+              title={t(`services.${service.title}.title`) || service.title}
+              image={service.icon}
+              price={service.price}
+            />
+          </Link>
         ))}
       </Box>
     </Box>

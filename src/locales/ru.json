@@ -132,13 +132,13 @@
   },
 
   "meta": {
-    "homeTitle": "Добро пожаловать в [Название клиники]",
+    "homeTitle": "Добро пожаловать в Spectra Dental Clinic",
     "homeDescription": "Получите качественные медицинские услуги в нашей надежной клинике.",
-    "aboutTitle": "О Нас - [Название клиники]",
+    "aboutTitle": "О Нас - Spectra Dental Clinic",
     "aboutDescription": "Узнайте больше о нашей опытной команде, ценностях и миссии.",
-    "contactTitle": "Контакты Клиники - [Название клиники]",
+    "contactTitle": "Контакты Клиники - Spectra Dental Clinic",
     "contactDescription": "Свяжитесь с нами для вопросов и записи на прием. Мы всегда готовы помочь.",
-    "servicesTitle": "Наши Услуги - [Название клиники]",
+    "servicesTitle": "Наши Услуги - Spectra Dental Clinic",
     "servicesDescription": "Ознакомьтесь с нашими профессиональными услугами, созданными для заботы о вашем здоровье."
   },
   "stats": {

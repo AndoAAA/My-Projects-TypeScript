@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { colors } from "../assets/colors/colors";
 
 const Footer = () => {
-  const { t }: { t: (key: string) => string } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -69,12 +69,15 @@ const Footer = () => {
       >
         <img
           src={Logo}
-          alt="Logo"
+          alt="Spectra Dental Clinic Logo"
+          loading="lazy"
           style={{ maxWidth: "120px", marginBottom: "10px" }}
         />
-        <Typography sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <LocationOnIcon /> {t("footer.address")}
-        </Typography>
+
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <LocationOnIcon />
+          <Typography>{t("footer.address")}</Typography>
+        </Box>
       </Box>
 
       {/* Google Maps Embed */}
@@ -93,7 +96,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <Box sx={{ textAlign: "center", marginTop: "20px", fontSize: "14px" }}>
-        &copy; 2025 www.tarverdyan-projects.com
+         &copy; {new Date().getFullYear()} www.tarverdyan-projects.com
       </Box>
     </Box>
   );

@@ -6,12 +6,14 @@ interface CarouselProps {
   images: string[];
   altTexts?: string[];
   height?: number;
+  interval?: number;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
   images,
   height = 600,
   altTexts,
+  interval = 4000,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef<number | null>(null);

@@ -133,13 +133,13 @@
     }
   },
   "meta": {
-    "homeTitle": "Welcome to [Clinic Name]",
+    "homeTitle": "Welcome to Spectra Dental Clinic",
     "homeDescription": "Experience quality healthcare services at our trusted clinic.",
-    "aboutTitle": "About Us - [Clinic Name]",
+    "aboutTitle": "About Us - Spectra Dental Clinic",
     "aboutDescription": "Learn more about our experienced team, values, and mission.",
-    "contactTitle": "Contact the Clinic - [Clinic Name]",
+    "contactTitle": "Contact the Clinic - Spectra Dental Clinic",
     "contactDescription": "Get in touch with us for inquiries and appointments. We are always ready to help.",
-    "servicesTitle": "Our Services - [Clinic Name]",
+    "servicesTitle": "Our Services - Spectra Dental Clinic",
     "servicesDescription": "Discover our professional services tailored for your health needs."
   },
 

@@ -37,7 +37,7 @@ const Home: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{t("meta.homeTitle") || "Welcome to [Clinic Name]"}</title>
+        <title>{t("meta.homeTitle") || "Welcome to Spectra Dental Clinic"}</title>
 
         <meta
           name="description"
@@ -53,7 +53,7 @@ const Home: React.FC = () => {
 
         <meta
           property="og:title"
-          content={t("meta.homeTitle") || "Welcome to [Clinic Name]"}
+          content={t("meta.homeTitle") || "Welcome to Spectra Dental Clinic"}
         />
         <meta
           property="og:description"
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
 
         <meta
           name="twitter:title"
-          content={t("meta.homeTitle") || "Welcome to [Clinic Name]"}
+          content={t("meta.homeTitle") || "Welcome to Spectra Dental Clinic"}
         />
         <meta
           name="twitter:description"
@@ -86,15 +86,15 @@ const Home: React.FC = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Organization",
-            name: "[Clinic Name]",
+            name: "Spectra Dental Clinic",
             url: "https://yourwebsite.com",
             description:
               t("meta.homeDescription") ||
               "Experience quality healthcare services at our trusted clinic.",
             image: "https://yourwebsite.com/logo.jpg",
             sameAs: [
-              "https://www.facebook.com/yourpage",
-              "https://www.instagram.com/yourpage",
+              "https://www.facebook.com/people/Spectra-Dental-Clinic/61564332775099/?_rdr",
+              "https://www.instagram.com/spectradental.clinic/",
             ],
           })}
         </script>

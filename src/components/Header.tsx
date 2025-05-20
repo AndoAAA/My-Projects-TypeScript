@@ -17,66 +17,31 @@ import FacebookIcon from "../assets/icons/facebook.png";
 import { useTranslation } from "react-i18next";
 import i18n from "i18next";
 import { colors } from "../assets/colors/colors";
+import { useEffect, useCallback } from "react";
+
+const LanguageOption = ({ src, alt }: { src: string; alt: string }) => (
+  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+    <img src={src} alt={alt} width="20" height="15" />
+  </div>
+);
 
 const languageOptions = [
   {
     value: "en",
     label: (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          cursor: "pointer",
-        }}
-      >
-        <img
-          src="https://flagcdn.com/w40/gb.png"
-          alt="English"
-          width="20"
-          height="15"
-        />
-      </div>
+      <LanguageOption src="https://flagcdn.com/w40/gb.png" alt="English" />
     ),
   },
   {
     value: "hy",
     label: (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          cursor: "pointer",
-        }}
-      >
-        <img
-          src="https://flagcdn.com/w40/am.png"
-          alt="Armenian"
-          width="20"
-          height="15"
-        />
-      </div>
+      <LanguageOption src="https://flagcdn.com/w40/am.png" alt="Armenian" />
     ),
   },
   {
     value: "ru",
     label: (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          cursor: "pointer",
-        }}
-      >
-        <img
-          src="https://flagcdn.com/w40/ru.png"
-          alt="Russian"
-          width="20"
-          height="15"
-        />
-      </div>
+      <LanguageOption src="https://flagcdn.com/w40/ru.png" alt="Russian" />
     ),
   },
 ];
@@ -88,20 +53,30 @@ const Header = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
-  const handleLanguageChange = (selectedOption: any) => {
+  const fontSize = isMobile ? 12 : 14;
+  const iconSize = isMobile ? 30 : isTablet ? 40 : 40;
+
+  const handleLanguageChange = useCallback((selectedOption: any) => {
     i18n.changeLanguage(selectedOption.value);
     localStorage.setItem("selectedLanguage", selectedOption.value);
-  };
+  }, []);
+
+  useEffect(() => {
+    const savedLang = localStorage.getItem("selectedLanguage");
+    if (savedLang && savedLang !== i18n.language) {
+      i18n.changeLanguage(savedLang);
+    }
+  }, []);
 
   return (
     <AppBar position="static" sx={{ p: 1.5, background: colors.lightBlue }}>
       <Toolbar
         sx={{
           display: "flex",
-          flexDirection: isMobile ? "column" : "row",
+          flexDirection: { xs: "column", sm: "row" },
           alignItems: "center",
           justifyContent: "space-between",
-          gap: isMobile ? 1 : 2,
+          gap: isMobile ? 2 : 2,
           textAlign: "center",
         }}
       >
@@ -109,9 +84,9 @@ const Header = () => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: isMobile ? "column" : "row",
-            alignItems: "center",
-            gap: isMobile ? 0.8 : 3,
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: 2,
           }}
         >
           {[
@@ -132,23 +107,49 @@ const Header = () => {
               text: "mmm@mmm.com",
             },
           ].map((item, index) => (
-            <Typography
+            <Box
               key={index}
-              variant={isMobile ? "body2" : isTablet ? "body1" : "h6"}
               sx={{
                 display: "flex",
                 alignItems: "center",
-                gap: 1,
-                fontSize: isMobile ? 12 : 14,
+                gap: 1.5,
+                backgroundColor: "#ffffff30",
+                px: 2,
+                py: 1,
+                borderRadius: "12px",
+                boxShadow: "0 2px 6px rgba(0, 0, 0, 0.08)",
+                backdropFilter: "blur(6px)",
+                minWidth: isMobile ? "170px" : "200px",
+                justifyContent: "center",
+                transition: "all 0.2s ease-in-out",
+                "&:hover": {
+                  transform: "scale(1.02)",
+                  backgroundColor: "#ffffff50",
+                },
               }}
             >
-              {item.icon} {item.text}
-            </Typography>
+              <Box
+                sx={{
+                  backgroundColor: "#fff",
+                  borderRadius: "50%",
+                  p: 0.7,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  boxShadow: "0 1px 4px rgba(0,0,0,0.15)",
+                }}
+              >
+                {item.icon}
+              </Box>
+              <Typography sx={{ fontSize: isMobile ? 12 : 14 }}>
+                {item.text}
+              </Typography>
+            </Box>
           ))}
         </Box>
 
         {/* Language Selector */}
-        <Box sx={{ minWidth: isMobile ? "" : isTablet ? "80px" : "80px" }}>
+        <Box sx={{ minWidth: isMobile ? "" : "80px" }}>
           <Select
             options={languageOptions}
             defaultValue={languageOptions.find(
@@ -162,7 +163,7 @@ const Header = () => {
                 borderRadius: "8px",
                 border: "1px solid #ddd",
                 cursor: "pointer",
-                fontSize: isMobile ? 12 : 14,
+                fontSize,
               }),
               menu: (base) => ({ ...base, zIndex: 9999 }),
             }}
@@ -193,6 +194,8 @@ const Header = () => {
               key={index}
               href={item.href}
               target="_blank"
+              rel="noopener noreferrer"
+              aria-label={item.alt}
               sx={{
                 transition: "transform 0.2s ease-in-out",
                 "&:hover": { transform: "scale(1.15)" },
@@ -201,10 +204,7 @@ const Header = () => {
               <img
                 src={item.icon}
                 alt={item.alt}
-                style={{
-                  width: isMobile ? 22 : isTablet ? 26 : 30,
-                  height: isMobile ? 22 : isTablet ? 26 : 30,
-                }}
+                style={{ width: iconSize, height: iconSize }}
               />
             </Link>
           ))}

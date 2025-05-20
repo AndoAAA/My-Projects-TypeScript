@@ -15,16 +15,17 @@ import {
   useTheme,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import Logo from "../assets/logo.jpg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const location = useLocation();
 
   const toggleDrawer = (open: boolean) => () => {
     setDrawerOpen(open);
@@ -49,7 +50,7 @@ const Navbar = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: "10px",
+            padding: "8px 16px",
           }}
         >
           {/* Logo */}
@@ -61,7 +62,7 @@ const Navbar = () => {
 
           {/* Navigation Links (Hidden on Mobile) */}
           {!isMobile && (
-            <Box sx={{ display: "flex", gap: 3 }}>
+            <Box sx={{ display: "flex", gap: 4 }}>
               {navItems.map(({ key, path }) => (
                 <Typography
                   key={key}
@@ -92,6 +93,10 @@ const Navbar = () => {
               sx={{
                 background: "white",
                 color: theme.palette.primary.main,
+                fontWeight: "600",
+                padding: "6px 16px",
+                borderRadius: "8px",
+                textTransform: "none",
                 "&:hover": {
                   background: theme.palette.primary.main,
                   color: "white",
@@ -107,6 +112,7 @@ const Navbar = () => {
             <IconButton
               aria-label="Open navigation menu"
               onClick={toggleDrawer(true)}
+              size="large"
             >
               <MenuIcon sx={{ color: theme.palette.primary.main }} />
             </IconButton>
@@ -117,28 +123,30 @@ const Navbar = () => {
       {/* Drawer (Sidebar Menu for Mobile) */}
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         <Box sx={{ width: 250 }} onClick={toggleDrawer(false)}>
+          {/* Optional: Drawer Header with Close Button */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            <IconButton onClick={toggleDrawer(false)}>
+              <CloseIcon />
+            </IconButton>
+          </Box>
           <List>
             {navItems.map(({ key, path }) => (
               <ListItem disablePadding key={key}>
-                <ListItemButton component={NavLink} to={path}>
+                <ListItemButton
+                  component={NavLink}
+                  to={path}
+                  selected={location.pathname === path}
+                >
                   <ListItemText primary={t(`navbar.${key}`)} />
                 </ListItemButton>
               </ListItem>
             ))}
           </List>
-          <Button
-            fullWidth
-            component={NavLink}
-            to="/contact"
-            variant="contained"
-            sx={{
-              mt: 2,
-              background: theme.palette.primary.main,
-              color: "#fff",
-            }}
-          >
-            {t("navbar.contact")}
-          </Button>
         </Box>
       </Drawer>
     </>
