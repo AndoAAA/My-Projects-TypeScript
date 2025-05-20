@@ -18,6 +18,7 @@ import mainImg7 from "../assets/main7.JPG";
 import mainImg8 from "../assets/main8.JPG";
 
 import { Helmet } from "react-helmet-async";
+import { doctors } from "../data";
 
 const images = [
   { src: mainImg1, alt: "Clinic Hall" },
@@ -37,7 +38,9 @@ const Home: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>{t("meta.homeTitle") || "Welcome to Spectra Dental Clinic"}</title>
+        <title>
+          {t("meta.homeTitle") || "Welcome to Spectra Dental Clinic"}
+        </title>
 
         <meta
           name="description"
@@ -50,6 +53,7 @@ const Home: React.FC = () => {
           name="keywords"
           content="clinic, healthcare, medical services, doctors, health"
         />
+        <link rel="canonical" href="https://yourdomain.com/about" />
 
         <meta
           property="og:title"
@@ -96,6 +100,21 @@ const Home: React.FC = () => {
               "https://www.facebook.com/people/Spectra-Dental-Clinic/61564332775099/?_rdr",
               "https://www.instagram.com/spectradental.clinic/",
             ],
+          })}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MedicalOrganization",
+            name: "Spectra Dental Clinic",
+            url: "https://yourdomain.com/about",
+            description: "Experienced dentists providing personalized care.",
+            medicalSpecialty: "Dentistry",
+            member: doctors.map((doc) => ({
+              "@type": "Person",
+              name: t(`about.names.${doc.key}.name`),
+              jobTitle: "Dentist",
+            })),
           })}
         </script>
       </Helmet>

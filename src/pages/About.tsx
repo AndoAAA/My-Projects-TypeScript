@@ -35,8 +35,13 @@ const About: React.FC = () => {
         <title>{t("about.doctors")} | Spectra Dental Clinic</title>
         <meta
           name="description"
-          content="Meet our experienced dental professionals who provide personalized and modern care at Spectra Dental Clinic."
+          content={
+            t("meta.aboutDescription") ||
+            "Meet our experienced dental professionals..."
+          }
         />
+        <link rel="canonical" href="https://yourdomain.com/about" />
+
         <meta
           name="keywords"
           content="Spectra Dental, dental clinic, doctors, Yerevan, dentistry, orthodontics, pediatric dentistry"

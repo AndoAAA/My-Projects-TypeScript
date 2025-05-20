@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Box, Typography } from "@mui/material";
 import { colors } from "../assets/colors/colors";
 import ServiceItem from "../components/ServiceItem";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Service: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();

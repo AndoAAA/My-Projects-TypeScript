@@ -26,6 +26,7 @@ const ServicesSection: React.FC = () => {
             to={`/service/${service.id}`}
             style={{ textDecoration: "none" }}
             key={service.id}
+            aria-label={t(`services.${service.title}.title`)}
           >
             <Card
               sx={{
@@ -45,6 +46,7 @@ const ServicesSection: React.FC = () => {
                 height="240"
                 image={service.image || "path/to/fallback-image.jpg"}
                 alt={t(`services.${service.title}.title`)}
+                 loading="lazy"
               />
               <CardContent>
                 <Typography variant="h6" fontWeight="bold">
