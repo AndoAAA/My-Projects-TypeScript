@@ -27,7 +27,9 @@ const Carousel: React.FC<CarouselProps> = ({
 
   const prevImage = () => {
     setLoading(true);
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
   };
 
   useEffect(() => {
@@ -158,7 +160,8 @@ const Carousel: React.FC<CarouselProps> = ({
               width: { xs: 8, sm: 10 },
               height: { xs: 8, sm: 10 },
               borderRadius: "50%",
-              backgroundColor: currentIndex === index ? colors.lightBlue : "#ccc",
+              backgroundColor:
+                currentIndex === index ? colors.lightBlue : "#ccc",
               cursor: "pointer",
               mx: 0.5,
               transition: "background-color 0.3s",
