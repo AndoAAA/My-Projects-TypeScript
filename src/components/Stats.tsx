@@ -1,4 +1,3 @@
-import React from "react";
 import CountUp from "react-countup";
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import GroupsIcon from "@mui/icons-material/Groups";
@@ -11,9 +10,15 @@ interface StatsCardProps {
   title: string;
   end: number;
   icon: React.ReactNode;
+  isVisible: boolean;
 }
 
-const StatsCard: React.FC<StatsCardProps> = ({ title, end, icon }) => {
+const StatsCard: React.FC<StatsCardProps> = ({
+  title,
+  end,
+  icon,
+  isVisible,
+}) => {
   return (
     <Card
       sx={{
@@ -33,7 +38,17 @@ const StatsCard: React.FC<StatsCardProps> = ({ title, end, icon }) => {
       <CardContent>
         <Box sx={{ fontSize: 40, mb: 2 }}>{icon}</Box>
         <Typography variant="h4" fontWeight="bold">
-          <CountUp start={0} end={end} duration={2.5} separator="," />
+          {isVisible ? (
+            <CountUp
+              key={Date.now()}
+              start={0}
+              end={end}
+              duration={2.5}
+              separator=","
+            />
+          ) : (
+            0
+          )}
         </Typography>
         <Typography variant="subtitle1" sx={{ opacity: 0.9 }}>
           {title}
@@ -43,8 +58,13 @@ const StatsCard: React.FC<StatsCardProps> = ({ title, end, icon }) => {
   );
 };
 
-const StatsSection = () => {
-  const { t }: { t: (key: string) => string } = useTranslation();
+interface StatsSectionProps {
+  isVisible: boolean;
+}
+
+const StatsSection: React.FC<StatsSectionProps> = ({ isVisible }) => {
+  const { t } = useTranslation();
+
   return (
     <Box
       sx={{
@@ -59,6 +79,7 @@ const StatsSection = () => {
         title={t("stats.patients")}
         end={44000}
         icon={<GroupsIcon fontSize="large" sx={{ width: 100, height: 100 }} />}
+        isVisible={isVisible}
       />
       <StatsCard
         title={t("stats.implants")}
@@ -70,6 +91,7 @@ const StatsSection = () => {
             style={{ width: 100, height: 100 }}
           />
         }
+        isVisible={isVisible}
       />
       <StatsCard
         title={t("stats.crowns")}
@@ -81,6 +103,7 @@ const StatsSection = () => {
             style={{ width: 100, height: 100 }}
           />
         }
+        isVisible={isVisible}
       />
     </Box>
   );

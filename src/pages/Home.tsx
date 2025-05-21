@@ -35,17 +35,16 @@ const images = [
 const Home: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
   const [statsRef, statsVisible] = useInView({ threshold: 0.1 });
-   const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }, []);
-  
-    if (loading) return <Loader />;
-  
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
 
   return (
     <>
@@ -218,7 +217,10 @@ const Home: React.FC = () => {
 
       {/* Stats, Services, Doctors */}
       <Box sx={{ px: 4, py: 0 }}>
-        <Box ref={statsRef}>{statsVisible && <StatsSection />}</Box>
+        <Box ref={statsRef}>
+          <StatsSection isVisible={statsVisible} />
+        </Box>
+
         <ServicesSection />
         <DoctorsSection />
       </Box>
