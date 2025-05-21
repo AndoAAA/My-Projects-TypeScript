@@ -1,5 +1,14 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { Box, Button, TextField, Typography, Link } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Link,
+  Snackbar,
+  Alert,
+  CircularProgress,
+} from "@mui/material";
 import EmailIcon from "@mui/icons-material/Email";
 import emailjs from "@emailjs/browser";
 import { useTranslation } from "react-i18next";
@@ -44,6 +53,13 @@ const Contact: React.FC = () => {
   const [errors, setErrors] = useState<Partial<FormDataType>>({});
   const [loading, setLoading] = useState(false);
 
+  // Snackbar state
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState<
+    "success" | "error"
+  >("success");
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -82,24 +98,38 @@ const Contact: React.FC = () => {
     setLoading(true);
     try {
       await emailjs.send(
-        "service_mo2qbbv",
-        "template_dyqb11p",
+        "service_fe4vkph",
+        "template_9y6k2g9",
         {
-          from_name: formData.name,
-          from_tel: formData.tel,
-          from_email: formData.email,
+          name: formData.name,
+          email: formData.email,
+          tel: formData.tel,
           message: formData.message,
         },
         "W_R8qr82NdANY4Wtl"
       );
 
-      alert(t("contactForm.success") || "");
+      setSnackbarMessage(t("contactForm.success") || "Հաղորդագրությունը հաջողությամբ ուղարկվեց");
+      setSnackbarSeverity("success");
+      setSnackbarOpen(true);
+
       setFormData({ name: "", email: "", tel: "", message: "" });
+      setErrors({});
     } catch (error) {
       console.error("Email sending failed:", error);
-      alert(t("contactForm.failure") || "");
+      setSnackbarMessage(t("contactForm.failure") || "Սխալ առաջացավ, փորձեք կրկին");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
     }
     setLoading(false);
+  };
+
+  const handleCloseSnackbar = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") return;
+    setSnackbarOpen(false);
   };
 
   return (
@@ -117,17 +147,11 @@ const Contact: React.FC = () => {
         <meta name="description" content={t("meta.contactDescription")} />
         {/* Open Graph */}
         <meta property="og:title" content={t("meta.contactTitle")} />
-        <meta
-          property="og:description"
-          content={t("meta.contactDescription")}
-        />
+        <meta property="og:description" content={t("meta.contactDescription")} />
         <meta property="og:type" content="website" />
         {/* Twitter */}
         <meta name="twitter:title" content={t("meta.contactTitle")} />
-        <meta
-          name="twitter:description"
-          content={t("meta.contactDescription")}
-        />
+        <meta name="twitter:description" content={t("meta.contactDescription")} />
       </Helmet>
       <Typography
         variant="h2"
@@ -253,12 +277,34 @@ const Contact: React.FC = () => {
             fontWeight: "bold",
             borderRadius: "8px",
             transition: "all 0.3s ease",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "10px",
             "&:hover": { background: "#6f8bbd" },
           }}
         >
+          {loading && <CircularProgress size={20} color="inherit" />}
           {t("contactForm.sendBtn")}
         </Button>
       </Box>
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={4000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbarSeverity}
+          sx={{ width: "100%" }}
+          elevation={6}
+          variant="filled"
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
