@@ -44,14 +44,14 @@ const Footer = () => {
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <MailIcon sx={{ color: "#ff9800" }} />
           <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <Typography>{t("footer.email")}</Typography>
-            <Typography>mmm@mmm.mm</Typography>
+            <Typography>{t("footer.email")}։</Typography>
+            <Typography>spectraclinicarmenia@gmail.com</Typography>
           </Box>
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <AccessTimeIcon sx={{ color: "#f44336" }} />
           <Box>
-            <Typography>{t("footer.workDays")}</Typography>
+            <Typography>{t("footer.workDays")}։</Typography>
             <Typography>{t("footer.workingHours")}</Typography>
           </Box>
         </Box>
