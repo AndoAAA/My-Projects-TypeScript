@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton, CircularProgress } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
 import { colors } from "../assets/colors/colors";
 
@@ -17,24 +17,25 @@ const Carousel: React.FC<CarouselProps> = ({
   interval = 4000,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
   const touchStartX = useRef<number | null>(null);
 
   const nextImage = () => {
+    setLoading(true);
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   const prevImage = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    );
+    setLoading(true);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [images.length]);
+    const slideInterval = setInterval(() => {
+      nextImage();
+    }, interval);
+    return () => clearInterval(slideInterval);
+  }, [interval]);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     touchStartX.current = e.touches[0].clientX;
@@ -65,8 +66,19 @@ const Carousel: React.FC<CarouselProps> = ({
         overflow: "hidden",
         borderRadius: "16px",
         height: { xs: 350, sm: height },
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
+      {loading && (
+        <CircularProgress
+          size={60}
+          sx={{ position: "absolute", zIndex: 10 }}
+          color="primary"
+        />
+      )}
+
       <img
         src={images[currentIndex]}
         alt={altTexts?.[currentIndex] ?? `Slide ${currentIndex + 1}`}
@@ -77,8 +89,11 @@ const Carousel: React.FC<CarouselProps> = ({
           borderRadius: "16px",
           userSelect: "none",
           pointerEvents: "none",
+          opacity: loading ? 0 : 1,
+          transition: "opacity 0.5s ease-in-out",
         }}
         draggable={false}
+        onLoad={() => setLoading(false)}
       />
 
       {/* Left Arrow */}
@@ -95,6 +110,7 @@ const Carousel: React.FC<CarouselProps> = ({
           "&:hover": {
             backgroundColor: "rgba(0, 0, 0, 0.7)",
           },
+          zIndex: 20,
         }}
       >
         <ChevronLeft />
@@ -114,6 +130,7 @@ const Carousel: React.FC<CarouselProps> = ({
           "&:hover": {
             backgroundColor: "rgba(0, 0, 0, 0.7)",
           },
+          zIndex: 20,
         }}
       >
         <ChevronRight />
@@ -127,12 +144,16 @@ const Carousel: React.FC<CarouselProps> = ({
           position: "absolute",
           bottom: "10px",
           width: "100%",
+          zIndex: 20,
         }}
       >
         {images.map((_, index) => (
           <Box
             key={index}
-            onClick={() => setCurrentIndex(index)}
+            onClick={() => {
+              setLoading(true);
+              setCurrentIndex(index);
+            }}
             sx={{
               width: { xs: 8, sm: 10 },
               height: { xs: 8, sm: 10 },
