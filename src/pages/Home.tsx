@@ -10,7 +10,7 @@ import { colors } from "../assets/colors/colors";
 import Carousel from "../components/Carousel";
 import mainImg1 from "../assets/main1.JPG";
 import mainImg2 from "../assets/main2.jpg";
-import mainImg3 from "../assets/main3.jpg";
+import mainImg3 from "../assets/main3.JPG";
 import mainImg4 from "../assets/main4.JPG";
 import mainImg5 from "../assets/main5.JPG";
 import mainImg6 from "../assets/main6.JPG";
