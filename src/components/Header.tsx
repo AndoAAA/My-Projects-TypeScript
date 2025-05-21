@@ -119,7 +119,7 @@ const Header = () => {
                 borderRadius: "12px",
                 boxShadow: "0 2px 6px rgba(0, 0, 0, 0.08)",
                 backdropFilter: "blur(6px)",
-                minWidth: isMobile ? "230px" : "230px",
+                width: "230px",
                 justifyContent: "center",
                 transition: "all 0.2s ease-in-out",
                 "&:hover": {

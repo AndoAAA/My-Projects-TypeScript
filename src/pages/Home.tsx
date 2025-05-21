@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
@@ -19,6 +19,7 @@ import mainImg8 from "../assets/main8.JPG";
 
 import { Helmet } from "react-helmet-async";
 import { doctors } from "../data";
+import Loader from "../components/Loader";
 
 const images = [
   { src: mainImg1, alt: "Clinic Hall" },
@@ -34,6 +35,17 @@ const images = [
 const Home: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
   const [statsRef, statsVisible] = useInView({ threshold: 0.1 });
+   const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }, []);
+  
+    if (loading) return <Loader />;
+  
 
   return (
     <>

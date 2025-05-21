@@ -1,5 +1,5 @@
 import { Box, Typography, Container } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Trans, useTranslation } from "react-i18next";
 import { doctors } from "../data";
@@ -11,6 +11,7 @@ import aboutImg2 from "../assets/about2.JPG";
 import aboutImg3 from "../assets/about3.JPG";
 import aboutImg4 from "../assets/about4.JPG";
 import Doctor from "../components/Doctor";
+import Loader from "../components/Loader";
 
 const images = [
   { src: aboutImg1, alt: "Clinic Hall" },
@@ -21,6 +22,16 @@ const images = [
 
 const About: React.FC = () => {
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
 
   return (
     <Box
@@ -30,7 +41,6 @@ const About: React.FC = () => {
         minHeight: "100vh",
       }}
     >
-      {/* ✅ SEO Meta Tags */}
       <Helmet>
         <title>{t("about.doctors")} | Spectra Dental Clinic</title>
         <meta
@@ -80,6 +90,14 @@ const About: React.FC = () => {
             sx={{
               mt: 2,
               textAlign: "center",
+              fontSize: {
+                xs: "1.2rem",
+                sm: "1.5rem",
+                md: "1.8rem",
+                lg: "2rem",
+                xl: "2.2rem",
+              },
+              lineHeight: 1.6,
               "& .highlight": {
                 color: colors.darkBlue,
                 fontWeight: "bold",

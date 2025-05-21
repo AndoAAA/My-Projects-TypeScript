@@ -20,7 +20,7 @@ const useInView = (options: IntersectionObserverInit = {}) => {
     return () => {
       observer.disconnect();
     };
-  }, [ref.current, JSON.stringify(options)]);
+  }, [options]);
 
   return [ref, isIntersecting] as const;
 };

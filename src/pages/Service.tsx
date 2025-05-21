@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { services } from "../data";
 import { useTranslation } from "react-i18next";
@@ -6,9 +6,20 @@ import { Box, Typography } from "@mui/material";
 import { colors } from "../assets/colors/colors";
 import ServiceItem from "../components/ServiceItem";
 import { Link } from "react-router-dom";
+import Loader from "../components/Loader";
 
 const Service: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
 
   return (
     <Box
@@ -79,8 +90,8 @@ const Service: React.FC = () => {
               "Discover our professional services tailored for your health needs.",
             image: "https://yourwebsite.com/logo.jpg",
             sameAs: [
-              "https://www.facebook.com/yourpage",
-              "https://www.instagram.com/yourpage",
+              "https://www.facebook.com/people/Spectra-Dental-Clinic/61564332775099/?_rdr",
+              "https://www.instagram.com/spectradental.clinic/",
             ],
           })}
         </script>

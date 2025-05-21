@@ -53,12 +53,11 @@ const Contact: React.FC = () => {
   const [errors, setErrors] = useState<Partial<FormDataType>>({});
   const [loading, setLoading] = useState(false);
 
-  // Snackbar state
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState("");
-  const [snackbarSeverity, setSnackbarSeverity] = useState<
-    "success" | "error"
-  >("success");
+  const [snackbarSeverity, setSnackbarSeverity] = useState<"success" | "error">(
+    "success"
+  );
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -109,7 +108,9 @@ const Contact: React.FC = () => {
         "W_R8qr82NdANY4Wtl"
       );
 
-      setSnackbarMessage(t("contactForm.success") || "Հաղորդագրությունը հաջողությամբ ուղարկվեց");
+      setSnackbarMessage(
+        t("contactForm.success") || "Հաղորդագրությունը հաջողությամբ ուղարկվեց"
+      );
       setSnackbarSeverity("success");
       setSnackbarOpen(true);
 
@@ -117,7 +118,9 @@ const Contact: React.FC = () => {
       setErrors({});
     } catch (error) {
       console.error("Email sending failed:", error);
-      setSnackbarMessage(t("contactForm.failure") || "Սխալ առաջացավ, փորձեք կրկին");
+      setSnackbarMessage(
+        t("contactForm.failure") || "Սխալ առաջացավ, փորձեք կրկին"
+      );
       setSnackbarSeverity("error");
       setSnackbarOpen(true);
     }
@@ -147,11 +150,17 @@ const Contact: React.FC = () => {
         <meta name="description" content={t("meta.contactDescription")} />
         {/* Open Graph */}
         <meta property="og:title" content={t("meta.contactTitle")} />
-        <meta property="og:description" content={t("meta.contactDescription")} />
+        <meta
+          property="og:description"
+          content={t("meta.contactDescription")}
+        />
         <meta property="og:type" content="website" />
         {/* Twitter */}
         <meta name="twitter:title" content={t("meta.contactTitle")} />
-        <meta name="twitter:description" content={t("meta.contactDescription")} />
+        <meta
+          name="twitter:description"
+          content={t("meta.contactDescription")}
+        />
       </Helmet>
       <Typography
         variant="h2"
@@ -186,22 +195,27 @@ const Contact: React.FC = () => {
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: "15px",
-              padding: "15px 25px",
+              justifyContent: "center",
+              gap: "10px",
+              padding: "12px 20px",
+              minWidth: { xs: "120px", sm: "160px", md: "180px" },
+              height: "40px",
               borderRadius: "10px",
               background: "rgba(25, 55, 109, 0.2)",
               color: "white",
-              textDecoration: "none",
-              fontSize: "1.2rem",
+              fontSize: { xs: "1rem", sm: "1.1rem", md: "1.2rem" },
               fontWeight: "bold",
+              textAlign: "center",
               transition: "all 0.3s ease",
+              textDecoration: "none",
               "&:hover": {
                 transform: "scale(1.05)",
                 background: colors.lightBlue,
               },
             }}
           >
-            {item.icon} {item.label}
+            {item.icon}
+            {item.label}
           </Link>
         ))}
       </Box>

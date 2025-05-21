@@ -9,7 +9,20 @@ const ServicesSection: React.FC = () => {
 
   return (
     <Box sx={{ padding: "50px 20px", textAlign: "center" }}>
-      <Typography variant="h4" fontWeight="bold" mb={4}>
+      <Typography
+        fontWeight="bold"
+        mb={4}
+        sx={{
+          fontSize: {
+            xs: "1.6rem",
+            sm: "2rem",
+            md: "2.4rem",
+            lg: "2.8rem",
+            xl: "3rem",
+          },
+          textAlign: "center",
+        }}
+      >
         {t("navbar.service")}
       </Typography>
 
@@ -46,7 +59,7 @@ const ServicesSection: React.FC = () => {
                 height="240"
                 image={service.image || "path/to/fallback-image.jpg"}
                 alt={t(`services.${service.title}.title`)}
-                 loading="lazy"
+                loading="lazy"
               />
               <CardContent>
                 <Typography variant="h6" fontWeight="bold">

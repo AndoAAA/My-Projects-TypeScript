@@ -88,7 +88,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
 
           {price && (
             <Typography variant="body1" color="textSecondary">
-              ({t("price.start")}) {price}
+              {t("price.start")} {price}
             </Typography>
           )}
         </CardContent>
