@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { services } from "../data";
+import { colors } from "../assets/colors/colors";
 
 const PriceList: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -49,15 +50,14 @@ const PriceList: React.FC = () => {
                 sx={{
                   px: { xs: 2, sm: 4 },
                   py: 2,
-                  borderLeft: "4px solid #1976d2",
-                  borderRight: "4px solid #1976d2",
-                  backgroundColor: "#ffffff",
+                  borderLeft: `4px solid ${colors.darkBlue}`,
                   borderRadius: 2,
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
+                  backgroundColor: colors.white,
+                  boxShadow: "0 1px 5px rgba(0,0,0,0.08)",
                   transition: "all 0.3s ease",
                   "&:hover": {
-                    boxShadow: "0 4px 16px rgba(0, 0, 0, 0.1)",
-                    transform: "translateY(-2px)",
+                    boxShadow: "0 6px 14px rgba(0,0,0,0.1)",
+                    transform: "translateY(-1px)",
                   },
                 }}
               >
@@ -74,21 +74,21 @@ const PriceList: React.FC = () => {
                     <img
                       src={service.icon}
                       alt={service.title}
-                      style={{ width: 32, height: 32 }}
+                      style={{
+                        width: 40,
+                        height: 40,
+                        borderRadius: 4,
+                        objectFit: "cover",
+                      }}
                     />
+
                     <Typography
                       variant="h6"
                       sx={{
-                        fontSize: {
-                          xs: "1rem",
-                          sm: "1.1rem",
-                          md: "1.2rem",
-                        },
                         fontWeight: 600,
-                        wordBreak: "break-word",
-                        whiteSpace: "normal",
-                        flex: 1,
-                        mb: { xs: 0.5, sm: 0 },
+                        fontSize: { xs: "1rem", sm: "1.1rem" },
+                        lineHeight: 1.4,
+                        flexShrink: 1,
                       }}
                     >
                       {t(`services.${service.title}.title`)}
@@ -96,8 +96,11 @@ const PriceList: React.FC = () => {
                   </Box>
 
                   {!hasSubPrices && (
-                    <Typography variant="body1" sx={{ fontWeight: 500 }}>
-                      ({t("price.start")}) {service.price}
+                    <Typography
+                      variant="body1"
+                      sx={{ fontWeight: 500, whiteSpace: "nowrap" }}
+                    >
+                      {t("price.start")} {service.price}
                     </Typography>
                   )}
                 </Box>
@@ -120,7 +123,7 @@ const PriceList: React.FC = () => {
                             justifyContent: "space-between",
                             alignItems: "center",
                             py: 1,
-                            borderBottom: "1px dashed #ddd",
+                            borderBottom: "1px dashed #ccc",
                           }}
                         >
                           <Typography

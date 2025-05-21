@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Box, IconButton } from "@mui/material";
 import { ChevronLeft, ChevronRight } from "@mui/icons-material";
+import { colors } from "../assets/colors/colors";
 
 interface CarouselProps {
   images: string[];
@@ -136,7 +137,7 @@ const Carousel: React.FC<CarouselProps> = ({
               width: { xs: 8, sm: 10 },
               height: { xs: 8, sm: 10 },
               borderRadius: "50%",
-              backgroundColor: currentIndex === index ? "#1976d2" : "#ccc",
+              backgroundColor: currentIndex === index ? colors.lightBlue : "#ccc",
               cursor: "pointer",
               mx: 0.5,
               transition: "background-color 0.3s",

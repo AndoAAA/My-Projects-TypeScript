@@ -199,6 +199,7 @@ const Home: React.FC = () => {
             images={images.map((img) => img.src)}
             altTexts={images.map((img) => img.alt)}
             height={600}
+            interval={4000}
           />
         </Box>
       </Box>

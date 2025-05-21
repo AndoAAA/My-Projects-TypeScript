@@ -91,7 +91,7 @@ const Service: React.FC = () => {
         sx={{
           mb: 4,
           fontWeight: "bold",
-          color: "white",
+          color: colors.white,
           textAlign: "center",
           fontSize: { xs: "2rem", sm: "2.5rem" },
         }}

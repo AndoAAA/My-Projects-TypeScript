@@ -19,6 +19,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import Logo from "../assets/logo.jpg";
 import { NavLink, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { colors } from "../assets/colors/colors";
 
 const Navbar = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -43,7 +44,10 @@ const Navbar = () => {
     <>
       <AppBar
         position="static"
-        sx={{ background: "#fff", boxShadow: "0px 4px 10px rgba(0,0,0,0.1)" }}
+        sx={{
+          background: colors.white,
+          boxShadow: "0px 4px 10px rgba(0,0,0,0.1)",
+        }}
       >
         <Toolbar
           sx={{
@@ -91,7 +95,7 @@ const Navbar = () => {
               component={NavLink}
               to="/contact"
               sx={{
-                background: "white",
+                background: colors.white,
                 color: theme.palette.primary.main,
                 fontWeight: "600",
                 padding: "6px 16px",
@@ -99,7 +103,7 @@ const Navbar = () => {
                 textTransform: "none",
                 "&:hover": {
                   background: theme.palette.primary.main,
-                  color: "white",
+                  color: colors.white,
                 },
               }}
             >

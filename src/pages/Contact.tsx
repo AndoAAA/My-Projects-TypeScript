@@ -171,7 +171,10 @@ const Contact: React.FC = () => {
               fontSize: "1.2rem",
               fontWeight: "bold",
               transition: "all 0.3s ease",
-              "&:hover": { transform: "scale(1.05)", background: "#6f8bbd" },
+              "&:hover": {
+                transform: "scale(1.05)",
+                background: colors.lightBlue,
+              },
             }}
           >
             {item.icon} {item.label}

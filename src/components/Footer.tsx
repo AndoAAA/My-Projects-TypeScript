@@ -16,7 +16,7 @@ const Footer = () => {
       sx={{
         padding: "40px 20px",
         backgroundColor: colors.darkBlue,
-        color: "white",
+        color: colors.white,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -96,7 +96,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <Box sx={{ textAlign: "center", marginTop: "20px", fontSize: "14px" }}>
-         &copy; {new Date().getFullYear()} www.tarverdyan-projects.com
+        &copy; {new Date().getFullYear()} www.tarverdyan-projects.com
       </Box>
     </Box>
   );

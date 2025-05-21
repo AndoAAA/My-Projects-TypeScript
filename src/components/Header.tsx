@@ -130,7 +130,7 @@ const Header = () => {
             >
               <Box
                 sx={{
-                  backgroundColor: "#fff",
+                  backgroundColor: colors.white,
                   borderRadius: "50%",
                   p: 0.7,
                   display: "flex",
