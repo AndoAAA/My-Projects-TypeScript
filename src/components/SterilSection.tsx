@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
-import sterilImg1 from "../assets/steril1.JPG";
-import sterilImg2 from "../assets/steril2.JPG";
+import sterilImg1 from "../assets/steril1.webp";
+import sterilImg2 from "../assets/steril2.webp";
 import { useTranslation } from "react-i18next";
 
 const SterilSection = () => {
