@@ -18,7 +18,7 @@ const Seo: React.FC<SeoProps> = ({
   doctors = [],
   titleKey = "meta.homeTitle",
   descriptionKey = "meta.homeDescription",
-  canonical = "https://spectradentalclinic.com/",
+  canonical = "https://spectra.tarverdyan-projects.com/",
 }) => {
   const { t } = useTranslation();
 
@@ -44,7 +44,7 @@ const Seo: React.FC<SeoProps> = ({
       <meta property="og:url" content={canonical} />
       <meta
         property="og:image"
-        content="https://spectradentalclinic.com/logo.jpg"
+        content="https://spectra.tarverdyan-projects.com/logo.jpg"
       />
 
       {/* X (formerly Twitter) Meta Tags */}
@@ -54,7 +54,7 @@ const Seo: React.FC<SeoProps> = ({
       <meta name="twitter:description" content={description} />
       <meta
         name="twitter:image"
-        content="https://spectradentalclinic.com/logo.jpg"
+        content="https://spectra.tarverdyan-projects.com/logo.jpg"
       />
 
       {/* Organization JSON-LD */}
@@ -65,8 +65,8 @@ const Seo: React.FC<SeoProps> = ({
           name: "Spectra Dental Clinic",
           url: canonical,
           description,
-          logo: "https://spectradentalclinic.com/logo.jpg",
-          image: "https://spectradentalclinic.com/logo.jpg",
+          logo: "https://spectra.tarverdyan-projects.com/logo.jpg",
+          image: "https://spectra.tarverdyan-projects.com/logo.jpg",
           sameAs: [
             "https://www.facebook.com/people/Spectra-Dental-Clinic/61564332775099/?_rdr",
             "https://www.instagram.com/spectradental.clinic/",
