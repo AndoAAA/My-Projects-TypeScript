@@ -130,6 +130,7 @@ const Footer = () => {
           alt="Spectra Dental Clinic Logo"
           loading="lazy"
           style={{ maxWidth: "120px", marginBottom: "10px" }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         />
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <LocationOnIcon />
