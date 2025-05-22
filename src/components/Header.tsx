@@ -2,19 +2,13 @@ import Select from "react-select";
 import {
   AppBar,
   Toolbar,
-  Typography,
   Box,
   Link,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import EmailIcon from "@mui/icons-material/Email";
 import InstagramIcon from "../assets/icons/instagram.png";
 import FacebookIcon from "../assets/icons/facebook.png";
-import { useTranslation } from "react-i18next";
 import i18n from "i18next";
 import { colors } from "../assets/colors/colors";
 import { useEffect, useCallback } from "react";
@@ -47,8 +41,6 @@ const languageOptions = [
 ];
 
 const Header = () => {
-  const { t }: { t: (key: string) => string } = useTranslation();
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
@@ -79,7 +71,6 @@ const Header = () => {
           textAlign: "center",
         }}
       >
-
         {/* Language Selector */}
         <Box sx={{ minWidth: isMobile ? "" : "80px" }}>
           <Select

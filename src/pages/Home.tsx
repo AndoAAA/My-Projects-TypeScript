@@ -220,7 +220,6 @@ const Home: React.FC = () => {
         <Box ref={statsRef}>
           <StatsSection isVisible={statsVisible} />
         </Box>
-
         <ServicesSection />
         <DoctorsSection />
       </Box>

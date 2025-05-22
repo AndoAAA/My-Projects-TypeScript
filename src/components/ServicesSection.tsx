@@ -34,7 +34,7 @@ const ServicesSection: React.FC = () => {
           justifyContent: "center",
         }}
       >
-        {services.slice(0, 6).map((service) => (
+        {services.map((service) => (
           <NavLink
             to={`/service/${service.id}`}
             style={{ textDecoration: "none" }}
@@ -57,7 +57,7 @@ const ServicesSection: React.FC = () => {
               <CardMedia
                 component="img"
                 height="240"
-                image={service.image || "path/to/fallback-image.jpg"}
+                image={service.icon || "path/to/fallback-image.jpg"}
                 alt={t(`services.${service.title}.title`)}
                 loading="lazy"
               />
