@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import MailIcon from "@mui/icons-material/Mail";
@@ -35,19 +35,77 @@ const Footer = () => {
           paddingBottom: "20px",
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <PhoneInTalkIcon sx={{ color: "#4caf50" }} /> +374(93) 39-14-81
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <WhatsAppIcon sx={{ color: "#25D366" }} /> +374(93) 39-14-81
-        </Box>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <MailIcon sx={{ color: "#ff9800" }} />
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <Typography>{t("footer.email")}։</Typography>
-            <Typography>spectraclinicarmenia@gmail.com</Typography>
+        {/* Phone */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <PhoneInTalkIcon sx={{ color: "#4caf50" }} /> +374(93) 39-14-81
           </Box>
+          <Button
+            variant="outlined"
+            size="small"
+            href="tel:+37493391481"
+            sx={{ mt: 1, color: colors.white, borderColor: colors.white }}
+          >
+            {t("footer.callUs")}
+          </Button>
         </Box>
+
+        {/* WhatsApp */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <WhatsAppIcon sx={{ color: "#25D366" }} /> +374(93) 39-14-81
+          </Box>
+          <Button
+            variant="outlined"
+            size="small"
+            href="https://wa.me/37493391481"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ mt: 1, color: colors.white, borderColor: colors.white }}
+          >
+            {t("footer.writeOnWhatsApp")}
+          </Button>
+        </Box>
+
+        {/* Email */}
+        {/* Email */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <MailIcon sx={{ color: "#ff9800" }} />
+            <Typography>{t("footer.email")}։</Typography>
+          </Box>
+          <Button
+            variant="outlined"
+            size="small"
+            href="mailto:spectraclinicarmenia@gmail.com"
+            sx={{ mt: 1, color: colors.white, borderColor: colors.white }}
+          >
+            {t("footer.sendEmail")}
+          </Button>
+        </Box>
+
+        {/* Working Hours */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <AccessTimeIcon sx={{ color: "#f44336" }} />
           <Box>
@@ -73,7 +131,6 @@ const Footer = () => {
           loading="lazy"
           style={{ maxWidth: "120px", marginBottom: "10px" }}
         />
-
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <LocationOnIcon />
           <Typography>{t("footer.address")}</Typography>

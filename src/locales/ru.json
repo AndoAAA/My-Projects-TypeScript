@@ -9,7 +9,10 @@
     "email": "Эл. почта",
     "workingHours": "Пон - Суб : 09:00-21:00 ",
     "workDays": "Часы работы",
-    "address": "5 улица Дро, Ереван"
+    "address": "5 улица Дро, Ереван",
+    "callUs": "Позвонить",
+    "writeOnWhatsApp": "Написать в WhatsApp",
+    "sendEmail": "Отправить письмо"
   },
   "navbar": {
     "home": "Главное",

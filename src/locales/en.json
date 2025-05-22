@@ -9,7 +9,10 @@
     "email": "Email",
     "workingHours": "Mon - Sat : 09:00-21:00 ",
     "workDays": "Working Hours",
-    "address": "5 Dro Street, Yerevan"
+    "address": "5 Dro Street, Yerevan",
+    "callUs": "Call Us",
+    "writeOnWhatsApp": "Message on WhatsApp",
+    "sendEmail": "Send an email"
   },
   "navbar": {
     "home": "Home",
