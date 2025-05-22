@@ -9,6 +9,9 @@ import aboutImg1 from "../assets/about1.webp";
 import aboutImg2 from "../assets/about2.webp";
 import aboutImg3 from "../assets/about3.webp";
 import aboutImg4 from "../assets/about4.webp";
+import aboutImg5 from "../assets/about5.webp";
+import aboutImg6 from "../assets/about6.webp";
+import aboutImg7 from "../assets/about7.webp";
 import Doctor from "../components/Doctor";
 import Loader from "../components/Loader";
 import Seo from "../components/Seo";
@@ -18,6 +21,9 @@ const images = [
   { src: aboutImg2, alt: "Doctor with patient" },
   { src: aboutImg3, alt: "Clinic Hall" },
   { src: aboutImg4, alt: "Clinic Hall" },
+  { src: aboutImg5, alt: "Clinic Hall" },
+  { src: aboutImg6, alt: "Clinic Hall" },
+  { src: aboutImg7, alt: "Clinic Hall" },
 ];
 
 const About: React.FC = () => {
