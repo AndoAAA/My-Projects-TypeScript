@@ -16,10 +16,8 @@ import mainImg5 from "../assets/main5.JPG";
 import mainImg6 from "../assets/main6.JPG";
 import mainImg7 from "../assets/main7.JPG";
 import mainImg8 from "../assets/main8.JPG";
-
-import { Helmet } from "react-helmet-async";
-import { doctors } from "../data";
 import Loader from "../components/Loader";
+import Seo from "../components/Seo";
 
 const images = [
   { src: mainImg1, alt: "Clinic Hall" },
@@ -31,6 +29,8 @@ const images = [
   { src: mainImg7, alt: "Clinic Hall" },
   { src: mainImg8, alt: "Clinic Hall" },
 ];
+
+const doctors = [{ key: "manuk" }, { key: "gayane" }, { key: "aghasi" }];
 
 const Home: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -48,87 +48,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Helmet>
-        <title>
-          {t("meta.homeTitle") || "Welcome to Spectra Dental Clinic"}
-        </title>
-
-        <meta
-          name="description"
-          content={
-            t("meta.homeDescription") ||
-            "Experience quality healthcare services at our trusted clinic."
-          }
-        />
-        <meta
-          name="keywords"
-          content="clinic, healthcare, medical services, doctors, health"
-        />
-        <link rel="canonical" href="https://yourdomain.com/about" />
-
-        <meta
-          property="og:title"
-          content={t("meta.homeTitle") || "Welcome to Spectra Dental Clinic"}
-        />
-        <meta
-          property="og:description"
-          content={
-            t("meta.homeDescription") ||
-            "Experience quality healthcare services at our trusted clinic."
-          }
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://yourwebsite.com/" />
-        <meta property="og:image" content="https://yourwebsite.com/cover.jpg" />
-
-        <meta
-          name="twitter:title"
-          content={t("meta.homeTitle") || "Welcome to Spectra Dental Clinic"}
-        />
-        <meta
-          name="twitter:description"
-          content={
-            t("meta.homeDescription") ||
-            "Experience quality healthcare services at our trusted clinic."
-          }
-        />
-        <meta
-          name="twitter:image"
-          content="https://yourwebsite.com/cover.jpg"
-        />
-
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "Spectra Dental Clinic",
-            url: "https://yourwebsite.com",
-            description:
-              t("meta.homeDescription") ||
-              "Experience quality healthcare services at our trusted clinic.",
-            image: "https://yourwebsite.com/logo.jpg",
-            sameAs: [
-              "https://www.facebook.com/people/Spectra-Dental-Clinic/61564332775099/?_rdr",
-              "https://www.instagram.com/spectradental.clinic/",
-            ],
-          })}
-        </script>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "MedicalOrganization",
-            name: "Spectra Dental Clinic",
-            url: "https://yourdomain.com/about",
-            description: "Experienced dentists providing personalized care.",
-            medicalSpecialty: "Dentistry",
-            member: doctors.map((doc) => ({
-              "@type": "Person",
-              name: t(`about.names.${doc.key}.name`),
-              jobTitle: "Dentist",
-            })),
-          })}
-        </script>
-      </Helmet>
+      <Seo doctors={doctors} />
 
       {/* Hero Section */}
       <Box

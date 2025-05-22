@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { services } from "../data";
 import { useTranslation } from "react-i18next";
 import { Box, Typography } from "@mui/material";
@@ -7,6 +6,7 @@ import { colors } from "../assets/colors/colors";
 import ServiceItem from "../components/ServiceItem";
 import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
+import Seo from "../components/Seo";
 
 const Service: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
@@ -29,73 +29,12 @@ const Service: React.FC = () => {
       }}
     >
       {/* ✅ SEO Metadata */}
-      <Helmet>
-        <title>
-          {t("meta.servicesTitle") || "Our Services - Spectra Dental Clinic"}
-        </title>
-
-        <meta
-          name="description"
-          content={
-            t("meta.servicesDescription") ||
-            "Discover our professional services tailored for your health needs."
-          }
-        />
-
-        <meta
-          property="og:title"
-          content={
-            t("meta.servicesTitle") || "Our Services - Spectra Dental Clinic"
-          }
-        />
-        <meta
-          property="og:description"
-          content={
-            t("meta.servicesDescription") ||
-            "Discover our professional services tailored for your health needs."
-          }
-        />
-
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://yourwebsite.com/service" />
-        <meta property="og:image" content="https://yourwebsite.com/cover.jpg" />
-
-        <meta
-          name="twitter:title"
-          content={
-            t("meta.servicesTitle") || "Our Services - Spectra Dental Clinic"
-          }
-        />
-        <meta
-          name="twitter:description"
-          content={
-            t("meta.servicesDescription") ||
-            "Discover our professional services tailored for your health needs."
-          }
-        />
-        <meta
-          name="twitter:image"
-          content="https://yourwebsite.com/cover.jpg"
-        />
-
-        {/* Schema.org structured data */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "Spectra Dental Clinic",
-            url: "https://yourwebsite.com/service",
-            description:
-              t("meta.servicesDescription") ||
-              "Discover our professional services tailored for your health needs.",
-            image: "https://yourwebsite.com/logo.jpg",
-            sameAs: [
-              "https://www.facebook.com/people/Spectra-Dental-Clinic/61564332775099/?_rdr",
-              "https://www.instagram.com/spectradental.clinic/",
-            ],
-          })}
-        </script>
-      </Helmet>
+      <Seo
+        titleKey="meta.servicesTitle"
+        descriptionKey="meta.servicesDescription"
+        canonical="https://spectradentalclinic.com/services"
+        keywords="dental services, teeth cleaning, whitening, dental implants, orthodontics"
+      />
 
       <Typography
         variant="h4"
@@ -123,6 +62,9 @@ const Service: React.FC = () => {
             key={service.id}
             to={`/service/${service.id}`}
             style={{ textDecoration: "none" }}
+            aria-label={`View details for ${
+              t(`services.${service.title}.title`) || service.title
+            }`}
           >
             <ServiceItem
               id={service.id.toString()}

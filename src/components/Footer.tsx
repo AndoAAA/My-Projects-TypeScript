@@ -82,7 +82,6 @@ const Footer = () => {
         </Box>
 
         {/* Email */}
-        {/* Email */}
         <Box
           sx={{
             display: "flex",

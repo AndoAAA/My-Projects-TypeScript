@@ -1,6 +1,5 @@
 import { Box, Typography, Container } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { Trans, useTranslation } from "react-i18next";
 import { doctors } from "../data";
 import { colors } from "../assets/colors/colors";
@@ -12,6 +11,7 @@ import aboutImg3 from "../assets/about3.JPG";
 import aboutImg4 from "../assets/about4.JPG";
 import Doctor from "../components/Doctor";
 import Loader from "../components/Loader";
+import Seo from "../components/Seo";
 
 const images = [
   { src: aboutImg1, alt: "Clinic Hall" },
@@ -41,37 +41,12 @@ const About: React.FC = () => {
         minHeight: "100vh",
       }}
     >
-      <Helmet>
-        <title>{t("about.doctors")} | Spectra Dental Clinic</title>
-        <meta
-          name="description"
-          content={
-            t("meta.aboutDescription") ||
-            "Meet our experienced dental professionals..."
-          }
-        />
-        <link rel="canonical" href="https://yourdomain.com/about" />
-
-        <meta
-          name="keywords"
-          content="Spectra Dental, dental clinic, doctors, Yerevan, dentistry, orthodontics, pediatric dentistry"
-        />
-        <meta name="robots" content="index, follow" />
-        <meta
-          property="og:title"
-          content="Our Doctors | Spectra Dental Clinic"
-        />
-        <meta
-          property="og:description"
-          content="Get to know our team of experienced dentists at Spectra Dental Clinic."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://yourdomain.com/about" />
-        <meta
-          property="og:image"
-          content="https://yourdomain.com/assets/preview.jpg"
-        />
-      </Helmet>
+      <Seo
+        titleKey="meta.aboutTitle"
+        descriptionKey="meta.aboutDescription"
+        canonical="https://spectradentalclinic.com/about"
+        doctors={doctors}
+      />
 
       <Container
         maxWidth="lg"

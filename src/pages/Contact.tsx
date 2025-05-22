@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 import FacebookIcon from "../assets/icons/facebook.png";
 import InstagramIcon from "../assets/icons/instagram.png";
 import { colors } from "../assets/colors/colors";
-import { Helmet } from "react-helmet-async";
+import Seo from "../components/Seo";
 
 type FormDataType = {
   name: string;
@@ -97,15 +97,15 @@ const Contact: React.FC = () => {
     setLoading(true);
     try {
       await emailjs.send(
-        "service_fe4vkph",
-        "template_9y6k2g9",
+        process.env.REACT_APP_EMAILJS_SERVICE_ID!,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID!,
         {
           name: formData.name,
           email: formData.email,
           tel: formData.tel,
           message: formData.message,
         },
-        "W_R8qr82NdANY4Wtl"
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY!
       );
 
       setSnackbarMessage(
@@ -145,23 +145,11 @@ const Contact: React.FC = () => {
         color: "white",
       }}
     >
-      <Helmet>
-        <title>{t("meta.contactTitle")}</title>
-        <meta name="description" content={t("meta.contactDescription")} />
-        {/* Open Graph */}
-        <meta property="og:title" content={t("meta.contactTitle")} />
-        <meta
-          property="og:description"
-          content={t("meta.contactDescription")}
-        />
-        <meta property="og:type" content="website" />
-        {/* Twitter */}
-        <meta name="twitter:title" content={t("meta.contactTitle")} />
-        <meta
-          name="twitter:description"
-          content={t("meta.contactDescription")}
-        />
-      </Helmet>
+      <Seo
+        titleKey="meta.contactTitle"
+        descriptionKey="meta.contactDescription"
+        canonical="https://spectradentalclinic.com/contact"
+      />
       <Typography
         variant="h2"
         sx={{
@@ -244,6 +232,7 @@ const Contact: React.FC = () => {
           helperText={errors.name}
           sx={{ background: "white", borderRadius: "5px" }}
           fullWidth
+          autoComplete="name"
         />
         <TextField
           label={t("contactForm.email")}
@@ -254,6 +243,7 @@ const Contact: React.FC = () => {
           helperText={errors.email}
           sx={{ background: "white", borderRadius: "5px" }}
           fullWidth
+          autoComplete="email"
         />
         <TextField
           label={t("contactForm.tel")}
@@ -266,6 +256,7 @@ const Contact: React.FC = () => {
           helperText={errors.tel}
           sx={{ background: "white", borderRadius: "5px" }}
           fullWidth
+          autoComplete="tel"
         />
         <TextField
           label={t("contactForm.message")}

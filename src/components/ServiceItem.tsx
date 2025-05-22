@@ -42,7 +42,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
       }}
     >
       <CardActionArea
-        aria-label={`Service: ${title}`}
+        aria-label={`View details for service: ${title}`}
         sx={{
           height: "100%",
           display: "flex",
