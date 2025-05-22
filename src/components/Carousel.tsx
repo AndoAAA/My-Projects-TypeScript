@@ -113,6 +113,7 @@ const Carousel: React.FC<CarouselProps> = ({
             backgroundColor: "rgba(0, 0, 0, 0.7)",
           },
           zIndex: 20,
+          display: { xs: "none", sm: "flex" },
         }}
       >
         <ChevronLeft />
@@ -133,6 +134,7 @@ const Carousel: React.FC<CarouselProps> = ({
             backgroundColor: "rgba(0, 0, 0, 0.7)",
           },
           zIndex: 20,
+          display: { xs: "none", sm: "flex" },
         }}
       >
         <ChevronRight />
