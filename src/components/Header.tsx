@@ -73,80 +73,12 @@ const Header = () => {
       <Toolbar
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", sm: "row" },
           alignItems: "center",
           justifyContent: "space-between",
           gap: isMobile ? 2 : 2,
           textAlign: "center",
         }}
       >
-        {/* Contact Info */}
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: 2,
-          }}
-        >
-          {[
-            {
-              icon: <LocalPhoneIcon sx={{ color: "#25D366" }} />,
-              text: "+374 (93) 39-14-81",
-            },
-            {
-              icon: <WhatsAppIcon sx={{ color: "#25D366" }} />,
-              text: "+374 (93) 39-14-81",
-            },
-            {
-              icon: <LocationOnIcon sx={{ color: "#EA4335" }} />,
-              text: t("header.address"),
-            },
-            {
-              icon: <EmailIcon sx={{ color: "orange" }} />,
-              text: "spectraclinicarmenia@gmail.com",
-            },
-          ].map((item, index) => (
-            <Box
-              key={index}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1.5,
-                backgroundColor: "#ffffff30",
-                px: 2,
-                py: 1,
-                borderRadius: "12px",
-                boxShadow: "0 2px 6px rgba(0, 0, 0, 0.08)",
-                backdropFilter: "blur(6px)",
-                width: "230px",
-                justifyContent: "center",
-                transition: "all 0.2s ease-in-out",
-                "&:hover": {
-                  transform: "scale(1.02)",
-                  backgroundColor: "#ffffff50",
-                },
-              }}
-            >
-              <Box
-                sx={{
-                  backgroundColor: colors.white,
-                  borderRadius: "50%",
-                  p: 0.7,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  boxShadow: "0 1px 4px rgba(0,0,0,0.15)",
-                }}
-              >
-                {item.icon}
-              </Box>
-              <Typography sx={{ fontSize: isMobile ? 12 : 14 }}>
-                {item.text}
-              </Typography>
-            </Box>
-          ))}
-        </Box>
 
         {/* Language Selector */}
         <Box sx={{ minWidth: isMobile ? "" : "80px" }}>
