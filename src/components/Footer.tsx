@@ -122,7 +122,7 @@ const Footer = () => {
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <MailIcon sx={{ color: "#ff9800" }} />
-            <Typography>{t("footer.email")}։</Typography>
+            <Typography>{t("footer.email")}</Typography>
           </Box>
           <Button
             variant="outlined"
