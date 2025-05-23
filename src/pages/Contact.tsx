@@ -93,6 +93,9 @@ const Contact: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
+console.log("SERVICE_ID:", process.env.REACT_APP_EMAILJS_SERVICE_ID);
+console.log("TEMPLATE_ID:", process.env.REACT_APP_EMAILJS_TEMPLATE_ID);
+console.log("PUBLIC_KEY:", process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
 
     setLoading(true);
     try {
@@ -106,6 +109,7 @@ const Contact: React.FC = () => {
           message: formData.message,
         },
         process.env.REACT_APP_EMAILJS_PUBLIC_KEY!
+        
       );
 
       setSnackbarMessage(

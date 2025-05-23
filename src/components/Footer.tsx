@@ -5,6 +5,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Logo from "../assets/logo.jpg";
+import ViberIcon from "../assets/icons/viber.png";
 import { useTranslation } from "react-i18next";
 import { colors } from "../assets/colors/colors";
 
@@ -78,6 +79,35 @@ const Footer = () => {
             sx={{ mt: 1, color: colors.white, borderColor: colors.white }}
           >
             {t("footer.writeOnWhatsApp")}
+          </Button>
+        </Box>
+
+        {/* Viber */}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 1,
+          }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <img
+              src={ViberIcon}
+              alt="Viber"
+              style={{ width: 24, height: 24 }}
+            />
+            +374(93) 39-14-81
+          </Box>
+          <Button
+            variant="outlined"
+            size="small"
+            href="viber://chat?number=%2B37493391481"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ mt: 1, color: colors.white, borderColor: colors.white }}
+          >
+            {t("footer.writeOnViber")}
           </Button>
         </Box>
 
