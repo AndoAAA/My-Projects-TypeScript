@@ -1,11 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { services } from "../data";
 import { colors } from "../assets/colors/colors";
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
+import Seo from "./Seo";
 
 interface Service {
   id: string;
@@ -16,9 +16,14 @@ interface Service {
 
 const ServiceSinglePage: React.FC = () => {
   const { id } = useParams();
-  const { t }: { t: (key: string) => string } = useTranslation();
-  const service = services.find((s: Service) => s.id === id);
+  const { t }: { t: (key: string, defaultValue?: string) => string } =
+    useTranslation();
   const navigate = useNavigate();
+
+  const service = useMemo(
+    () => services.find((s: Service) => s.id === id),
+    [id]
+  );
 
   if (!service) {
     return (
@@ -28,49 +33,22 @@ const ServiceSinglePage: React.FC = () => {
     );
   }
 
-  const title = t(`services.${service.title}.title`) || service.title;
-  const description =
-    t(`services.${service.title}.description`) || "Service description here";
-  const url = `https://yourwebsite.com/service/${service.id}`;
-  const imageUrl =
-    service.image || "https://yourwebsite.com/fallback-image.jpg";
-
-  const translatedDescription = t(`services.${service.title}.description`);
-  const hasDescription =
-    translatedDescription !== `services.${service.title}.description`;
+  const title = t(`services.${service.title}.title`, service.title);
+  const description = t(
+    `services.${service.title}.description`,
+    "Detailed info about our service"
+  );
 
   return (
     <>
-      <Helmet>
-        <title>{title} - Spectra Dental Clinic</title>
-        <meta name="description" content={description} />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content={url} />
-        <meta property="og:image" content={imageUrl} />
-
-        <meta name="twitter:title" content={title} />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={imageUrl} />
-
-        {/* Schema.org JSON-LD structured data for service */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            name: title,
-            description: description,
-            provider: {
-              "@type": "Organization",
-              name: "Spectra Dental Clinic",
-              url: "https://yourwebsite.com",
-            },
-            image: imageUrl,
-            url: url,
-          })}
-        </script>
-      </Helmet>
+      <Seo
+        titleKey={`services.${service.title}.title`}
+        descriptionKey={`services.${service.title}.description`}
+        titleFallback={service.title}
+        descriptionFallback="Detailed info about our service"
+        image={service.image}
+        canonical={`https://spectra.tarverdyan-projects.com/service/${service.id}`}
+      />
 
       <Box
         sx={{
@@ -88,7 +66,7 @@ const ServiceSinglePage: React.FC = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1.5 }}
           src={service.image}
-          alt={t(`services.${service.title}.title`)}
+          alt={title}
           style={{
             width: "100%",
             maxWidth: "500px",
@@ -114,28 +92,36 @@ const ServiceSinglePage: React.FC = () => {
           >
             <Typography
               variant="h4"
-              sx={{ mt: 2, fontWeight: "bold", textAlign: "center" }}
+              sx={{
+                mt: 2,
+                fontWeight: "bold",
+                textAlign: "center",
+                wordWrap: "break-word",
+                overflowWrap: "break-word",
+                hyphens: "auto",
+                maxWidth: { xs: "90vw", md: "500px" },
+                fontSize: { xs: "1.8rem", md: "2.5rem" },
+              }}
             >
-              {t(`services.${service.title}.title`)}
+              {title}
             </Typography>
 
-            {hasDescription && (
-              <Typography
-                variant="body1"
-                sx={{
-                  mt: 2,
-                  color: "#555",
-                  textAlign: "center",
-                  lineHeight: 1.6,
-                }}
-              >
-                {translatedDescription}
-              </Typography>
-            )}
+            <Typography
+              variant="body1"
+              sx={{
+                mt: 2,
+                color: "#555",
+                textAlign: "center",
+                lineHeight: 1.6,
+              }}
+            >
+              {description}
+            </Typography>
 
             <Button
               variant="contained"
               color="primary"
+              aria-label="Back to services"
               sx={{
                 mt: 3,
                 px: 3,

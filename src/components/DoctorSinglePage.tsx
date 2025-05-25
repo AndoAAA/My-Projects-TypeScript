@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { colors } from "../assets/colors/colors";
 import { motion } from "framer-motion";
 import Carousel from "./Carousel";
-import { Helmet } from "react-helmet-async";
+import Seo from "./Seo";
 
 const DoctorSinglePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,22 +17,25 @@ const DoctorSinglePage: React.FC = () => {
   if (!doctor) {
     return (
       <Box sx={{ textAlign: "center", py: 4 }}>
-        <Typography variant="h4">Doctor not found</Typography>
+        <Typography variant="h4">
+          {t("doctor.notFound", "Doctor not found")}
+        </Typography>
       </Box>
     );
   }
 
-  const founderText = t(`about.names.${doctor.key}.founder`, "");
+  const founderText = t(`about.names.${doctor.key}.founder`);
+  const hasFounderText =
+    founderText && founderText !== `about.names.${doctor.key}.founder`;
 
   return (
     <>
-      <Helmet>
-        <title>{t(`about.names.${doctor.key}.name`)} | Spectra Dental</title>
-        <meta
-          name="description"
-          content={t(`about.names.${doctor.key}.description`)}
-        />
-      </Helmet>
+      <Seo
+        titleKey={`about.names.${doctor.key}.name`}
+        descriptionKey={`about.names.${doctor.key}.description`}
+        canonical={`https://spectradentalclinic.com/about/doctor/${doctor.id}`}
+        image={doctor.images[0]}
+      />
       <Box
         sx={{
           display: "flex",
@@ -44,7 +47,6 @@ const DoctorSinglePage: React.FC = () => {
           gap: 4,
         }}
       >
-        {/* Carousel container with responsive fixed height */}
         <Box
           sx={{
             width: "100%",
@@ -55,12 +57,14 @@ const DoctorSinglePage: React.FC = () => {
           <Carousel
             images={doctor.images}
             altTexts={doctor.images.map((_, idx) =>
-              t(`about.names.${doctor.key}.imageAlt${idx + 1}`)
+              t(
+                `about.names.${doctor.key}.imageAlt${idx + 1}`,
+                `Image ${idx + 1}`
+              )
             )}
           />
         </Box>
 
-        {/* Doctor info */}
         <Box
           sx={{
             maxWidth: "700px",
@@ -79,8 +83,8 @@ const DoctorSinglePage: React.FC = () => {
             <Typography variant="h4" sx={{ fontWeight: "bold" }}>
               {t(`about.names.${doctor.key}.name`)}
             </Typography>
-            <br />
-            {founderText !== `about.names.${doctor.key}.founder` && (
+
+            {hasFounderText && (
               <Typography
                 variant="subtitle1"
                 sx={{ fontWeight: 500, color: colors.darkBlue }}
@@ -113,10 +117,7 @@ const DoctorSinglePage: React.FC = () => {
               },
             }}
             onClick={() => {
-              if (
-                document.referrer &&
-                document.referrer !== window.location.href
-              ) {
+              if (window.history.length > 2) {
                 navigate(-1);
               } else {
                 navigate("/about");

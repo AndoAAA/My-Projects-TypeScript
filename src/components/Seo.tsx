@@ -12,6 +12,12 @@ interface SeoProps {
   descriptionKey?: string;
   canonical?: string;
   keywords?: string;
+  image?: string;
+  titleFallback?: string;
+  descriptionFallback?: string;
+  isServicePage?: boolean;
+  price?: string;
+  priceCurrency?: string;
 }
 
 const Seo: React.FC<SeoProps> = ({
@@ -19,22 +25,98 @@ const Seo: React.FC<SeoProps> = ({
   titleKey = "meta.homeTitle",
   descriptionKey = "meta.homeDescription",
   canonical = "https://spectra.tarverdyan-projects.com/",
+  keywords = "dental clinic, dentistry, teeth whitening, dental implants, veneers, orthodontics, healthcare, medical services, Yerevan dentist",
+  image = "https://spectra.tarverdyan-projects.com/logo.jpg",
+  titleFallback = "Welcome to Spectra Dental Clinic",
+  descriptionFallback = "Experience quality dental care and services at our trusted clinic.",
+  isServicePage = false,
+  price,
+  priceCurrency,
 }) => {
   const { t } = useTranslation();
 
-  const title = t(titleKey) || "Welcome to Spectra Dental Clinic";
-  const description =
-    t(descriptionKey) ||
-    "Experience quality dental care and services at our trusted clinic.";
+  const title = t(titleKey, titleFallback);
+  const description = t(descriptionKey, descriptionFallback);
+
+  const structuredDataOrganization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Spectra Dental Clinic",
+    url: canonical,
+    description,
+    logo: image,
+    image: image,
+    sameAs: [
+      "https://www.facebook.com/people/Spectra-Dental-Clinic/61564332775099/?_rdr",
+      "https://www.instagram.com/spectradental.clinic/",
+    ],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Dro 5",
+      addressLocality: "Yerevan",
+      addressRegion: "Yerevan",
+      postalCode: "0051",
+      addressCountry: "AM",
+    },
+    telephone: "+37493391481",
+    email: "spectraclinicarmenia@gmail.com",
+  };
+
+  const structuredDataMedical = {
+    "@context": "https://schema.org",
+    "@type": "MedicalOrganization",
+    name: "Spectra Dental Clinic",
+    url: canonical,
+    description,
+    medicalSpecialty: "Dentistry",
+    member: doctors.map((doc) => ({
+      "@type": "Person",
+      name: t(`about.names.${doc.key}.name`, doc.key),
+      jobTitle: "Dentist",
+    })),
+  };
+
+  // Service-ի schema.org JSON-LD
+  const structuredDataService = isServicePage
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: title,
+        description: description,
+        provider: {
+          "@type": "MedicalOrganization",
+          name: "Spectra Dental Clinic",
+          url: canonical,
+        },
+        areaServed: {
+          "@type": "Place",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Yerevan",
+            addressRegion: "Yerevan",
+            addressCountry: "AM",
+          },
+        },
+        url: canonical,
+        image: image,
+        ...(price &&
+          priceCurrency && {
+            offers: {
+              "@type": "Offer",
+              price: price,
+              priceCurrency: priceCurrency,
+              availability: "https://schema.org/InStock",
+              url: canonical,
+            },
+          }),
+      }
+    : null;
 
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta
-        name="keywords"
-        content="dental clinic, dentistry, teeth whitening, dental implants, veneers, orthodontics, healthcare, medical services, Yerevan dentist"
-      />
+      <meta name="keywords" content={keywords} />
       <link rel="canonical" href={canonical} />
 
       {/* Open Graph */}
@@ -42,64 +124,30 @@ const Seo: React.FC<SeoProps> = ({
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonical} />
-      <meta
-        property="og:image"
-        content="https://spectra.tarverdyan-projects.com/logo.jpg"
-      />
+      <meta property="og:image" content={image} />
 
-      {/* X (formerly Twitter) Meta Tags */}
-      {/* Despite the rebrand, these are still used as "twitter" tags */}
+      {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta
-        name="twitter:image"
-        content="https://spectra.tarverdyan-projects.com/logo.jpg"
-      />
+      <meta name="twitter:image" content={image} />
 
-      {/* Organization JSON-LD */}
+      {/* JSON-LD structured data */}
       <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Spectra Dental Clinic",
-          url: canonical,
-          description,
-          logo: "https://spectra.tarverdyan-projects.com/logo.jpg",
-          image: "https://spectra.tarverdyan-projects.com/logo.jpg",
-          sameAs: [
-            "https://www.facebook.com/people/Spectra-Dental-Clinic/61564332775099/?_rdr",
-            "https://www.instagram.com/spectradental.clinic/",
-          ],
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Dro 5",
-            addressLocality: "Yerevan",
-            addressRegion: "Yerevan",
-            postalCode: "0051",
-            addressCountry: "AM",
-          },
-          telephone: "+37493391481",
-          email: "spectraclinicarmenia@gmail.com",
-        })}
+        {JSON.stringify(structuredDataOrganization)}
       </script>
 
-      {/* MedicalOrganization JSON-LD */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "MedicalOrganization",
-          name: "Spectra Dental Clinic",
-          url: canonical,
-          description,
-          medicalSpecialty: "Dentistry",
-          member: doctors.map((doc) => ({
-            "@type": "Person",
-            name: t(`about.names.${doc.key}.name`),
-            jobTitle: "Dentist",
-          })),
-        })}
-      </script>
+      {doctors.length > 0 && (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredDataMedical)}
+        </script>
+      )}
+
+      {isServicePage && structuredDataService && (
+        <script type="application/ld+json">
+          {JSON.stringify(structuredDataService)}
+        </script>
+      )}
     </Helmet>
   );
 };
