@@ -92,10 +92,19 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    if (
+      !process.env.REACT_APP_EMAILJS_SERVICE_ID ||
+      !process.env.REACT_APP_EMAILJS_TEMPLATE_ID ||
+      !process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+    ) {
+      setSnackbarMessage("Email service configuration is missing.");
+      setSnackbarSeverity("error");
+      setSnackbarOpen(true);
+      return;
+    }
+
     if (!validateForm()) return;
-console.log("SERVICE_ID:", process.env.REACT_APP_EMAILJS_SERVICE_ID);
-console.log("TEMPLATE_ID:", process.env.REACT_APP_EMAILJS_TEMPLATE_ID);
-console.log("PUBLIC_KEY:", process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
 
     setLoading(true);
     try {
@@ -109,7 +118,6 @@ console.log("PUBLIC_KEY:", process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
           message: formData.message,
         },
         process.env.REACT_APP_EMAILJS_PUBLIC_KEY!
-        
       );
 
       setSnackbarMessage(
@@ -120,10 +128,10 @@ console.log("PUBLIC_KEY:", process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
 
       setFormData({ name: "", email: "", tel: "", message: "" });
       setErrors({});
-    } catch (error) {
+    } catch (error: any) {
       console.error("Email sending failed:", error);
       setSnackbarMessage(
-        t("contactForm.failure") || "Սխալ առաջացավ, փորձեք կրկին"
+        error?.message || t("contactForm.failure") || "Սխալ առաջացավ, փորձեք կրկին"
       );
       setSnackbarSeverity("error");
       setSnackbarOpen(true);
@@ -237,6 +245,7 @@ console.log("PUBLIC_KEY:", process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
           sx={{ background: "white", borderRadius: "5px" }}
           fullWidth
           autoComplete="name"
+          inputProps={{ "aria-describedby": "name-helper-text" }}
         />
         <TextField
           label={t("contactForm.email")}
@@ -248,12 +257,13 @@ console.log("PUBLIC_KEY:", process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
           sx={{ background: "white", borderRadius: "5px" }}
           fullWidth
           autoComplete="email"
+          inputProps={{ "aria-describedby": "email-helper-text" }}
         />
         <TextField
           label={t("contactForm.tel")}
           name="tel"
           type="tel"
-          inputProps={{ pattern: "[0-9+\\- ]*" }}
+          inputProps={{ pattern: "[0-9+\\- ]*", "aria-describedby": "tel-helper-text" }}
           value={formData.tel}
           onChange={handleChange}
           error={Boolean(errors.tel)}
@@ -273,6 +283,7 @@ console.log("PUBLIC_KEY:", process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
           helperText={errors.message}
           sx={{ background: "white", borderRadius: "5px" }}
           fullWidth
+          inputProps={{ "aria-describedby": "message-helper-text" }}
         />
         <Button
           type="submit"
@@ -281,20 +292,23 @@ console.log("PUBLIC_KEY:", process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
           sx={{
             background: colors.darkBlue,
             color: "white",
-            padding: "12px 30px",
-            fontSize: "1.1rem",
             fontWeight: "bold",
+            fontSize: "1.2rem",
+            padding: "12px 24px",
+            marginTop: "10px",
             borderRadius: "8px",
-            transition: "all 0.3s ease",
             display: "flex",
-            alignItems: "center",
             justifyContent: "center",
-            gap: "10px",
-            "&:hover": { background: "#6f8bbd" },
+            alignItems: "center",
+            gap: "8px",
+            "&:hover": {
+              background: colors.lightBlue,
+              color: colors.darkBlue,
+            },
           }}
+          aria-label="Send contact form"
         >
-          {loading && <CircularProgress size={20} color="inherit" />}
-          {t("contactForm.sendBtn")}
+          {loading ? <CircularProgress size={20} color="inherit" /> : t("contactForm.sendBtn")}
         </Button>
       </Box>
 
@@ -308,8 +322,8 @@ console.log("PUBLIC_KEY:", process.env.REACT_APP_EMAILJS_PUBLIC_KEY);
           onClose={handleCloseSnackbar}
           severity={snackbarSeverity}
           sx={{ width: "100%" }}
-          elevation={6}
           variant="filled"
+          elevation={6}
         >
           {snackbarMessage}
         </Alert>
