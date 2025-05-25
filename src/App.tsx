@@ -5,7 +5,6 @@ import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
-
 import Checkout from "./pages/Checkout";
 import SinglePage from "./pages/SinglePage";
 import MainLayout from "./layouts/MainLayout";

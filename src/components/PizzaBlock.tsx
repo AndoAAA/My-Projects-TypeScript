@@ -43,7 +43,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
       price,
       imageUrl,
       type: typesNames[activeType],
-      size: sizes[activeSize],
+      size: sizesTypes[activeSize],
       count: 0,
     };
     dispatch(addToCart(item));
