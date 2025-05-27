@@ -11,6 +11,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import PriceList from "./pages/PriceList";
 import { useEffect, useState } from "react";
 import Loader from "./components/Loader";
+import BookingForm from "./components/BookingForm";
+import AdminBookings from "./components/AdminBookings";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -37,6 +39,8 @@ const AppRoutes = () => {
         <Route path="service/:id" element={<ServiceSinglePage />} />
         <Route path="price" element={<PriceList />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="booking" element={<BookingForm />} />
+        <Route path="admin" element={<AdminBookings />} />
       </Route>
     </Routes>
   );

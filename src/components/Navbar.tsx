@@ -17,7 +17,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Logo from "../assets/logo.jpg";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, Link as RouterLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { colors } from "../assets/colors/colors";
 
@@ -88,28 +88,18 @@ const Navbar = () => {
             </Box>
           )}
 
-          {/* Contact Button */}
-          {!isMobile && (
+          {/* Booking */}
+          {/* {!isMobile && (
             <Button
-              variant="outlined"
-              component={NavLink}
-              to="/contact"
-              sx={{
-                background: colors.white,
-                color: theme.palette.primary.main,
-                fontWeight: "600",
-                padding: "6px 16px",
-                borderRadius: "8px",
-                textTransform: "none",
-                "&:hover": {
-                  background: theme.palette.primary.main,
-                  color: colors.white,
-                },
-              }}
+              component={RouterLink}
+              to="/booking"
+              variant="contained"
+              color="primary"
+              sx={{ borderRadius: 2 }}
             >
-              {t("navbar.contact")}
+              {t("book_now")}
             </Button>
-          )}
+          )} */}
 
           {/* Hamburger Menu (Visible on Mobile) */}
           {isMobile && (
@@ -126,31 +116,60 @@ const Navbar = () => {
 
       {/* Drawer (Sidebar Menu for Mobile) */}
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-        <Box sx={{ width: 250 }} onClick={toggleDrawer(false)}>
-          {/* Optional: Drawer Header with Close Button */}
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "flex-end",
-            }}
-          >
-            <IconButton onClick={toggleDrawer(false)}>
-              <CloseIcon />
-            </IconButton>
+        <Box
+          sx={{
+            width: 250,
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+          onClick={toggleDrawer(false)}
+        >
+          {/* Վերևի մաս */}
+          <Box>
+            {/* Փակելու կոճակ */}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                p: 1,
+              }}
+            >
+              <IconButton onClick={toggleDrawer(false)}>
+                <CloseIcon />
+              </IconButton>
+            </Box>
+
+            {/* Մենյուի ցանկը */}
+            <List>
+              {navItems.map(({ key, path }) => (
+                <ListItem disablePadding key={key}>
+                  <ListItemButton
+                    component={NavLink}
+                    to={path}
+                    selected={location.pathname === path}
+                  >
+                    <ListItemText primary={t(`navbar.${key}`)} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
           </Box>
-          <List>
-            {navItems.map(({ key, path }) => (
-              <ListItem disablePadding key={key}>
-                <ListItemButton
-                  component={NavLink}
-                  to={path}
-                  selected={location.pathname === path}
-                >
-                  <ListItemText primary={t(`navbar.${key}`)} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
+
+          {/* Booking */}
+          {/* <Box sx={{ p: 2 }}>
+            <Button
+              component={RouterLink}
+              to="/booking"
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ borderRadius: 2 }}
+            >
+              {t("book_now")}
+            </Button>
+          </Box> */}
         </Box>
       </Drawer>
     </>

@@ -13,7 +13,12 @@
     "callUs": "Call Us",
     "writeOnWhatsApp": "Message on WhatsApp",
     "writeOnViber": "Write on Viber",
-    "sendEmail": "Send an email"
+    "sendEmail": "Send an email",
+    "social": {
+      "facebook": "https://facebook.com/spectradentalclinic",
+      "instagram": "https://instagram.com/spectradentalclinic",
+      "linkedin": "https://linkedin.com/company/spectradentalclinic"
+    }
   },
   "navbar": {
     "home": "Home",
@@ -25,7 +30,6 @@
   "header": {
     "address": "5 Dro Street, Yerevan"
   },
-
   "contactForm": {
     "nameRequired": "Name is required",
     "telRequired": "Telephone number is required",
@@ -39,9 +43,10 @@
     "name": "Name",
     "tel": "Telephone",
     "message": "Message",
-    "email": "Email"
+    "email": "Email",
+    "writeOnWhatsApp": "Write on WhatsApp",
+    "writeOnViber": "Write on Viber"
   },
-
   "services": {
     "diagnostics": {
       "title": "Diagnostics",
@@ -146,7 +151,6 @@
     "servicesTitle": "Our Services - Spectra Dental Clinic",
     "servicesDescription": "Discover our professional services tailored for your health needs."
   },
-
   "stats": {
     "patients": "Patients",
     "implants": "Implants",
@@ -178,5 +182,67 @@
     "title": "Prices",
     "start": "(from)"
   },
-  "sterilization": "At our clinic, sterilization is treated with the utmost importance to ensure the safety of our patients and staff. All instruments undergo a multi-step sterilization process, including mechanical cleaning, chemical treatment, and high-pressure autoclaving. We strictly follow international standards to eliminate any risk of cross-contamination and maintain the highest level of hygiene. Your health is our top priority."
+  "sterilization": "At our clinic, sterilization is treated with the utmost importance to ensure the safety of our patients and staff. All instruments undergo a multi-step sterilization process, including mechanical cleaning, chemical treatment, and high-pressure autoclaving. We strictly follow international standards to eliminate any risk of cross-contamination and maintain the highest level of hygiene. Your health is our top priority.",
+  "selectDoctor": "Select a doctor",
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": [
+      {
+        "question": "Do you accept insurance?",
+        "answer": "Yes, we work with several major insurance providers."
+      },
+      {
+        "question": "How do I book an appointment?",
+        "answer": "You can book an appointment via our website or call us directly."
+      },
+      {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept cash, credit cards, and online payments."
+      }
+    ]
+  },
+  "booking_form_title": "Online Appointment",
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone Number",
+  "select_doctor": "Select Doctor",
+  "select_service": "Select Service",
+  "none": "None",
+  "date": "Date",
+  "time": "Time",
+  "notes": "Additional notes",
+  "please_enter_name": "Please enter your name",
+  "please_enter_valid_email": "Please enter a valid email",
+  "please_enter_valid_phone": "Please enter a valid phone number",
+  "please_select_doctor": "Please select a doctor",
+  "please_select_service": "Please select a service",
+  "please_select_valid_date": "Please select a valid date",
+  "please_select_time": "Please select a time",
+  "booking_success": "Booking successfully created!",
+  "booking_error": "There was an error processing your booking. Please try again.",
+  "book_now": "Book Appointment",
+  "only_working_hours": "Booking is available only from Monday to Saturday, between 09:00 and 21:00.",
+  "select_valid_date_time": "Please select a valid date and time.",
+  "select_date": "Select date",
+  "select_time": "Select time",
+  "no_booking_on_sunday": "Booking is not available on Sundays.",
+  "please_select_valid_time": "Please select a time between 09:00 and 21:00.",
+  "admin": {
+    "panel_title": "Admin Panel",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "doctor": "Doctor",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "note": "Note",
+    "created_at": "Created At",
+    "actions": "Actions",
+    "delete": "Delete Booking",
+    "confirm_delete": "Are you sure you want to delete this booking?",
+    "error_fetch": "Failed to load bookings",
+    "error_delete": "Failed to delete booking",
+    "no_bookings": "No bookings found"
+  }
 }

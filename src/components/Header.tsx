@@ -13,6 +13,7 @@ import i18n from "i18next";
 import { colors } from "../assets/colors/colors";
 import { useEffect, useCallback } from "react";
 
+
 const LanguageOption = ({ src, alt }: { src: string; alt: string }) => (
   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
     <img src={src} alt={alt} width="20" height="15" />
@@ -43,10 +44,8 @@ const languageOptions = [
 const Header = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-
   const fontSize = isMobile ? 12 : 14;
-  const iconSize = isMobile ? 30 : isTablet ? 40 : 40;
+  const iconSize = isMobile ? 30 : 40;
 
   const handleLanguageChange = useCallback((selectedOption: any) => {
     i18n.changeLanguage(selectedOption.value);
@@ -67,12 +66,11 @@ const Header = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: isMobile ? 2 : 2,
-          textAlign: "center",
+          gap: 2,
         }}
       >
         {/* Language Selector */}
-        <Box sx={{ minWidth: isMobile ? "" : "80px" }}>
+        <Box sx={{ minWidth: isMobile ? "60px" : "80px" }}>
           <Select
             options={languageOptions}
             defaultValue={languageOptions.find(
