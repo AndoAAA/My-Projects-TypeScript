@@ -33,16 +33,24 @@ const Seo: React.FC<SeoProps> = ({
   price,
   priceCurrency,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
-  const title = t(titleKey, titleFallback);
-  const description = t(descriptionKey, descriptionFallback);
+  // Կարգավորում fallback-ներով
+  const title = t(titleKey, { defaultValue: titleFallback });
+  const description = t(descriptionKey, { defaultValue: descriptionFallback });
 
+  // Համակարգել canonical URL-ը ըստ լեզվի
+  // Օրինակ՝ https://www.spectradentalclinic.com/en կամ /ru
+  const canonicalUrl =
+    canonical +
+    (i18n.language && i18n.language !== "hy" ? `/${i18n.language}` : "");
+
+  // Structured data organization
   const structuredDataOrganization = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Spectra Dental Clinic",
-    url: canonical,
+    url: canonicalUrl,
     description,
     logo: image,
     image: image,
@@ -62,21 +70,22 @@ const Seo: React.FC<SeoProps> = ({
     email: "spectraclinicarmenia@gmail.com",
   };
 
+  // Structured data medical organization with doctors
   const structuredDataMedical = {
     "@context": "https://schema.org",
     "@type": "MedicalOrganization",
     name: "Spectra Dental Clinic",
-    url: canonical,
+    url: canonicalUrl,
     description,
     medicalSpecialty: "Dentistry",
     member: doctors.map((doc) => ({
       "@type": "Person",
-      name: t(`about.names.${doc.key}.name`, doc.key),
+      name: t(`about.names.${doc.key}.name`, { defaultValue: doc.key }),
       jobTitle: "Dentist",
     })),
   };
 
-  // Service-ի schema.org JSON-LD
+  // Service schema, եթե դա service page է
   const structuredDataService = isServicePage
     ? {
         "@context": "https://schema.org",
@@ -86,7 +95,7 @@ const Seo: React.FC<SeoProps> = ({
         provider: {
           "@type": "MedicalOrganization",
           name: "Spectra Dental Clinic",
-          url: canonical,
+          url: canonicalUrl,
         },
         areaServed: {
           "@type": "Place",
@@ -97,7 +106,7 @@ const Seo: React.FC<SeoProps> = ({
             addressCountry: "AM",
           },
         },
-        url: canonical,
+        url: canonicalUrl,
         image: image,
         ...(price &&
           priceCurrency && {
@@ -106,7 +115,7 @@ const Seo: React.FC<SeoProps> = ({
               price: price,
               priceCurrency: priceCurrency,
               availability: "https://schema.org/InStock",
-              url: canonical,
+              url: canonicalUrl,
             },
           }),
       }
@@ -117,13 +126,16 @@ const Seo: React.FC<SeoProps> = ({
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-      <link rel="canonical" href={canonical} />
+      <link rel="canonical" href={canonicalUrl} />
 
       {/* Open Graph */}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content={canonical} />
+      <meta
+        property="og:type"
+        content={isServicePage ? "service" : "website"}
+      />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={image} />
 
       {/* Twitter Card */}
@@ -133,20 +145,27 @@ const Seo: React.FC<SeoProps> = ({
       <meta name="twitter:image" content={image} />
 
       {/* JSON-LD structured data */}
-      <script type="application/ld+json">
-        {JSON.stringify(structuredDataOrganization)}
-      </script>
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredDataOrganization),
+        }}
+      />
       {doctors.length > 0 && (
-        <script type="application/ld+json">
-          {JSON.stringify(structuredDataMedical)}
-        </script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredDataMedical),
+          }}
+        />
       )}
-
       {isServicePage && structuredDataService && (
-        <script type="application/ld+json">
-          {JSON.stringify(structuredDataService)}
-        </script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredDataService),
+          }}
+        />
       )}
     </Helmet>
   );

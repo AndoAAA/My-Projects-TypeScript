@@ -6,8 +6,31 @@ import { services } from "../data";
 import { colors } from "../assets/colors/colors";
 import Loader from "../components/Loader";
 
+interface SubPrice {
+  label: string;
+  price: string | number;
+}
+
+interface Service {
+  id: string;
+  title: string;
+  icon: string;
+  price?: string | number;
+  [key: string]: any;
+}
+
+function isSubPrice(value: any): value is SubPrice {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "label" in value &&
+    "price" in value
+  );
+}
+
 const PriceList: React.FC = () => {
-  const { t }: { t: (key: string) => string } = useTranslation();
+  const { t }: { t: (key: string, fallback?: string) => string } =
+    useTranslation();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -40,14 +63,8 @@ const PriceList: React.FC = () => {
       </motion.div>
 
       <Box display="flex" flexDirection="column" gap={4}>
-        {services.map((service, index) => {
-          const hasSubPrices = Object.entries(service).some(
-            ([, value]) =>
-              typeof value === "object" &&
-              value !== null &&
-              "label" in value &&
-              "price" in value
-          );
+        {(services as Service[]).map((service, index) => {
+          const hasSubPrices = Object.values(service).some(isSubPrice);
 
           return (
             <motion.div
@@ -76,15 +93,14 @@ const PriceList: React.FC = () => {
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
-                    alignItems: { xs: "center", sm: "center" },
-                    flexDirection: { xs: "row", sm: "row" },
+                    alignItems: "center",
                     gap: 1,
                   }}
                 >
                   <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
                     <img
                       src={service.icon}
-                      alt={service.title}
+                      alt={t(`services.${service.title}.title`, service.title)}
                       style={{
                         width: 40,
                         height: 40,
@@ -102,7 +118,7 @@ const PriceList: React.FC = () => {
                         flexShrink: 1,
                       }}
                     >
-                      {t(`services.${service.title}.title`)}
+                      {t(`services.${service.title}.title`, service.title)}
                     </Typography>
                   </Box>
 
@@ -111,7 +127,7 @@ const PriceList: React.FC = () => {
                       variant="body1"
                       sx={{ fontWeight: 500, whiteSpace: "nowrap" }}
                     >
-                      {t("price.start")} {service.price}
+                      {t("price.start")} {service.price?.toString()}
                     </Typography>
                   )}
                 </Box>
@@ -119,16 +135,10 @@ const PriceList: React.FC = () => {
                 {hasSubPrices && (
                   <Box mt={2}>
                     {Object.entries(service)
-                      .filter(
-                        ([, value]) =>
-                          typeof value === "object" &&
-                          value !== null &&
-                          "label" in value &&
-                          "price" in value
-                      )
+                      .filter(([, value]) => isSubPrice(value))
                       .map(([key]) => (
                         <Box
-                          key={key}
+                          key={`${service.id}-${key}`}
                           sx={{
                             display: "flex",
                             justifyContent: "space-between",
@@ -147,11 +157,11 @@ const PriceList: React.FC = () => {
                               mb: { xs: 0.5, sm: 0 },
                             }}
                           >
-                            {t(`services.${service.title}.${key}.label`)}
+                            {t(`services.${service.title}.${key}.label`, key)}
                           </Typography>
 
                           <Typography variant="body1">
-                            {t(`services.${service.title}.${key}.price`)}
+                            {t(`services.${service.title}.${key}.price`, "")}
                           </Typography>
                         </Box>
                       ))}

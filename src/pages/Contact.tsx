@@ -131,7 +131,9 @@ const Contact: React.FC = () => {
     } catch (error: any) {
       console.error("Email sending failed:", error);
       setSnackbarMessage(
-        error?.message || t("contactForm.failure") || "Սխալ առաջացավ, փորձեք կրկին"
+        error?.message ||
+          t("contactForm.failure") ||
+          "Սխալ առաջացավ, փորձեք կրկին"
       );
       setSnackbarSeverity("error");
       setSnackbarOpen(true);
@@ -245,7 +247,11 @@ const Contact: React.FC = () => {
           sx={{ background: "white", borderRadius: "5px" }}
           fullWidth
           autoComplete="name"
-          inputProps={{ "aria-describedby": "name-helper-text" }}
+          inputProps={{
+            "aria-describedby": "name-helper-text",
+            "aria-invalid": Boolean(errors.name),
+            "aria-required": true,
+          }}
         />
         <TextField
           label={t("contactForm.email")}
@@ -263,7 +269,10 @@ const Contact: React.FC = () => {
           label={t("contactForm.tel")}
           name="tel"
           type="tel"
-          inputProps={{ pattern: "[0-9+\\- ]*", "aria-describedby": "tel-helper-text" }}
+          inputProps={{
+            pattern: "[0-9+\\- ]*",
+            "aria-describedby": "tel-helper-text",
+          }}
           value={formData.tel}
           onChange={handleChange}
           error={Boolean(errors.tel)}
@@ -308,7 +317,11 @@ const Contact: React.FC = () => {
           }}
           aria-label="Send contact form"
         >
-          {loading ? <CircularProgress size={20} color="inherit" /> : t("contactForm.sendBtn")}
+          {loading ? (
+            <CircularProgress size={20} color="inherit" />
+          ) : (
+            t("contactForm.sendBtn")
+          )}
         </Button>
       </Box>
 

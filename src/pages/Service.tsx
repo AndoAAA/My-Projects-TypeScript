@@ -8,6 +8,13 @@ import { Link } from "react-router-dom";
 import Loader from "../components/Loader";
 import Seo from "../components/Seo";
 
+interface ServiceType {
+  id: number | string;
+  title: string;
+  icon: string;
+  price?: string | number;
+}
+
 const Service: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
   const [loading, setLoading] = useState(true);
@@ -57,7 +64,7 @@ const Service: React.FC = () => {
           gap: "24px",
         }}
       >
-        {services.map((service) => (
+        {services.map((service: ServiceType) => (
           <Link
             key={service.id}
             to={`/service/${service.id}`}
@@ -70,7 +77,7 @@ const Service: React.FC = () => {
               id={service.id.toString()}
               title={t(`services.${service.title}.title`) || service.title}
               image={service.icon}
-              price={service.price}
+              price={service.price?.toString()}
             />
           </Link>
         ))}

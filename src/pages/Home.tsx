@@ -33,7 +33,7 @@ const images = [
 const doctors = [{ key: "manuk" }, { key: "gayane" }, { key: "aghasi" }];
 
 const Home: React.FC = () => {
-  const { t }: { t: (key: string) => string } = useTranslation();
+  const { t } = useTranslation();
   const [statsRef, statsVisible] = useInView({ threshold: 0.1 });
   const [loading, setLoading] = useState(true);
 
@@ -48,7 +48,14 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Seo doctors={doctors} />
+      <Seo
+        doctors={doctors}
+        titleKey="meta.homeTitle"
+        descriptionKey="meta.homeDescription"
+        canonical="https://www.spectradentalclinic.com/"
+        keywords="dental clinic, dentistry, teeth whitening, dental implants, veneers, orthodontics, healthcare, medical services, Yerevan dentist"
+        image="https://www.spectradentalclinic.com/logo.jpg"
+      />
 
       {/* Hero Section */}
       <Box

@@ -59,8 +59,8 @@ const About: React.FC = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: { xs: 4, sm: 5, md: 6 }, // ավելացրել եմ ավելի մեծ հեռավորություն տարրերի միջև
-          px: { xs: 2, sm: 3, md: 4 }, // մի փոքր padding կողքից՝ ավելի գեղեցիկ տեսք
+          gap: { xs: 4, sm: 5, md: 6 },
+          px: { xs: 2, sm: 3, md: 4 },
         }}
       >
         {/* About Text Section */}

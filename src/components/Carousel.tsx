@@ -22,7 +22,7 @@ const Carousel: React.FC<CarouselProps> = ({
   height = 600,
   interval = 2000,
   objectFit = "cover",
-  borderRadius = 16,
+  borderRadius = 6,
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -33,7 +33,7 @@ const Carousel: React.FC<CarouselProps> = ({
         width: "100%",
         maxWidth: "1000px",
         mx: "auto",
-        borderRadius: `${borderRadius}px`,
+        borderRadius: borderRadius,
         overflow: "hidden",
         height: isMobile ? 250 : height,
         backgroundColor: "#ffffff",
@@ -53,12 +53,19 @@ const Carousel: React.FC<CarouselProps> = ({
           height: "100%",
           position: "relative",
           overflow: "hidden",
+          borderRadius: borderRadius,
         }}
       >
         {images.map((src, index) => (
-          <SwiperSlide 
-            key={index} 
-            style={{ position: "relative", width: "100%", height: "100%" }}
+          <SwiperSlide
+            key={index}
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "100%",
+              borderRadius: borderRadius,
+              overflow: "hidden",
+            }}
           >
             <Box
               component="img"
@@ -71,8 +78,6 @@ const Carousel: React.FC<CarouselProps> = ({
                 userSelect: "none",
                 pointerEvents: "none",
                 display: "block",
-                borderRadius: `${borderRadius}px`,
-
                 position: "absolute",
                 top: 0,
                 left: 0,
