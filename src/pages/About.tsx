@@ -59,11 +59,12 @@ const About: React.FC = () => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: { xs: 0, sm: 3, md: 5 },
+          gap: { xs: 4, sm: 5, md: 6 }, // ավելացրել եմ ավելի մեծ հեռավորություն տարրերի միջև
+          px: { xs: 2, sm: 3, md: 4 }, // մի փոքր padding կողքից՝ ավելի գեղեցիկ տեսք
         }}
       >
         {/* About Text Section */}
-        <Box sx={{ flex: 1, textAlign: "center" }}>
+        <Box sx={{ flex: 1, textAlign: "center", mb: { xs: 3, md: 5 } }}>
           <Typography
             variant="h4"
             fontWeight="bold"
@@ -92,16 +93,17 @@ const About: React.FC = () => {
           </Typography>
         </Box>
 
-        {/* About Carousel with all doctor images */}
-        <Carousel
-          images={images.map((img) => img.src)}
-          altTexts={images.map((img) => img.alt)}
-          height={600}
-          interval={4000}
-        />
+        {/* About Carousel */}
+        <Box sx={{ mb: { xs: 5, md: 7 } }}>
+          <Carousel
+            images={images.map((img) => img.src)}
+            altTexts={images.map((img) => img.alt)}
+            
+          />
+        </Box>
 
         {/* Doctors Section */}
-        <Box textAlign="center">
+        <Box textAlign="center" sx={{ mb: { xs: 5, md: 7 } }}>
           <Typography
             variant="h2"
             sx={{
@@ -134,7 +136,9 @@ const About: React.FC = () => {
         </Box>
 
         {/* Sterilization Section */}
-        <SterilSection />
+        <Box sx={{ mb: { xs: 6, md: 8 } }}>
+          <SterilSection />
+        </Box>
       </Container>
     </Box>
   );

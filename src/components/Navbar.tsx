@@ -60,7 +60,7 @@ const Navbar = () => {
           {/* Logo */}
           <NavLink to="/" style={{ display: "flex", alignItems: "center" }}>
             <Box>
-              <img src={Logo} alt="Company Logo" style={{ height: "100px" }} />
+              <img src={Logo} alt="Company Logo" style={{ height: "80px" }} />
             </Box>
           </NavLink>
 
