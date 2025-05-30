@@ -72,6 +72,7 @@ const DoctorSinglePage: React.FC = () => {
           justifyContent: "center",
           py: 4,
           px: 2,
+          gap:{xs:4 ,md:6}
         }}
       >
         <Box
@@ -86,7 +87,7 @@ const DoctorSinglePage: React.FC = () => {
               images={doctor.images}
               altTexts={altTexts}
               objectFit="contain"
-              borderRadius={20}
+              borderRadius={6}
             />
           )}
         </Box>

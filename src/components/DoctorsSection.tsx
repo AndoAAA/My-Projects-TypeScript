@@ -4,6 +4,12 @@ import { doctors } from "../data";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 
+interface Doctor {
+  id: string | number;
+  key: string;
+  images: string[];
+}
+
 const DoctorsSection: React.FC = () => {
   const { t }: { t: (key: string) => string } = useTranslation();
   return (
@@ -20,7 +26,7 @@ const DoctorsSection: React.FC = () => {
           justifyContent: "center",
         }}
       >
-        {doctors.slice(0, 3).map((doctor) => (
+        {doctors.slice(0, 3).map((doctor: Doctor) => (
           <NavLink
             key={doctor.id}
             to={`/about/${doctor.id}`}
@@ -28,8 +34,8 @@ const DoctorsSection: React.FC = () => {
           >
             <Card
               sx={{
-                width: 300,
-                height: 360,
+                width: { xs: 280, sm: 300 },
+                height: { xs: 400, sm: 400 },
                 borderRadius: 4,
                 boxShadow: 3,
                 transition: "transform 0.3s, box-shadow 0.3s",
@@ -43,7 +49,7 @@ const DoctorsSection: React.FC = () => {
                 component="img"
                 height="300"
                 image={doctor.images[0]}
-                alt={doctor.key}
+                alt={t(`about.names.${doctor.key}.name`)}
               />
               <CardContent>
                 <Typography variant="h6" fontWeight="bold">

@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { services } from "../data";
@@ -16,14 +16,20 @@ interface Service {
 
 const ServiceSinglePage: React.FC = () => {
   const { id } = useParams();
-  const { t }: { t: (key: string, defaultValue?: string) => string } =
-    useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const service = useMemo(
     () => services.find((s: Service) => s.id === id),
     [id]
   );
+
+  useEffect(() => {
+    if (!service) {
+      const timer = setTimeout(() => navigate("/service"), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [service, navigate]);
 
   if (!service) {
     return (
@@ -33,11 +39,17 @@ const ServiceSinglePage: React.FC = () => {
     );
   }
 
-  const title = t(`services.${service.title}.title`, service.title);
-  const description = t(
-    `services.${service.title}.description`,
-    "Detailed info about our service"
-  );
+  const title = t(`services.${service.title}.title`, {
+    defaultValue: service.title,
+  });
+
+  const description = t(`services.${service.title}.description`, {
+    defaultValue: "Detailed info about our service",
+  });
+
+  const alt = t(`services.${service.title}.imageAlt`, {
+    defaultValue: title,
+  });
 
   return (
     <>
@@ -66,7 +78,7 @@ const ServiceSinglePage: React.FC = () => {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 1.5 }}
           src={service.image}
-          alt={title}
+          alt={alt}
           style={{
             width: "100%",
             maxWidth: "500px",
@@ -139,7 +151,7 @@ const ServiceSinglePage: React.FC = () => {
               }}
               onClick={() => navigate("/service")}
             >
-              {t("about.back")}
+               {t("about.back")}
             </Button>
           </Box>
         </motion.div>
