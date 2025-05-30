@@ -1,176 +1,78 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Box, IconButton, CircularProgress } from "@mui/material";
-import { ChevronLeft, ChevronRight } from "@mui/icons-material";
-import { colors } from "../assets/colors/colors";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 
 interface CarouselProps {
   images: string[];
   altTexts?: string[];
   height?: number;
   interval?: number;
+  objectFit?: "cover" | "contain";
+  borderRadius?: number;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
   images,
-  height = 600,
   altTexts,
-  interval = 4000,
+  height = 600,
+  interval = 2000,
+  objectFit = "cover",
+  borderRadius = 16,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const touchStartX = useRef<number | null>(null);
-
-  const nextImage = () => {
-    setLoading(true);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setLoading(true);
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    );
-  };
-
-  useEffect(() => {
-    const slideInterval = setInterval(() => {
-      nextImage();
-    }, interval);
-    return () => clearInterval(slideInterval);
-  }, [interval]);
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (touchStartX.current !== null) {
-      const touchEndX = e.changedTouches[0].clientX;
-      const diff = touchStartX.current - touchEndX;
-      if (diff > 50) {
-        nextImage();
-      } else if (diff < -50) {
-        prevImage();
-      }
-      touchStartX.current = null;
-    }
-  };
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <Box
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
       sx={{
-        position: "relative",
         width: "100%",
         maxWidth: "1000px",
         mx: "auto",
+        borderRadius: `${borderRadius}px`,
         overflow: "hidden",
-        borderRadius: "16px",
-        height: { xs: 350, sm: height },
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        height: isMobile ? 250 : height,
+        backgroundColor: "#f9f9f9",
+        position: "relative",
       }}
     >
-      {loading && (
-        <CircularProgress
-          size={60}
-          sx={{ position: "absolute", zIndex: 10 }}
-          color="primary"
-        />
-      )}
-
-      <img
-        src={images[currentIndex]}
-        alt={altTexts?.[currentIndex] ?? `Slide ${currentIndex + 1}`}
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay, EffectFade]}
+        navigation={!isMobile}
+        pagination={{ clickable: true }}
+        autoplay={{ delay: interval, disableOnInteraction: false }}
+        loop
+        effect="fade"
         style={{
           width: "100%",
           height: "100%",
-          objectFit: "contain",
-          borderRadius: "16px",
-          userSelect: "none",
-          pointerEvents: "none",
-          opacity: loading ? 0 : 1,
-          transition: "opacity 0.5s ease-in-out",
-        }}
-        draggable={false}
-        onLoad={() => setLoading(false)}
-      />
-
-      {/* Left Arrow */}
-      <IconButton
-        onClick={prevImage}
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "10px",
-          transform: "translateY(-50%)",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          color: "#fff",
-          p: { xs: "4px", sm: "8px" },
-          "&:hover": {
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-          },
-          zIndex: 20,
-          display: { xs: "none", sm: "flex" },
+          position: "relative",
         }}
       >
-        <ChevronLeft />
-      </IconButton>
-
-      {/* Right Arrow */}
-      <IconButton
-        onClick={nextImage}
-        sx={{
-          position: "absolute",
-          top: "50%",
-          right: "10px",
-          transform: "translateY(-50%)",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          color: "#fff",
-          p: { xs: "4px", sm: "8px" },
-          "&:hover": {
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-          },
-          zIndex: 20,
-          display: { xs: "none", sm: "flex" },
-        }}
-      >
-        <ChevronRight />
-      </IconButton>
-
-      {/* Dots */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          position: "absolute",
-          bottom: "10px",
-          width: "100%",
-          zIndex: 20,
-        }}
-      >
-        {images.map((_, index) => (
-          <Box
-            key={index}
-            onClick={() => {
-              setLoading(true);
-              setCurrentIndex(index);
-            }}
-            sx={{
-              width: { xs: 8, sm: 10 },
-              height: { xs: 8, sm: 10 },
-              borderRadius: "50%",
-              backgroundColor:
-                currentIndex === index ? colors.lightBlue : "#ccc",
-              cursor: "pointer",
-              mx: 0.5,
-              transition: "background-color 0.3s",
-            }}
-          />
+        {images.map((src, index) => (
+          <SwiperSlide key={index}>
+            <Box
+              component="img"
+              src={src}
+              alt={altTexts?.[index] ?? `Slide ${index + 1}`}
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: objectFit,
+                userSelect: "none",
+                pointerEvents: "none",
+                display: "block",
+              }}
+              draggable={false}
+              loading="lazy"
+            />
+          </SwiperSlide>
         ))}
-      </Box>
+      </Swiper>
     </Box>
   );
 };

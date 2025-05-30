@@ -8,11 +8,19 @@ import { motion } from "framer-motion";
 import Carousel from "./Carousel";
 import Seo from "./Seo";
 
+interface Doctor {
+  id: string;
+  key: string;
+  images: string[];
+  // Add other properties if needed
+}
+
 const DoctorSinglePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const { t } = useTranslation();
-  const doctor = doctors.find((d) => d.id === id);
   const navigate = useNavigate();
+
+  const doctor = doctors.find((d: Doctor) => d.id === id);
 
   if (!doctor) {
     return (
@@ -24,9 +32,19 @@ const DoctorSinglePage: React.FC = () => {
     );
   }
 
-  const founderText = t(`about.names.${doctor.key}.founder`);
-  const hasFounderText =
-    founderText && founderText !== `about.names.${doctor.key}.founder`;
+  // Use fallback "" to detect if translation exists
+  const founderText = t(`about.names.${doctor.key}.founder`, {
+    defaultValue: "",
+  });
+  const hasFounderText = founderText.trim().length > 0;
+
+  // Prepare alt texts with fallback
+  const altTexts = doctor.images.map((_, idx) => {
+    const alt = t(`about.names.${doctor.key}.imageAlt${idx + 1}`, {
+      defaultValue: t("about.defaultDoctorImageAlt", "Doctor image"),
+    });
+    return alt;
+  });
 
   return (
     <>
@@ -44,24 +62,21 @@ const DoctorSinglePage: React.FC = () => {
           justifyContent: "center",
           py: 4,
           px: 2,
-          gap: 4,
         }}
       >
         <Box
           sx={{
             width: "100%",
             maxWidth: { xs: "100%", md: "600px" },
-            height: { xs: 350, sm: 500, md: 600 },
+            height: { xs: 280, sm: 500, md: 600 },
           }}
         >
           <Carousel
             images={doctor.images}
-            altTexts={doctor.images.map((_, idx) =>
-              t(
-                `about.names.${doctor.key}.imageAlt${idx + 1}`,
-                `Image ${idx + 1}`
-              )
-            )}
+            altTexts={altTexts}
+            height={600}
+            objectFit="contain"
+            borderRadius={20}
           />
         </Box>
 
@@ -83,7 +98,7 @@ const DoctorSinglePage: React.FC = () => {
             <Typography variant="h4" sx={{ fontWeight: "bold" }}>
               {t(`about.names.${doctor.key}.name`)}
             </Typography>
-
+            <br />
             {hasFounderText && (
               <Typography
                 variant="subtitle1"
@@ -92,6 +107,7 @@ const DoctorSinglePage: React.FC = () => {
                 {founderText}
               </Typography>
             )}
+            <br />
 
             <Typography
               variant="body1"
@@ -103,6 +119,7 @@ const DoctorSinglePage: React.FC = () => {
 
           <Button
             variant="contained"
+            aria-label={t("about.back")}
             sx={{
               px: 3,
               py: 1,
