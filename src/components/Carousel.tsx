@@ -36,7 +36,8 @@ const Carousel: React.FC<CarouselProps> = ({
         borderRadius: `${borderRadius}px`,
         overflow: "hidden",
         height: isMobile ? 250 : height,
-        backgroundColor: "#f9f9f9",
+        backgroundColor: "#ffffff",
+        boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.08)",
         position: "relative",
       }}
     >
@@ -51,10 +52,14 @@ const Carousel: React.FC<CarouselProps> = ({
           width: "100%",
           height: "100%",
           position: "relative",
+          overflow: "hidden",
         }}
       >
         {images.map((src, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide 
+            key={index} 
+            style={{ position: "relative", width: "100%", height: "100%" }}
+          >
             <Box
               component="img"
               src={src}
@@ -66,6 +71,11 @@ const Carousel: React.FC<CarouselProps> = ({
                 userSelect: "none",
                 pointerEvents: "none",
                 display: "block",
+                borderRadius: `${borderRadius}px`,
+
+                position: "absolute",
+                top: 0,
+                left: 0,
               }}
               draggable={false}
               loading="lazy"

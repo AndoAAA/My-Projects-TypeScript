@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { doctors } from "../data";
@@ -12,7 +12,6 @@ interface Doctor {
   id: string;
   key: string;
   images: string[];
-  // Add other properties if needed
 }
 
 const DoctorSinglePage: React.FC = () => {
@@ -22,29 +21,40 @@ const DoctorSinglePage: React.FC = () => {
 
   const doctor = doctors.find((d: Doctor) => d.id === id);
 
+  useEffect(() => {
+    if (!doctor) {
+      const timer = setTimeout(() => navigate("/about"), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [doctor, navigate]);
+
   if (!doctor) {
     return (
       <Box sx={{ textAlign: "center", py: 4 }}>
-        <Typography variant="h4">
+        <Typography variant="h4" role="alert">
           {t("doctor.notFound", "Doctor not found")}
+        </Typography>
+        <Typography variant="body2" sx={{ mt: 2 }}>
+          Redirecting to About page...
         </Typography>
       </Box>
     );
   }
 
-  // Use fallback "" to detect if translation exists
+  const name = t(`about.names.${doctor.key}.name`);
   const founderText = t(`about.names.${doctor.key}.founder`, {
     defaultValue: "",
   });
+  const description = t(`about.names.${doctor.key}.description`);
   const hasFounderText = founderText.trim().length > 0;
 
-  // Prepare alt texts with fallback
-  const altTexts = doctor.images.map((_, idx) => {
-    const alt = t(`about.names.${doctor.key}.imageAlt${idx + 1}`, {
+  const altTexts = doctor.images.map((_, idx) =>
+    t(`about.names.${doctor.key}.imageAlt${idx + 1}`, {
       defaultValue: t("about.defaultDoctorImageAlt", "Doctor image"),
-    });
-    return alt;
-  });
+    })
+  );
+
+  const firstImage = doctor.images[0] ?? "/default-doctor-image.jpg";
 
   return (
     <>
@@ -52,7 +62,7 @@ const DoctorSinglePage: React.FC = () => {
         titleKey={`about.names.${doctor.key}.name`}
         descriptionKey={`about.names.${doctor.key}.description`}
         canonical={`https://spectradentalclinic.com/about/doctor/${doctor.id}`}
-        image={doctor.images[0]}
+        image={firstImage}
       />
       <Box
         sx={{
@@ -68,16 +78,17 @@ const DoctorSinglePage: React.FC = () => {
           sx={{
             width: "100%",
             maxWidth: { xs: "100%", md: "600px" },
-            height: { xs: 280, sm: 500, md: 600 },
+            height: { xs: "auto", sm: 500, md: 600 },
           }}
         >
-          <Carousel
-            images={doctor.images}
-            altTexts={altTexts}
-            height={600}
-            objectFit="contain"
-            borderRadius={20}
-          />
+          {doctor.images.length > 0 && (
+            <Carousel
+              images={doctor.images}
+              altTexts={altTexts}
+              objectFit="contain"
+              borderRadius={20}
+            />
+          )}
         </Box>
 
         <Box
@@ -94,9 +105,10 @@ const DoctorSinglePage: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5 }}
+            aria-live="polite"
           >
             <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-              {t(`about.names.${doctor.key}.name`)}
+              {name}
             </Typography>
             <br />
             {hasFounderText && (
@@ -108,16 +120,16 @@ const DoctorSinglePage: React.FC = () => {
               </Typography>
             )}
             <br />
-
             <Typography
               variant="body1"
               sx={{ color: "#555", textAlign: "center" }}
             >
-              {t(`about.names.${doctor.key}.description`)}
+              {description}
             </Typography>
           </motion.div>
 
           <Button
+            type="button"
             variant="contained"
             aria-label={t("about.back")}
             sx={{
