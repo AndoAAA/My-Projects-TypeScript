@@ -83,7 +83,8 @@ const DoctorSinglePage: React.FC = () => {
                 : ["/default-doctor-image.jpg"]
             }
             altTexts={altTexts}
-            height={400}
+            height={600}
+            mobileHeight={400}
           />
         )}
 

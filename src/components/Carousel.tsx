@@ -1,11 +1,6 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Navigation,
-  Pagination,
-  Autoplay,
-  EffectFade,
-} from "swiper/modules";
+import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -16,6 +11,7 @@ interface CarouselProps {
   images: string[];
   altTexts?: string[];
   height?: number;
+  mobileHeight?: number;
   interval?: number;
   objectFit?: "cover" | "contain";
   borderRadius?: number;
@@ -24,15 +20,15 @@ interface CarouselProps {
 const Carousel: React.FC<CarouselProps> = ({
   images,
   altTexts,
-  height,
+  height=600,
+  mobileHeight = 400,
   interval = 2000,
   objectFit = "cover",
   borderRadius = 6,
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const carouselHeight = height ?? (isMobile ? 250 : 400);
-
+ 
   return (
     <Box
       sx={{
@@ -41,7 +37,7 @@ const Carousel: React.FC<CarouselProps> = ({
         mx: "auto",
         borderRadius: borderRadius,
         overflow: "hidden",
-        height: carouselHeight,
+         height: isMobile ? mobileHeight : height,
         backgroundColor: "#ffffff",
         boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.08)",
         position: "relative",
