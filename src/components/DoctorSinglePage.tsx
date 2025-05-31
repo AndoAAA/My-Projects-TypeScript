@@ -72,25 +72,20 @@ const DoctorSinglePage: React.FC = () => {
           justifyContent: "center",
           py: 4,
           px: 2,
-          gap:{xs:4 ,md:6}
+          gap: { xs: 4, md: 6 },
         }}
       >
-        <Box
-          sx={{
-            width: "100%",
-            maxWidth: { xs: "100%", md: "600px" },
-            height: { xs: "auto", sm: 500, md: 600 },
-          }}
-        >
-          {doctor.images.length > 0 && (
-            <Carousel
-              images={doctor.images}
-              altTexts={altTexts}
-              objectFit="contain"
-              borderRadius={6}
-            />
-          )}
-        </Box>
+        {doctor.images.length > 0 && (
+          <Carousel
+            images={
+              doctor.images.length > 0
+                ? doctor.images
+                : ["/default-doctor-image.jpg"]
+            }
+            altTexts={altTexts}
+            height={400}
+          />
+        )}
 
         <Box
           sx={{

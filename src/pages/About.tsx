@@ -94,13 +94,11 @@ const About: React.FC = () => {
         </Box>
 
         {/* About Carousel */}
-        <Box sx={{ mb: { xs: 5, md: 7 } }}>
-          <Carousel
-            images={images.map((img) => img.src)}
-            altTexts={images.map((img) => img.alt)}
-            
-          />
-        </Box>
+
+        <Carousel
+          images={images.map((img) => img.src)}
+          altTexts={images.map((img) => img.alt)}
+        />
 
         {/* Doctors Section */}
         <Box textAlign="center" sx={{ mb: { xs: 5, md: 7 } }}>

@@ -33,7 +33,7 @@ const images = [
 const doctors = [{ key: "manuk" }, { key: "gayane" }, { key: "aghasi" }];
 
 const Home: React.FC = () => {
-  const { t } = useTranslation();
+  const { t }: { t: (key: string) => string } = useTranslation();
   const [statsRef, statsVisible] = useInView({ threshold: 0.1 });
   const [loading, setLoading] = useState(true);
 
@@ -48,14 +48,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Seo
-        doctors={doctors}
-        titleKey="meta.homeTitle"
-        descriptionKey="meta.homeDescription"
-        canonical="https://www.spectradentalclinic.com/"
-        keywords="dental clinic, dentistry, teeth whitening, dental implants, veneers, orthodontics, healthcare, medical services, Yerevan dentist"
-        image="https://www.spectradentalclinic.com/logo.jpg"
-      />
+      <Seo doctors={doctors} />
 
       {/* Hero Section */}
       <Box
@@ -93,6 +86,7 @@ const Home: React.FC = () => {
               <Typography
                 variant="h4"
                 fontWeight="bold"
+                component="h1"
                 gutterBottom
                 sx={{
                   fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
@@ -103,6 +97,7 @@ const Home: React.FC = () => {
               </Typography>
               <Typography
                 variant="h4"
+                component="h2"
                 fontWeight="bold"
                 gutterBottom
                 sx={{
@@ -132,12 +127,10 @@ const Home: React.FC = () => {
         </Box>
 
         {/* Carousel Section */}
-        <Box sx={{ width: "100%", maxWidth: "1100px" }}>
-          <Carousel
-            images={images.map((img) => img.src)}
-            altTexts={images.map((img) => img.alt)}
-          />
-        </Box>
+        <Carousel
+          images={images.map((img) => img.src)}
+          altTexts={images.map((img) => img.alt)}
+        />
       </Box>
 
       {/* Stats, Services, Doctors */}

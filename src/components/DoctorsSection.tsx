@@ -35,7 +35,7 @@ const DoctorsSection: React.FC = () => {
             <Card
               sx={{
                 width: { xs: 280, sm: 300 },
-                height: { xs: 400, sm: 400 },
+                height: "auto",
                 borderRadius: 4,
                 boxShadow: 3,
                 transition: "transform 0.3s, box-shadow 0.3s",
