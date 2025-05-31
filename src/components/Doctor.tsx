@@ -34,6 +34,8 @@ const Doctor: React.FC<DoctorProps> = ({ id, image, name }) => {
         <img
           src={image}
           alt={name}
+          width={250}
+          height={250}
           style={{
             width: "250px",
             height: "250px",
@@ -42,6 +44,7 @@ const Doctor: React.FC<DoctorProps> = ({ id, image, name }) => {
             marginBottom: "15px",
           }}
           draggable={false}
+          decoding="async"
         />
         <Typography
           variant="h6"

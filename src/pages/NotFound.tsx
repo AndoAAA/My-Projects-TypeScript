@@ -29,10 +29,10 @@ const NotFound: React.FC = () => {
       <Typography variant="h1" color="primary" fontWeight="bold" gutterBottom>
         404
       </Typography>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" gutterBottom role="alert">
         Oops! Page Not Found
       </Typography>
-      <Typography variant="body1" color="textSecondary" mb={3}>
+      <Typography variant="body1" sx={{ color: "text.secondary" }} mb={3}>
         The page you're looking for doesn't exist or has been moved.
       </Typography>
       <Button
@@ -49,12 +49,13 @@ const NotFound: React.FC = () => {
           transition: "all 0.3s ease",
           "&:hover": {
             backgroundColor: "secondary.main",
+            transform: "scale(1.05)",
           },
         }}
       >
         Go Home
       </Button>
-      <Typography variant="body2" color="textSecondary" mt={2}>
+      <Typography variant="body2" sx={{ color: "text.secondary" }} mt={2}>
         Redirecting in 5 seconds...
       </Typography>
     </Box>

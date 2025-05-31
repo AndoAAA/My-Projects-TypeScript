@@ -15,20 +15,24 @@ interface Doctor {
 }
 
 const DoctorSinglePage: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id?: string }>();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const doctor = doctors.find((d: Doctor) => d.id === id);
+  // Գտնում ենք doctor-ը միայն եթե id կա
+  const doctor = id ? doctors.find((d: Doctor) => d.id === id) : undefined;
 
+  // Redirect 3 վայրկյան հետո, եթե doctor չկա կամ id չկա
   useEffect(() => {
-    if (!doctor) {
-      const timer = setTimeout(() => navigate("/about"), 3000);
+    if (!id || !doctor) {
+      const timer = setTimeout(() => {
+        navigate("/about");
+      }, 3000);
       return () => clearTimeout(timer);
     }
-  }, [doctor, navigate]);
+  }, [id, doctor, navigate]);
 
-  if (!doctor) {
+  if (!id || !doctor) {
     return (
       <Box sx={{ textAlign: "center", py: 4 }}>
         <Typography variant="h4" role="alert">
@@ -42,19 +46,18 @@ const DoctorSinglePage: React.FC = () => {
   }
 
   const name = t(`about.names.${doctor.key}.name`);
-  const founderText = t(`about.names.${doctor.key}.founder`, {
-    defaultValue: "",
-  });
+  const founderText = t(`about.names.${doctor.key}.founder`, { defaultValue: "" });
   const description = t(`about.names.${doctor.key}.description`);
   const hasFounderText = founderText.trim().length > 0;
 
   const altTexts = doctor.images.map((_, idx) =>
     t(`about.names.${doctor.key}.imageAlt${idx + 1}`, {
-      defaultValue: t("about.defaultDoctorImageAlt", "Doctor image"),
+      defaultValue: `${name} - Doctor image`,
     })
   );
 
-  const firstImage = doctor.images[0] ?? "/default-doctor-image.jpg";
+  const firstImage =
+    doctor.images[0] ?? "https://cdn.spectradentalclinic.com/default-doctor-image.jpg";
 
   return (
     <>
@@ -77,11 +80,7 @@ const DoctorSinglePage: React.FC = () => {
       >
         {doctor.images.length > 0 && (
           <Carousel
-            images={
-              doctor.images.length > 0
-                ? doctor.images
-                : ["/default-doctor-image.jpg"]
-            }
+            images={doctor.images.length > 0 ? doctor.images : ["/default-doctor-image.jpg"]}
             altTexts={altTexts}
             height={600}
             mobileHeight={400}
@@ -109,18 +108,12 @@ const DoctorSinglePage: React.FC = () => {
             </Typography>
             <br />
             {hasFounderText && (
-              <Typography
-                variant="subtitle1"
-                sx={{ fontWeight: 500, color: colors.darkBlue }}
-              >
+              <Typography variant="subtitle1" sx={{ fontWeight: 500, color: colors.darkBlue }}>
                 {founderText}
               </Typography>
             )}
             <br />
-            <Typography
-              variant="body1"
-              sx={{ color: "#555", textAlign: "center" }}
-            >
+            <Typography variant="body1" sx={{ color: "#555", textAlign: "center" }}>
               {description}
             </Typography>
           </motion.div>

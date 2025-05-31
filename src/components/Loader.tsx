@@ -1,5 +1,11 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, keyframes } from "@mui/material";
 import { colors } from "../assets/colors/colors";
+
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
 
 const Loader = () => {
   return (
@@ -10,17 +16,17 @@ const Loader = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        background: "#f9fcff",
+        bgcolor: "#f9fcff",
       }}
     >
       <Box
         sx={{
           width: 60,
           height: 60,
-          border: "6px solid #cde1f9",
+          border: `6px solid #cde1f9`,
           borderTop: `6px solid ${colors.darkBlue}`,
           borderRadius: "50%",
-          animation: "spin 1s linear infinite",
+          animation: `${spin} 1s linear infinite`,
         }}
       />
       <Typography
@@ -29,20 +35,11 @@ const Loader = () => {
           fontSize: 18,
           fontWeight: 500,
           color: colors.darkBlue,
+          userSelect: "none",
         }}
       >
-        {`Loading...`}
+        Loading...
       </Typography>
-
-      {/* Inline animation keyframes */}
-      <style>
-        {`
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        `}
-      </style>
     </Box>
   );
 };

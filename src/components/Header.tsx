@@ -1,4 +1,4 @@
-import Select from "react-select";
+import Select, { SingleValue } from "react-select";
 import {
   AppBar,
   Toolbar,
@@ -13,31 +13,29 @@ import i18n from "i18next";
 import { colors } from "../assets/colors/colors";
 import { useEffect, useCallback } from "react";
 
+interface LanguageOptionType {
+  value: string;
+  label: JSX.Element;
+}
 
 const LanguageOption = ({ src, alt }: { src: string; alt: string }) => (
   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-    <img src={src} alt={alt} width="20" height="15" />
+    <img src={src} alt={alt} width={20} height={15} />
   </div>
 );
 
-const languageOptions = [
+const languageOptions: LanguageOptionType[] = [
   {
     value: "en",
-    label: (
-      <LanguageOption src="https://flagcdn.com/w40/gb.png" alt="English" />
-    ),
+    label: <LanguageOption src="https://flagcdn.com/w40/gb.png" alt="English" />,
   },
   {
     value: "hy",
-    label: (
-      <LanguageOption src="https://flagcdn.com/w40/am.png" alt="Armenian" />
-    ),
+    label: <LanguageOption src="https://flagcdn.com/w40/am.png" alt="Armenian" />,
   },
   {
     value: "ru",
-    label: (
-      <LanguageOption src="https://flagcdn.com/w40/ru.png" alt="Russian" />
-    ),
+    label: <LanguageOption src="https://flagcdn.com/w40/ru.png" alt="Russian" />,
   },
 ];
 
@@ -47,10 +45,15 @@ const Header = () => {
   const fontSize = isMobile ? 12 : 14;
   const iconSize = isMobile ? 30 : 40;
 
-  const handleLanguageChange = useCallback((selectedOption: any) => {
-    i18n.changeLanguage(selectedOption.value);
-    localStorage.setItem("selectedLanguage", selectedOption.value);
-  }, []);
+  const handleLanguageChange = useCallback(
+    (selectedOption: SingleValue<LanguageOptionType>) => {
+      if (selectedOption) {
+        i18n.changeLanguage(selectedOption.value);
+        localStorage.setItem("selectedLanguage", selectedOption.value);
+      }
+    },
+    []
+  );
 
   useEffect(() => {
     const savedLang = localStorage.getItem("selectedLanguage");
@@ -70,7 +73,7 @@ const Header = () => {
         }}
       >
         {/* Language Selector */}
-        <Box sx={{ minWidth: isMobile ? "60px" : "80px" }}>
+        <Box sx={{ minWidth: isMobile ? 60 : 80 }}>
           <Select
             options={languageOptions}
             defaultValue={languageOptions.find(
@@ -78,15 +81,19 @@ const Header = () => {
             )}
             onChange={handleLanguageChange}
             isSearchable={false}
+            aria-label="Select language"
             styles={{
               control: (base) => ({
                 ...base,
-                borderRadius: "8px",
+                borderRadius: 8,
                 border: "1px solid #ddd",
                 cursor: "pointer",
                 fontSize,
+                minHeight: "32px",
+                boxShadow: "none",
               }),
-              menu: (base) => ({ ...base, zIndex: 9999 }),
+              menu: (base) => ({ ...base, zIndex: 1300 }),
+              singleValue: (base) => ({ ...base, display: "flex", alignItems: "center" }),
             }}
           />
         </Box>
@@ -110,22 +117,27 @@ const Header = () => {
               icon: InstagramIcon,
               alt: "Instagram",
             },
-          ].map((item, index) => (
+          ].map(({ href, icon, alt }, index) => (
             <Link
               key={index}
-              href={item.href}
+              href={href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={item.alt}
+              aria-label={alt}
               sx={{
                 transition: "transform 0.2s ease-in-out",
                 "&:hover": { transform: "scale(1.15)" },
+                display: "inline-flex",
+                alignItems: "center",
               }}
             >
               <img
-                src={item.icon}
-                alt={item.alt}
-                style={{ width: iconSize, height: iconSize }}
+                src={icon}
+                alt={alt}
+                width={iconSize}
+                height={iconSize}
+                loading="lazy"
+                style={{ display: "block" }}
               />
             </Link>
           ))}

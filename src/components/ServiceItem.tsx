@@ -5,14 +5,17 @@ import {
   CardContent,
   CardMedia,
   Typography,
+  useTheme,
 } from "@mui/material";
 import { colors } from "../assets/colors/colors";
 import { useTranslation } from "react-i18next";
 
+const fallbackImage = "https://via.placeholder.com/300x260?text=No+Image";
+
 type ServiceItemProps = {
   id: string;
   title: string;
-  image: string;
+  image?: string;
   price?: string;
   alt?: string;
 };
@@ -24,8 +27,10 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
   price,
   alt,
 }) => {
-  const fallbackImage = "path/to/fallback-image.jpg";
   const { t } = useTranslation();
+  const theme = useTheme();
+
+  const altText = typeof alt === "string" && alt.trim() !== "" ? alt : t(title);
 
   return (
     <Card
@@ -42,7 +47,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
       }}
     >
       <CardActionArea
-        aria-label={`View details for service: ${title}`}
+        aria-label={t(title)}
         sx={{
           height: "100%",
           display: "flex",
@@ -51,8 +56,8 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
       >
         <CardMedia
           component="img"
-          image={image?.trim() ? image : fallbackImage}
-          alt={alt || title}
+          image={image && image.trim() !== "" ? image : fallbackImage}
+          alt={altText}
           loading="lazy"
           sx={{
             width: "100%",
@@ -83,11 +88,14 @@ const ServiceItem: React.FC<ServiceItemProps> = ({
               mb: 1,
             }}
           >
-            {title}
+            {t(title)}
           </Typography>
 
           {price && (
-            <Typography variant="body1" color="textSecondary">
+            <Typography
+              variant="body1"
+              sx={{ color: theme.palette.text.secondary }}
+            >
               {t("price.start")} {price}
             </Typography>
           )}

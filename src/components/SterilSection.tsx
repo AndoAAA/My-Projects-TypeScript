@@ -36,7 +36,7 @@ const SterilSection = () => {
         >
           <img
             src={sterilImg1}
-            alt="Sterilization 1"
+            alt={t("about.sterilizationImage1Alt", "Sterilization equipment 1")}
             style={{ width: "100%", height: "auto" }}
           />
         </Box>

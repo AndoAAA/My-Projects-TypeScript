@@ -20,7 +20,7 @@ interface CarouselProps {
 const Carousel: React.FC<CarouselProps> = ({
   images,
   altTexts,
-  height=600,
+  height = 600,
   mobileHeight = 400,
   interval = 2000,
   objectFit = "cover",
@@ -28,7 +28,7 @@ const Carousel: React.FC<CarouselProps> = ({
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
- 
+
   return (
     <Box
       sx={{
@@ -37,7 +37,7 @@ const Carousel: React.FC<CarouselProps> = ({
         mx: "auto",
         borderRadius: borderRadius,
         overflow: "hidden",
-         height: isMobile ? mobileHeight : height,
+        height: isMobile ? mobileHeight : height,
         backgroundColor: "#ffffff",
         boxShadow: "0px 4px 20px rgba(0, 0, 0, 0.08)",
         position: "relative",
@@ -73,6 +73,8 @@ const Carousel: React.FC<CarouselProps> = ({
               component="img"
               src={src}
               alt={altTexts?.[index] ?? `Slide ${index + 1}`}
+              width="1000"
+              height={isMobile ? mobileHeight : height}
               sx={{
                 width: "100%",
                 height: "100%",
@@ -85,7 +87,6 @@ const Carousel: React.FC<CarouselProps> = ({
                 left: 0,
               }}
               draggable={false}
-              loading="lazy"
             />
           </SwiperSlide>
         ))}

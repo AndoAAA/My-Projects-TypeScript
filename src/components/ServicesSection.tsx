@@ -57,7 +57,10 @@ const ServicesSection: React.FC = () => {
               <CardMedia
                 component="img"
                 height="240"
-                image={service.icon || "path/to/fallback-image.jpg"}
+                image={
+                  service.icon ||
+                  "https://via.placeholder.com/300x240?text=No+Image"
+                }
                 alt={t(`services.${service.title}.title`)}
                 loading="lazy"
               />

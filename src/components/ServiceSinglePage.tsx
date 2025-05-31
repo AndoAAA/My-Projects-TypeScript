@@ -15,7 +15,7 @@ interface Service {
 }
 
 const ServiceSinglePage: React.FC = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -34,22 +34,37 @@ const ServiceSinglePage: React.FC = () => {
   if (!service) {
     return (
       <Box sx={{ textAlign: "center", py: 4 }}>
-        <Typography variant="h4">Service not found</Typography>
+        <Typography variant="h4">
+          {t("service.notFound", "Service not found")}
+        </Typography>
+        <Typography variant="body2" sx={{ mt: 2 }}>
+          {t(
+            "service.redirectMessage",
+            "Redirecting to services page in 3 seconds..."
+          )}
+        </Typography>
       </Box>
     );
   }
 
-  const title = t(`services.${service.title}.title`, {
-    defaultValue: service.title,
-  });
+  // Հաստատել, որ t()-ն վերադարձնում է string
+  const title = String(
+    t(`services.${service.title}.title`, {
+      defaultValue: service.title,
+    })
+  );
 
-  const description = t(`services.${service.title}.description`, {
-    defaultValue: "Detailed info about our service",
-  });
+  const description = String(
+    t(`services.${service.title}.description`, {
+      defaultValue: "Detailed info about our service",
+    })
+  );
 
-  const alt = t(`services.${service.title}.imageAlt`, {
-    defaultValue: title,
-  });
+  const alt = String(
+    t(`services.${service.title}.imageAlt`, {
+      defaultValue: title,
+    })
+  );
 
   return (
     <>
@@ -133,7 +148,7 @@ const ServiceSinglePage: React.FC = () => {
             <Button
               variant="contained"
               color="primary"
-              aria-label="Back to services"
+              aria-label={t("about.back", "Back to services")}
               sx={{
                 mt: 3,
                 px: 3,
@@ -151,7 +166,7 @@ const ServiceSinglePage: React.FC = () => {
               }}
               onClick={() => navigate("/service")}
             >
-               {t("about.back")}
+              {t("about.back")}
             </Button>
           </Box>
         </motion.div>

@@ -22,7 +22,8 @@ import { useTranslation } from "react-i18next";
 import { colors } from "../assets/colors/colors";
 
 const Navbar = () => {
-  const { t }: { t: (key: string) => string } = useTranslation();
+  const { t }: { t: (key: string, fallback?: string) => string } =
+    useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -33,11 +34,11 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { key: "home", path: "/" },
-    { key: "about", path: "/about" },
-    { key: "contact", path: "/contact" },
-    { key: "service", path: "/service" },
-    { key: "price", path: "/price" },
+    { key: "home", path: "/", label: "Home" },
+    { key: "about", path: "/about", label: "About" },
+    { key: "contact", path: "/contact", label: "Contact" },
+    { key: "service", path: "/service", label: "Service" },
+    { key: "price", path: "/price", label: "Price" },
   ];
 
   return (
@@ -67,11 +68,12 @@ const Navbar = () => {
           {/* Navigation Links (Hidden on Mobile) */}
           {!isMobile && (
             <Box sx={{ display: "flex", gap: 4 }}>
-              {navItems.map(({ key, path }) => (
+              {navItems.map(({ key, path, label }) => (
                 <Typography
                   key={key}
                   component={NavLink}
                   to={path}
+                  aria-current={location.pathname === path ? "page" : undefined}
                   sx={{
                     textDecoration: "none",
                     color: "#333",
@@ -82,7 +84,7 @@ const Navbar = () => {
                     "&:hover": { color: theme.palette.primary.main },
                   }}
                 >
-                  {t(`navbar.${key}`)}
+                  {t(`navbar.${key}`, label)}
                 </Typography>
               ))}
             </Box>
@@ -124,7 +126,7 @@ const Navbar = () => {
             flexDirection: "column",
             justifyContent: "space-between",
           }}
-          onClick={toggleDrawer(false)}
+          // onClick is removed from here to avoid unwanted drawer closing on background clicks
         >
           {/* Վերևի մաս */}
           <Box>
@@ -136,21 +138,29 @@ const Navbar = () => {
                 p: 1,
               }}
             >
-              <IconButton onClick={toggleDrawer(false)}>
+              <IconButton onClick={toggleDrawer(false)} aria-label="Close menu">
                 <CloseIcon />
               </IconButton>
             </Box>
 
             {/* Մենյուի ցանկը */}
             <List>
-              {navItems.map(({ key, path }) => (
+              {navItems.map(({ key, path, label }) => (
                 <ListItem disablePadding key={key}>
                   <ListItemButton
                     component={NavLink}
                     to={path}
                     selected={location.pathname === path}
+                    onClick={toggleDrawer(false)} // close drawer on menu item click
+                    sx={{
+                      "&.Mui-selected": {
+                        bgcolor: theme.palette.action.selected,
+                        fontWeight: "bold",
+                        color: theme.palette.primary.main,
+                      },
+                    }}
                   >
-                    <ListItemText primary={t(`navbar.${key}`)} />
+                    <ListItemText primary={t(`navbar.${key}`, label)} />
                   </ListItemButton>
                 </ListItem>
               ))}
