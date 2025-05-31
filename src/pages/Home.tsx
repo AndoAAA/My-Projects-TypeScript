@@ -53,7 +53,7 @@ const Home: React.FC = () => {
       {/* Hero Section */}
       <Box
         sx={{
-          px: 4,
+          px: 2,
           py: 5,
           display: "flex",
           flexDirection: "column",
