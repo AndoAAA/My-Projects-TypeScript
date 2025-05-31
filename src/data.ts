@@ -48,7 +48,7 @@ export const services = [
     },
     xRay: {
       label: "X-ray RVG)",
-      price: "֏ 1,000 ",
+      price: "֏ 1.000 ",
     },
   },
   {
@@ -56,35 +56,35 @@ export const services = [
     title: "dentalImplants",
     image: dentalImplantsImg,
     icon: implantIcon,
-    price: "֏ 140,000",
+    price: "֏ 140.000",
   },
   {
     id: "1",
     title: "cosmeticCare",
     image: cosmeticCareImg,
     icon: cosmeticCareIcon,
-    price: "֏ 70,000",
+    price: "֏ 70.000",
   },
   {
     id: "2",
     title: "veneer",
     image: venirImg,
     icon: venirIcon,
-    price: "֏ 80,000",
+    price: "֏ 80.000",
   },
   {
     id: "3",
     title: "therapy",
     image: therapyIcon,
     icon: therapyImg,
-    price: "֏ 15,000",
+    price: "֏ 15.000",
     aesthetic: {
       label: "Aesthetic restoration of teeth",
-      price: "֏ 15,000 ",
+      price: "֏ 15.000 ",
     },
     compositeVeneer: {
       label: "Aesthetic restoration of teeth",
-      price: "֏ 20,000 ",
+      price: "֏ 20.000 ",
     },
   },
   {
@@ -92,32 +92,32 @@ export const services = [
     title: "endodontics",
     image: endodonticsImg,
     icon: endodonticsIcon,
-    price: "֏ 10,000",
+    price: "֏ 10.000",
   },
   {
     id: "5",
     title: "dentures",
     image: denturesImg,
     icon: denturesIcon,
-    price: "֏ 65,000",
+    price: "֏ 65.000",
   },
   {
     id: "6",
     title: "surgicalProcedures",
     image: surgicalProceduresImg,
     icon: surgicalProceduresIcon,
-    price: "֏ 5,000",
+    price: "֏ 5.000",
     extraction: {
       label: "Extraction of teeth",
-      price: "(from) ֏ 5,000 ",
+      price: "(from) ֏ 5.000 ",
     },
     remove: {
       label: "Removal of impacted teeth ",
-      price: "(from) ֏ 20,000 ",
+      price: "(from) ֏ 20.000 ",
     },
     gingival: {
       label: "Gingival plasty",
-      price: "(from) ֏ 30,000 ",
+      price: "(from) ֏ 30.000 ",
     },
   },
   {
@@ -125,7 +125,7 @@ export const services = [
     title: "pediatricDentistry",
     image: pediatricDentistryImg,
     icon: pediatricDentistryIcon,
-    price: "֏ 3,000",
+    price: "֏ 3.000",
     milkToothExtraction: {
       label: "Milk tooth extraction",
       price: "֏ 3.000",
@@ -141,7 +141,7 @@ export const services = [
     title: "orthopedics",
     image: orthopedicsImg,
     icon: orthopedicsIcon,
-    price: "֏ 30,000",
+    price: "֏ 30.000",
     metalCeramicCrown: {
       label: "Metal ceramic crown",
       price: "֏ 30.000",
@@ -160,7 +160,7 @@ export const services = [
     title: "orthodontics",
     image: orthodonticsImg,
     icon: orthodonticsIcon,
-    price: "֏ 120,000",
+    price: "֏ 120.000",
   },
 ];
 
