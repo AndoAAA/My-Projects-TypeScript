@@ -13,7 +13,6 @@ import {
   Alert,
   IconButton,
   Tooltip,
-  Button,
   Snackbar,
   useMediaQuery,
   useTheme,
@@ -21,9 +20,7 @@ import {
 import { collection, onSnapshot, deleteDoc, doc } from "firebase/firestore";
 import { db } from "./firebase";
 import DeleteIcon from "@mui/icons-material/Delete";
-import LogoutIcon from '@mui/icons-material/Logout';
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 interface Booking {
   id: string;
@@ -36,13 +33,11 @@ const AdminPanel = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [snackbarOpen, setSnackbarOpen] = useState(false);  // <-- նոր state
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
   const { t } = useTranslation();
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -79,14 +74,6 @@ const AdminPanel = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("isAdmin");
-    setSnackbarOpen(true);   // <-- ցույց տա snackbar
-    setTimeout(() => {
-      navigate("/admin-login");
-    }, 1500); // 1.5 վայրկյան հետո նավիգացիա
-  };
-
   const handleCloseSnackbar = (
     _?: React.SyntheticEvent | Event,
     reason?: string
@@ -106,14 +93,6 @@ const AdminPanel = () => {
         }}
       >
         <Typography variant="h5">{t("admin.panel_title")}</Typography>
-        <Button
-          variant="outlined"
-          color="primary"
-          startIcon={<LogoutIcon />}
-          onClick={handleLogout}
-        >
-          {t("admin.logout")}
-        </Button>
       </Box>
 
       {loading && (

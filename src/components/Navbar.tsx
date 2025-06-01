@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   AppBar,
   Box,
@@ -17,9 +17,15 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Logo from "../assets/logo.jpg";
-import { NavLink, useLocation, Link as RouterLink } from "react-router-dom";
+import {
+  NavLink,
+  useLocation,
+  useNavigate,
+  Link as RouterLink,
+} from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { colors } from "../assets/colors/colors";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Navbar = () => {
   const { t }: { t: (key: string, fallback?: string) => string } =
@@ -28,6 +34,20 @@ const Navbar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [drawerOpen, setDrawerOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  useEffect(() => {
+    const adminStatus = localStorage.getItem("isAdmin") === "true";
+    setIsAdmin(adminStatus);
+  }, [location]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("isAdmin");
+    setIsAdmin(false);
+    navigate("/");
+  };
 
   const toggleDrawer = (open: boolean) => () => {
     setDrawerOpen(open);
@@ -65,7 +85,7 @@ const Navbar = () => {
             </Box>
           </NavLink>
 
-          {/* Navigation Links (Hidden on Mobile) */}
+          {/* Desktop Navigation */}
           {!isMobile && (
             <Box sx={{ display: "flex", gap: 4 }}>
               {navItems.map(({ key, path, label }) => (
@@ -90,7 +110,7 @@ const Navbar = () => {
             </Box>
           )}
 
-          {/* Booking */}
+          {/* Desktop Actions */}
           {!isMobile && (
             <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
               <Button
@@ -102,19 +122,30 @@ const Navbar = () => {
               >
                 {t("book_now")}
               </Button>
-              <Button
-                component={RouterLink}
-                to="/admin-login"
-                variant="outlined"
-                color="primary"
-                sx={{ borderRadius: 2 }}
-              >
-                {t("admin.login")}
-              </Button>
+              {isAdmin ? (
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  startIcon={<LogoutIcon />}
+                  onClick={handleLogout}
+                >
+                  {t("admin.logout")}
+                </Button>
+              ) : (
+                <Button
+                  component={RouterLink}
+                  to="/admin-login"
+                  variant="outlined"
+                  color="primary"
+                  sx={{ borderRadius: 2 }}
+                >
+                  {t("admin.login")}
+                </Button>
+              )}
             </Box>
           )}
 
-          {/* Hamburger Menu (Visible on Mobile) */}
+          {/* Mobile Hamburger */}
           {isMobile && (
             <IconButton
               aria-label="Open navigation menu"
@@ -127,7 +158,7 @@ const Navbar = () => {
         </Toolbar>
       </AppBar>
 
-      {/* Drawer (Sidebar Menu for Mobile) */}
+      {/* Drawer */}
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         <Box
           sx={{
@@ -138,22 +169,14 @@ const Navbar = () => {
             justifyContent: "space-between",
           }}
         >
-          {/* Վերևի մաս */}
+          {/* Drawer Top */}
           <Box>
-            {/* Փակելու կոճակ */}
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-                p: 1,
-              }}
-            >
+            <Box sx={{ display: "flex", justifyContent: "flex-end", p: 1 }}>
               <IconButton onClick={toggleDrawer(false)} aria-label="Close menu">
                 <CloseIcon />
               </IconButton>
             </Box>
 
-            {/* Մենյուի ցանկը */}
             <List>
               {navItems.map(({ key, path, label }) => (
                 <ListItem disablePadding key={key}>
@@ -174,55 +197,49 @@ const Navbar = () => {
                   </ListItemButton>
                 </ListItem>
               ))}
-              <ListItem disablePadding key="admin-login">
-                <ListItemButton
-                  component={NavLink}
-                  to="/admin-login"
-                  selected={location.pathname === "/admin-login"}
-                  onClick={toggleDrawer(false)}
-                  sx={{
-                    "&.Mui-selected": {
-                      bgcolor: theme.palette.action.selected,
-                      fontWeight: "bold",
-                      color: theme.palette.primary.main,
-                    },
-                  }}
-                >
-                  <ListItemText primary={t("admin.login", "Admin Login")} />
-                </ListItemButton>
-              </ListItem>
             </List>
           </Box>
 
-          {/* Booking & Admin (Mobile) */}
-          <Box
-            sx={{
-              p: 2,
-              display: "flex",
-              gap: 2,
-              flexDirection: "column",
-              justifyContent: "space-between",
-            }}
-          >
+          {/* Drawer Bottom Buttons */}
+          <Box sx={{ p: 2, display: "flex", flexDirection: "column", gap: 1 }}>
+            {isAdmin ? (
+              <Button
+                onClick={() => {
+                  handleLogout();
+                  toggleDrawer(false)();
+                }}
+                variant="outlined"
+                color="primary"
+                startIcon={<LogoutIcon />}
+                fullWidth
+                sx={{ borderRadius: 2 }}
+              >
+                {t("admin.logout", "Logout")}
+              </Button>
+            ) : (
+              <Button
+                component={RouterLink}
+                to="/admin-login"
+                onClick={toggleDrawer(false)}
+                variant="outlined"
+                color="primary"
+                fullWidth
+                sx={{ borderRadius: 2 }}
+              >
+                {t("admin.login", "Admin Login")}
+              </Button>
+            )}
+
             <Button
               component={RouterLink}
               to="/booking"
+              onClick={toggleDrawer(false)}
               variant="contained"
               color="primary"
               fullWidth
               sx={{ borderRadius: 2 }}
             >
               {t("book_now")}
-            </Button>
-            <Button
-              component={RouterLink}
-              to="/admin-login"
-              variant="outlined"
-              color="primary"
-              fullWidth
-              sx={{ borderRadius: 2 }}
-            >
-              {t("admin.login")}
             </Button>
           </Box>
         </Box>

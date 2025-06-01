@@ -2,7 +2,7 @@ import { onDocumentCreated } from "firebase-functions/v2/firestore";
 import * as nodemailer from "nodemailer";
 
 const GMAIL_USER = "spectraclinicarmenia@gmail.com";
-const GMAIL_PASS = "spectra2025";
+const GMAIL_PASS = "npuf hdsm wpub onrg";
 const ADMIN_EMAIL = "spectraclinicarmenia@gmail.com";
 
 const transporter = nodemailer.createTransport({
@@ -20,22 +20,21 @@ export const sendMailOnBooking = onDocumentCreated(
       console.error("No event data found");
       return;
     }
-
     const data = event.data.data();
-
     if (!data) {
       console.error("No booking data found");
       return;
     }
 
-    const createdAt = data.createdAt?.toDate
-      ? data.createdAt.toDate().toLocaleString()
-      : "Տվյալ չկա";
+    const createdAt =
+      data.createdAt && typeof data.createdAt.toDate === "function"
+        ? data.createdAt.toDate().toLocaleString()
+        : "Տվյալ չկա";
 
     const mailOptions = {
       from: `"Կլինիկայի կայք" <${GMAIL_USER}>`,
       to: ADMIN_EMAIL,
-      subject: "Նոր հերթագրում է կայքում",
+      subject: "Նոր հերթագրման հայտ կայքում",
       text: `
 Նոր հերթագրման հայտ է ստացվել կայքում։
 
