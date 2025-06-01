@@ -9,6 +9,9 @@
     "skipLibCheck": true,
     "lib": ["dom", "es2015"],
     "resolveJsonModule": true,
-   
-  }
+    "noImplicitReturns": true,
+    "outDir": "lib",
+    "sourceMap": true
+  },
+  "include": ["src"]
 }

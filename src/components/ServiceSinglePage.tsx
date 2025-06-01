@@ -25,10 +25,15 @@ const ServiceSinglePage: React.FC = () => {
   );
 
   useEffect(() => {
+    let timer: NodeJS.Timeout;
+
     if (!service) {
-      const timer = setTimeout(() => navigate("/service"), 3000);
-      return () => clearTimeout(timer);
+      timer = setTimeout(() => navigate("/service"), 3000);
     }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, [service, navigate]);
 
   if (!service) {
@@ -47,7 +52,6 @@ const ServiceSinglePage: React.FC = () => {
     );
   }
 
-  // Հաստատել, որ t()-ն վերադարձնում է string
   const title = String(
     t(`services.${service.title}.title`, {
       defaultValue: service.title,

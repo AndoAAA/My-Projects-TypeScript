@@ -19,17 +19,20 @@ const DoctorSinglePage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  // Գտնում ենք doctor-ը միայն եթե id կա
   const doctor = id ? doctors.find((d: Doctor) => d.id === id) : undefined;
 
-  // Redirect 3 վայրկյան հետո, եթե doctor չկա կամ id չկա
   useEffect(() => {
+    let timer: NodeJS.Timeout;
+
     if (!id || !doctor) {
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         navigate("/about");
       }, 3000);
-      return () => clearTimeout(timer);
     }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, [id, doctor, navigate]);
 
   if (!id || !doctor) {
@@ -46,7 +49,9 @@ const DoctorSinglePage: React.FC = () => {
   }
 
   const name = t(`about.names.${doctor.key}.name`);
-  const founderText = t(`about.names.${doctor.key}.founder`, { defaultValue: "" });
+  const founderText = t(`about.names.${doctor.key}.founder`, {
+    defaultValue: "",
+  });
   const description = t(`about.names.${doctor.key}.description`);
   const hasFounderText = founderText.trim().length > 0;
 
@@ -57,7 +62,8 @@ const DoctorSinglePage: React.FC = () => {
   );
 
   const firstImage =
-    doctor.images[0] ?? "https://cdn.spectradentalclinic.com/default-doctor-image.jpg";
+    doctor.images[0] ??
+    "https://cdn.spectradentalclinic.com/default-doctor-image.jpg";
 
   return (
     <>
@@ -80,7 +86,11 @@ const DoctorSinglePage: React.FC = () => {
       >
         {doctor.images.length > 0 && (
           <Carousel
-            images={doctor.images.length > 0 ? doctor.images : ["/default-doctor-image.jpg"]}
+            images={
+              doctor.images.length > 0
+                ? doctor.images
+                : ["/default-doctor-image.jpg"]
+            }
             altTexts={altTexts}
             height={600}
             mobileHeight={400}
@@ -108,12 +118,18 @@ const DoctorSinglePage: React.FC = () => {
             </Typography>
             <br />
             {hasFounderText && (
-              <Typography variant="subtitle1" sx={{ fontWeight: 500, color: colors.darkBlue }}>
+              <Typography
+                variant="subtitle1"
+                sx={{ fontWeight: 500, color: colors.darkBlue }}
+              >
                 {founderText}
               </Typography>
             )}
             <br />
-            <Typography variant="body1" sx={{ color: "#555", textAlign: "center" }}>
+            <Typography
+              variant="body1"
+              sx={{ color: "#555", textAlign: "center" }}
+            >
               {description}
             </Typography>
           </motion.div>
