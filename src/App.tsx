@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 import MainLayouts from "./layouts/MainLayouts";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
@@ -12,7 +17,9 @@ import PriceList from "./pages/PriceList";
 import { useEffect, useState } from "react";
 import Loader from "./components/Loader";
 import BookingForm from "./components/BookingForm";
-import AdminBookings from "./components/AdminBookings";
+import AdminPanel from "./components/AdminBookings";
+import AdminLogin from "./components/AdminLogin";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -40,7 +47,15 @@ const AppRoutes = () => {
         <Route path="price" element={<PriceList />} />
         <Route path="*" element={<NotFound />} />
         <Route path="booking" element={<BookingForm />} />
-        <Route path="admin" element={<AdminBookings />} />
+        <Route
+          path="admin"
+          element={
+            <ProtectedRoute>
+              <AdminPanel />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="admin-login" element={<AdminLogin />} />
       </Route>
     </Routes>
   );

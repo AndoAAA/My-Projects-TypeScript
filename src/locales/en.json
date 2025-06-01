@@ -242,6 +242,13 @@
     "confirm_delete": "Are you sure you want to delete this booking?",
     "error_fetch": "Failed to load bookings",
     "error_delete": "Failed to delete booking",
-    "no_bookings": "No bookings found"
+    "error_load": "Failed to load bookings",
+    "no_bookings": "No bookings found",
+    "logout": "Logout",
+    "logout_success": "Logged out successfully",
+    "login": "Admin Login",
+    "username": "Username",
+    "password": "Password",
+    "login_error": "Incorrect username or password"
   }
 }

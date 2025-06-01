@@ -91,17 +91,28 @@ const Navbar = () => {
           )}
 
           {/* Booking */}
-          {/* {!isMobile && (
-            <Button
-              component={RouterLink}
-              to="/booking"
-              variant="contained"
-              color="primary"
-              sx={{ borderRadius: 2 }}
-            >
-              {t("book_now")}
-            </Button>
-          )} */}
+          {!isMobile && (
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+              <Button
+                component={RouterLink}
+                to="/booking"
+                variant="contained"
+                color="primary"
+                sx={{ borderRadius: 2 }}
+              >
+                {t("book_now")}
+              </Button>
+              <Button
+                component={RouterLink}
+                to="/admin-login"
+                variant="outlined"
+                color="primary"
+                sx={{ borderRadius: 2 }}
+              >
+                {t("admin.login")}
+              </Button>
+            </Box>
+          )}
 
           {/* Hamburger Menu (Visible on Mobile) */}
           {isMobile && (
@@ -126,7 +137,6 @@ const Navbar = () => {
             flexDirection: "column",
             justifyContent: "space-between",
           }}
-          // onClick is removed from here to avoid unwanted drawer closing on background clicks
         >
           {/* Վերևի մաս */}
           <Box>
@@ -151,7 +161,7 @@ const Navbar = () => {
                     component={NavLink}
                     to={path}
                     selected={location.pathname === path}
-                    onClick={toggleDrawer(false)} // close drawer on menu item click
+                    onClick={toggleDrawer(false)}
                     sx={{
                       "&.Mui-selected": {
                         bgcolor: theme.palette.action.selected,
@@ -164,11 +174,36 @@ const Navbar = () => {
                   </ListItemButton>
                 </ListItem>
               ))}
+              <ListItem disablePadding key="admin-login">
+                <ListItemButton
+                  component={NavLink}
+                  to="/admin-login"
+                  selected={location.pathname === "/admin-login"}
+                  onClick={toggleDrawer(false)}
+                  sx={{
+                    "&.Mui-selected": {
+                      bgcolor: theme.palette.action.selected,
+                      fontWeight: "bold",
+                      color: theme.palette.primary.main,
+                    },
+                  }}
+                >
+                  <ListItemText primary={t("admin.login", "Admin Login")} />
+                </ListItemButton>
+              </ListItem>
             </List>
           </Box>
 
-          {/* Booking */}
-          {/* <Box sx={{ p: 2 }}>
+          {/* Booking & Admin (Mobile) */}
+          <Box
+            sx={{
+              p: 2,
+              display: "flex",
+              gap: 2,
+              flexDirection: "column",
+              justifyContent: "space-between",
+            }}
+          >
             <Button
               component={RouterLink}
               to="/booking"
@@ -179,7 +214,17 @@ const Navbar = () => {
             >
               {t("book_now")}
             </Button>
-          </Box> */}
+            <Button
+              component={RouterLink}
+              to="/admin-login"
+              variant="outlined"
+              color="primary"
+              fullWidth
+              sx={{ borderRadius: 2 }}
+            >
+              {t("admin.login")}
+            </Button>
+          </Box>
         </Box>
       </Drawer>
     </>
