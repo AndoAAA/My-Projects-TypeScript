@@ -141,15 +141,16 @@
     }
   },
   "meta": {
-    "homeTitle": "Welcome to Spectra Dental Clinic",
-    "homeDescription": "Experience quality healthcare services at our trusted clinic.",
+    "homeTitle": "Spectra Dental Clinic in Yerevan – Quality Dental Services",
+    "homeDescription": "Providing professional dental services in Yerevan including teeth whitening, implants, orthodontics, and more.",
     "aboutTitle": "About Us - Spectra Dental Clinic",
-    "aboutDescription": "Learn more about our experienced team, values, and mission.",
-    "contactTitle": "Contact the Clinic - Spectra Dental Clinic",
-    "contactDescription": "Get in touch with us for inquiries and appointments. We are always ready to help.",
-    "servicesTitle": "Our Services - Spectra Dental Clinic",
-    "servicesDescription": "Discover our professional services tailored for your health needs."
+    "aboutDescription": "Meet our experienced team of dentists committed to delivering high-quality dental care in Yerevan.",
+    "contactTitle": "Contact Us - Spectra Dental Clinic",
+    "contactDescription": "Reach out to Spectra Dental Clinic in Yerevan for consultations, appointments, and inquiries.",
+    "servicesTitle": "Dental Services in Yerevan | Spectra Dental Clinic",
+    "servicesDescription": "Explore our dental treatments including teeth whitening, implants, veneers, orthodontics, and more in Yerevan."
   },
+
   "stats": {
     "patients": "Patients",
     "implants": "Implants",

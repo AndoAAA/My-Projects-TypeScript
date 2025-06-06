@@ -48,7 +48,13 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Seo doctors={doctors} />
+      <Seo
+        doctors={doctors}
+        titleKey="meta.homeTitle"
+        descriptionKey="meta.homeDescription"
+        canonical="https://www.spectradentalclinic.com/"
+        keywords="stomatological services in Yerevan, dental clinic Yerevan, teeth whitening Yerevan, implants, veneers, orthodontics"
+      />
 
       {/* Hero Section */}
       <Box

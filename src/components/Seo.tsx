@@ -35,17 +35,13 @@ const Seo: React.FC<SeoProps> = ({
 }) => {
   const { t, i18n } = useTranslation();
 
-  // Կարգավորում fallback-ներով
   const title = t(titleKey, { defaultValue: titleFallback });
   const description = t(descriptionKey, { defaultValue: descriptionFallback });
 
-  // Համակարգել canonical URL-ը ըստ լեզվի
-  // Օրինակ՝ https://www.spectradentalclinic.com/en կամ /ru
+  const language = i18n.language || "hy";
   const canonicalUrl =
-    canonical +
-    (i18n.language && i18n.language !== "hy" ? `/${i18n.language}` : "");
+    canonical + (language && language !== "hy" ? `/${language}` : "");
 
-  // Structured data organization
   const structuredDataOrganization = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -70,7 +66,6 @@ const Seo: React.FC<SeoProps> = ({
     email: "spectraclinicarmenia@gmail.com",
   };
 
-  // Structured data medical organization with doctors
   const structuredDataMedical = {
     "@context": "https://schema.org",
     "@type": "MedicalOrganization",
@@ -85,7 +80,6 @@ const Seo: React.FC<SeoProps> = ({
     })),
   };
 
-  // Service schema, եթե դա service page է
   const structuredDataService = isServicePage
     ? {
         "@context": "https://schema.org",
@@ -121,12 +115,58 @@ const Seo: React.FC<SeoProps> = ({
       }
     : null;
 
+  const structuredDataFAQ = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Do you offer teeth whitening?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, we offer professional teeth whitening using safe, proven methods.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where is Spectra Dental Clinic located?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "We are located in Yerevan, Dro 5, postal code 0051.",
+        },
+      },
+    ],
+  };
+
   return (
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="canonical" href={canonicalUrl} />
+
+      {/* hreflang tags */}
+      <link
+        rel="alternate"
+        hrefLang="en"
+        href="https://www.spectradentalclinic.com/en"
+      />
+      <link
+        rel="alternate"
+        hrefLang="ru"
+        href="https://www.spectradentalclinic.com/ru"
+      />
+      <link
+        rel="alternate"
+        hrefLang="hy"
+        href="https://www.spectradentalclinic.com/hy"
+      />
+      <link
+        rel="alternate"
+        hrefLang="x-default"
+        href="https://www.spectradentalclinic.com/"
+      />
 
       {/* Open Graph */}
       <meta property="og:title" content={title} />
@@ -167,6 +207,13 @@ const Seo: React.FC<SeoProps> = ({
           }}
         />
       )}
+      {/* FAQ structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredDataFAQ),
+        }}
+      />
     </Helmet>
   );
 };
