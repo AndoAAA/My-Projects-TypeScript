@@ -220,7 +220,7 @@
   "please_select_time": "Please select a time",
   "booking_success": "Booking successfully created!",
   "booking_error": "There was an error processing your booking. Please try again.",
-  "book_now": "Book Appointment",
+  "book_now": "Book An Appointment",
   "only_working_hours": "Booking is available only from Monday to Saturday, between 09:00 and 21:00.",
   "select_valid_date_time": "Please select a valid date and time.",
   "select_date": "Select date",
