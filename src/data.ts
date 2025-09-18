@@ -1,0 +1,195 @@
+import dentalImplantsImg from "./assets/img/dentalImplantsImg.jpg";
+import cosmeticCareImg from "./assets/img/CosmeticCare.jpg";
+import cosmeticCareIcon from "./assets/icons/cosmeticCareIcon.jpg";
+import denturesImg from "./assets/img/denturesImg.jpg";
+import denturesIcon from "./assets/icons/denturesIcon.webp";
+import surgicalProceduresImg from "./assets/img/surgicalProceduresImg.jpg";
+import surgicalProceduresIcon from "./assets/icons/SurgicalProcedures.webp";
+import pediatricDentistryImg from "./assets/img/pediatricDentistryImg.jpg";
+import pediatricDentistryIcon from "./assets/icons/pediatricDentistryIcon.webp";
+import endodonticsImg from "./assets/img/endodonticsImg.jpg";
+import diagnosticIcon from "./assets/icons/diagnosticIcon.webp";
+import diagnosticImg from "./assets/img/diagnosticImg.webp";
+import implantIcon from "./assets/icons/implantIcon.webp";
+import venirIcon from "./assets/icons/venirIcon.webp";
+import venirImg from "./assets/img/venirImg.jpg";
+import therapyIcon from "./assets/icons/therapyIcon.webp";
+import therapyImg from "./assets/img/therapyImg.jpg";
+import endodonticsIcon from "./assets/icons/endodonticsIcon.webp";
+import orthopedicsIcon from "./assets/icons/orthopedicsIcon.webp";
+import orthopedicsImg from "./assets/img/orthopedicsImg.jpg";
+import orthodonticsIcon from "./assets/icons/orthodonticsIcon.webp";
+import orthodonticsImg from "./assets/img/orthodonticsImg.jpg";
+import ManukImage0 from "./assets/doctors/Manuk4.webp";
+import ManukImage1 from "./assets/doctors/Manuk1.webp";
+import ManukImage2 from "./assets/doctors/Manuk2.webp";
+import ManukImage3 from "./assets/doctors/Manuk3.webp";
+import ManukImage4 from "./assets/doctors/Manuk0.webp";
+import GayaneImage0 from "./assets/doctors/Gayane8.webp";
+import GayaneImage1 from "./assets/doctors/Gayane1.webp";
+import GayaneImage2 from "./assets/doctors/Gayane2.webp";
+import GayaneImage3 from "./assets/doctors/Gayane3.webp";
+import GayaneImage4 from "./assets/doctors/Gayane4.webp";
+import AghasiImage0 from "./assets/doctors/Aghasi5.webp";
+import AghasiImage1 from "./assets/doctors/Aghasi1.webp";
+import AghasiImage2 from "./assets/doctors/Aghasi2.webp";
+import AghasiImage3 from "./assets/doctors/Aghasi3.webp";
+import AghasiImage4 from "./assets/doctors/Aghasi4.webp";
+
+export const services = [
+  {
+    id: "10",
+    title: "diagnostics",
+    image: diagnosticImg,
+    icon: diagnosticIcon,
+    consultation: {
+      label: "Consultation",
+      price: " For Free ",
+    },
+    xRay: {
+      label: "X-ray RVG)",
+      price: "֏ 1.000 ",
+    },
+  },
+  {
+    id: "0",
+    title: "dentalImplants",
+    image: dentalImplantsImg,
+    icon: implantIcon,
+    price: "֏ 140.000",
+  },
+  {
+    id: "1",
+    title: "cosmeticCare",
+    image: cosmeticCareImg,
+    icon: cosmeticCareIcon,
+    price: "֏ 70.000",
+  },
+  {
+    id: "2",
+    title: "veneer",
+    image: venirImg,
+    icon: venirIcon,
+    price: "֏ 80.000",
+  },
+  {
+    id: "3",
+    title: "therapy",
+    image: therapyIcon,
+    icon: therapyImg,
+    price: "֏ 15.000",
+    aesthetic: {
+      label: "Aesthetic restoration of teeth",
+      price: "֏ 15.000 ",
+    },
+    compositeVeneer: {
+      label: "Aesthetic restoration of teeth",
+      price: "֏ 20.000 ",
+    },
+  },
+  {
+    id: "4",
+    title: "endodontics",
+    image: endodonticsImg,
+    icon: endodonticsIcon,
+    price: "֏ 10.000",
+  },
+  {
+    id: "5",
+    title: "dentures",
+    image: denturesImg,
+    icon: denturesIcon,
+    price: "֏ 65.000",
+  },
+  {
+    id: "6",
+    title: "surgicalProcedures",
+    image: surgicalProceduresImg,
+    icon: surgicalProceduresIcon,
+    price: "֏ 5.000",
+    extraction: {
+      label: "Extraction of teeth",
+      price: "(from) ֏ 5.000 ",
+    },
+    remove: {
+      label: "Removal of impacted teeth ",
+      price: "(from) ֏ 20.000 ",
+    },
+    gingival: {
+      label: "Gingival plasty",
+      price: "(from) ֏ 30.000 ",
+    },
+  },
+  {
+    id: "7",
+    title: "pediatricDentistry",
+    image: pediatricDentistryImg,
+    icon: pediatricDentistryIcon,
+    price: "֏ 3.000",
+    milkToothExtraction: {
+      label: "Milk tooth extraction",
+      price: "֏ 3.000",
+    },
+    toothFiling: {
+      label: "Tooth filing",
+      price: "֏ 8.000",
+    },
+  },
+
+  {
+    id: "8",
+    title: "orthopedics",
+    image: orthopedicsImg,
+    icon: orthopedicsIcon,
+    price: "֏ 30.000",
+    metalCeramicCrown: {
+      label: "Metal ceramic crown",
+      price: "֏ 30.000",
+    },
+    zirconiaCrown: {
+      label: "Zirconia crown",
+      price: "֏ 65.000",
+    },
+    pressCeramicCrown: {
+      label: "Press ceramic crown",
+      price: "֏ 80.000",
+    },
+  },
+  {
+    id: "9",
+    title: "orthodontics",
+    image: orthodonticsImg,
+    icon: orthodonticsIcon,
+    price: "֏ 120.000",
+  },
+];
+
+export const doctors = [
+  {
+    id: "0",
+    images: [ManukImage0, ManukImage1, ManukImage2, ManukImage3, ManukImage4],
+    key: "manuk",
+  },
+  {
+    id: "1",
+    images: [
+      GayaneImage0,
+      GayaneImage1,
+      GayaneImage2,
+      GayaneImage3,
+      GayaneImage4,
+    ],
+    key: "gayane",
+  },
+  {
+    id: "2",
+    images: [
+      AghasiImage0,
+      AghasiImage1,
+      AghasiImage2,
+      AghasiImage3,
+      AghasiImage4,
+    ],
+    key: "aghasi",
+  },
+];

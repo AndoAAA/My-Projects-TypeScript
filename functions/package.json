@@ -1,0 +1,24 @@
+{
+  "name": "functions",
+  "engines": {
+    "node": "18"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "serve": "firebase emulators:start --only functions",
+    "deploy": "firebase deploy --only functions",
+    "lint": "eslint .",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "firebase-admin": "^11.10.1",
+    "firebase-functions": "^4.4.1",
+    "nodemailer": "^7.0.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.3.1",
+    "@types/nodemailer": "^6.4.8"
+  }
+}

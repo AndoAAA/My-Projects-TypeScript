@@ -1,0 +1,255 @@
+{
+  "home": {
+    "title": "Welcome to",
+    "text": "Your health is our priority."
+  },
+  "footer": {
+    "contact": "Contact Us",
+    "phone": "Phone",
+    "email": "Email",
+    "workingHours": "Mon - Sat : 09:00-21:00 ",
+    "workDays": "Working Hours",
+    "address": "5 Dro Street, Yerevan",
+    "callUs": "Call Us",
+    "writeOnWhatsApp": "Message on WhatsApp",
+    "writeOnViber": "Write on Viber",
+    "sendEmail": "Send an email",
+    "social": {
+      "facebook": "https://facebook.com/spectradentalclinic",
+      "instagram": "https://instagram.com/spectradentalclinic"
+    }
+  },
+  "navbar": {
+    "home": "Home",
+    "contact": "Contact Us",
+    "about": "About Us",
+    "service": "Our Services",
+    "price": "Prices"
+  },
+  "header": {
+    "address": "5 Dro Street, Yerevan"
+  },
+  "contactForm": {
+    "nameRequired": "Name is required",
+    "telRequired": "Telephone number is required",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email address",
+    "messageRequired": "Message is required",
+    "success": "Your message was sent successfully!",
+    "failure": "There was an error sending your message.",
+    "sendBtn": "Send Message",
+    "title": "Contact Us",
+    "name": "Name",
+    "tel": "Telephone",
+    "message": "Message",
+    "email": "Email",
+    "writeOnWhatsApp": "Write on WhatsApp",
+    "writeOnViber": "Write on Viber"
+  },
+  "services": {
+    "diagnostics": {
+      "title": "Diagnostics",
+      "consultation": {
+        "label": "Consultation",
+        "price": "For Free"
+      },
+      "xRay": {
+        "label": "X-ray (RVG)",
+        "price": "֏ 1.000 "
+      },
+      "description": "The foundation of a healthy smile is accurate diagnosis. We use advanced technologies and experienced approaches to treat problems more effectively."
+    },
+    "dentalImplants": {
+      "title": "Dental Implants",
+      "description": "Tooth replacement with high-quality implants that look and function naturally. Restore your full smile with confidence and security."
+    },
+    "cosmeticCare": {
+      "title": "Whitening (Opalescence Boost)",
+      "description": "Safe and effective whitening methods for a smooth, bright, and healthy smile."
+    },
+    "veneer": {
+      "title": "Veneer (Emax)",
+      "description": "Thin ceramic veneers to shape the perfect smile. The ideal solution for aesthetic imperfections without extensive procedures."
+    },
+    "therapy": {
+      "title": "Therapy",
+      "aesthetic": {
+        "label": "Aesthetic restoration of teeth",
+        "price": "(from) ֏ 15.000 "
+      },
+      "compositeVeneer": {
+        "label": "Composite veneer",
+        "price": "(from) ֏ 20.000 "
+      },
+      "description": "There’s no need to endure pain — with modern therapeutic treatments, we ensure healthy teeth without fear or discomfort."
+    },
+    "dentures": {
+      "title": "Dentures",
+      "description": "Modern and comfortable solutions for replacing missing teeth — with elegant, functional, and durable results."
+    },
+    "surgicalProcedures": {
+      "title": "Dental Surgery",
+      "extraction": {
+        "label": "Extraction of teeth",
+        "price": "(from) ֏ 5.000 "
+      },
+      "remove": {
+        "label": "Removal of impacted teeth ",
+        "price": "(from) ֏ 20.000 "
+      },
+      "gingival": {
+        "label": "Gingival plasty",
+        "price": "(from) ֏ 30.000 "
+      },
+      "description": "Complex and surgical procedures are performed by experienced specialists — with accurate diagnostics, safety, and a professional approach."
+    },
+    "pediatricDentistry": {
+      "title": "Pediatric Dentistry",
+      "description": "For little ones — with great care. Children’s dental care in a nurturing atmosphere, playful environment, and completely stress-free.",
+      "milkToothExtraction": {
+        "label": "Milk tooth extraction",
+        "price": "(from) ֏ 3.000"
+      },
+      "toothFiling": {
+        "label": "Tooth filing",
+        "price": "(from) ֏ 8.000"
+      }
+    },
+    "endodontics": {
+      "title": "Endodontics",
+      "description": "Root canal treatment performed with exceptional precision — a painless and effective method to preserve your natural tooth for as long as possible."
+    },
+    "orthopedics": {
+      "title": "Orthopedics",
+      "description": "Orthopedics in dentistry focuses on the restoration of missing teeth using prosthetics such as crowns and bridges.",
+      "metalCeramicCrown": {
+        "label": "Metal ceramic crown",
+        "price": "(from) ֏ 30.000"
+      },
+      "zirconiaCrown": {
+        "label": "Zirconia crown",
+        "price": "(from) ֏ 65.000"
+      },
+      "pressCeramicCrown": {
+        "label": "Press ceramic crown",
+        "price": "(from) ֏ 80.000"
+      }
+    },
+    "orthodontics": {
+      "title": "Orthodontics",
+      "description": "Orthodontics focuses on the correction of irregularities in teeth and jaws using braces, aligners, and other corrective devices."
+    }
+  },
+  "meta": {
+    "homeTitle": "Spectra Dental Clinic in Yerevan – Quality Dental Services",
+    "homeDescription": "Providing professional dental services in Yerevan including teeth whitening, implants, orthodontics, and more.",
+    "aboutTitle": "About Us - Spectra Dental Clinic",
+    "aboutDescription": "Meet our experienced team of dentists committed to delivering high-quality dental care in Yerevan.",
+    "contactTitle": "Contact Us - Spectra Dental Clinic",
+    "contactDescription": "Reach out to Spectra Dental Clinic in Yerevan for consultations, appointments, and inquiries.",
+    "servicesTitle": "Dental Services in Yerevan | Spectra Dental Clinic",
+    "servicesDescription": "Explore our dental treatments including teeth whitening, implants, veneers, orthodontics, and more in Yerevan."
+  },
+
+  "stats": {
+    "patients": "Patients",
+    "implants": "Implants",
+    "crowns": "Crowns"
+  },
+  "about": {
+    "paragraph": "Welcome to <span>Spectra Dental Clinic</span> – where healthy and confident smiles begin. High-quality dental services in a comfortable environment, with modern solutions and personalized care.",
+    "names": {
+      "manuk": {
+        "name": "Doctor Manuk Melkonyan",
+        "founder": "Founder of the clinic",
+        "description": "Manuk Melkonyan graduated from the Faculty of Dentistry at Yerevan State Medical University named after M. Heratsi (2004–2009), then continued his studies in the university’s residency program, specializing in family dentistry (2009–2011). From 2011 to 2013, he served in the Armenian Army as a dental surgeon, combining his professional duties with military responsibility. Throughout his professional development, he has undergone training in Italy, France, and Spain, and participated in numerous international congresses and conferences. Dr. Melkonyan is a member of the Armenian Endodontists Association and has 14 years of professional experience, having helped tens of thousands of patients regain their healthy and confident smile."
+      },
+      "gayane": {
+        "name": "Doctor Gayane Barseghyan",
+        "description": "Gayane Barseghyan graduated from the Faculty of Dentistry at Yerevan State Medical University named after M. Heratsi (1980–1985), then completed an internship in general dentistry (1985–1986). In 1993, she received a qualification in pediatric dentistry, and in 1999–2000, she further specialized in the field of pediatric general dental practice. Throughout her long career, Dr. Barseghyan has completed professional training in France, Poland, and Georgia, and has participated in numerous international conferences and professional events. She is a member of the Armenian Endodontists Association and brings over 40 years of experience, having earned a reputation for trust and warmth among both children and adult patients. Tens of thousands of satisfied patients stand as the best testament to her professional dedication."
+      },
+      "aghasi": {
+        "name": "Doctor Aghasi Gabrielyan",
+        "description": "Aghasi Gabrielyan studied at the Faculty of Dentistry of Yerevan State Medical University named after M. Heratsi from 2004 to 2009, and then continued his postgraduate education in orthodontics from 2009 to 2012. From 2012 to 2014, he served in the Armenian Army as a dental surgeon, combining his professional skills with military duties. Dr. Gabrielyan has regularly participated in professional conferences, deepening his knowledge in modern orthodontic methods and technologies. He has 13 years of professional experience and is known for his high standards and results-driven approach in clinical practice."
+      }
+    },
+    "doctors": "Our doctors",
+    "moreInfo": "More Info",
+    "back": "Back",
+    "sterilization": "Sterilization"
+  },
+  "price": {
+    "title": "Prices",
+    "start": "(from)"
+  },
+  "sterilization": "At our clinic, sterilization is treated with the utmost importance to ensure the safety of our patients and staff. All instruments undergo a multi-step sterilization process, including mechanical cleaning, chemical treatment, and high-pressure autoclaving. We strictly follow international standards to eliminate any risk of cross-contamination and maintain the highest level of hygiene. Your health is our top priority.",
+  "selectDoctor": "Select a doctor",
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": [
+      {
+        "question": "Do you accept insurance?",
+        "answer": "Yes, we work with several major insurance providers."
+      },
+      {
+        "question": "How do I book an appointment?",
+        "answer": "You can book an appointment via our website or call us directly."
+      },
+      {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept cash, credit cards, and online payments."
+      }
+    ]
+  },
+  "booking_form_title": "Online Appointment",
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone Number",
+  "select_doctor": "Select Doctor",
+  "select_service": "Select Service",
+  "none": "None",
+  "date": "Date",
+  "time": "Time",
+  "notes": "Additional notes",
+  "please_enter_name": "Please enter your name",
+  "please_enter_valid_email": "Please enter a valid email",
+  "please_enter_valid_phone": "Please enter a valid phone number",
+  "please_select_doctor": "Please select a doctor",
+  "please_select_service": "Please select a service",
+  "please_select_valid_date": "Please select a valid date",
+  "please_select_time": "Please select a time",
+  "booking_success": "Booking successfully created!",
+  "booking_error": "There was an error processing your booking. Please try again.",
+  "book_now": "Book An Appointment",
+  "only_working_hours": "Booking is available only from Monday to Saturday, between 09:00 and 21:00.",
+  "select_valid_date_time": "Please select a valid date and time.",
+  "select_date": "Select date",
+  "select_time": "Select time",
+  "no_booking_on_sunday": "Booking is not available on Sundays.",
+  "please_select_valid_time": "Please select a time between 09:00 and 21:00.",
+  "admin": {
+    "panel_title": "Admin Panel",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "doctor": "Doctor",
+    "service": "Service",
+    "date": "Date",
+    "time": "Time",
+    "note": "Note",
+    "created_at": "Created At",
+    "actions": "Actions",
+    "delete": "Delete Booking",
+    "confirm_delete": "Are you sure you want to delete this booking?",
+    "error_fetch": "Failed to load bookings",
+    "error_delete": "Failed to delete booking",
+    "error_load": "Failed to load bookings",
+    "no_bookings": "No bookings found",
+    "logout": "Logout",
+    "logout_success": "Logged out successfully",
+    "login": "Admin Login",
+    "username": "Username",
+    "password": "Password",
+    "login_error": "Incorrect username or password"
+  }
+}

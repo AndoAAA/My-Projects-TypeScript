@@ -1,0 +1,155 @@
+import React, { useEffect, useState } from "react";
+import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import StatsSection from "../components/Stats";
+import ServicesSection from "../components/ServicesSection";
+import DoctorsSection from "../components/DoctorsSection";
+import useInView from "../hooks/useInView";
+import { colors } from "../assets/colors/colors";
+import Carousel from "../components/Carousel";
+import mainImg1 from "../assets/main1.webp";
+import mainImg2 from "../assets/main2.webp";
+import mainImg3 from "../assets/main3.webp";
+import mainImg4 from "../assets/main4.webp";
+import mainImg5 from "../assets/main5.webp";
+import mainImg6 from "../assets/main6.webp";
+import mainImg7 from "../assets/main7.webp";
+import mainImg8 from "../assets/main8.webp";
+import Loader from "../components/Loader";
+import Seo from "../components/Seo";
+
+const images = [
+  { src: mainImg1, alt: "Clinic Hall" },
+  { src: mainImg2, alt: "Doctor with patient" },
+  { src: mainImg3, alt: "Clinic Hall" },
+  { src: mainImg4, alt: "Clinic Hall" },
+  { src: mainImg5, alt: "Clinic Hall" },
+  { src: mainImg6, alt: "Clinic Hall" },
+  { src: mainImg7, alt: "Clinic Hall" },
+  { src: mainImg8, alt: "Clinic Hall" },
+];
+
+const doctors = [{ key: "manuk" }, { key: "gayane" }, { key: "aghasi" }];
+
+const Home: React.FC = () => {
+  const { t }: { t: (key: string) => string } = useTranslation();
+  const [statsRef, statsVisible] = useInView({ threshold: 0.1 });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <Loader />;
+
+  return (
+    <>
+      <Seo
+        doctors={doctors}
+        titleKey="meta.homeTitle"
+        descriptionKey="meta.homeDescription"
+        canonical="https://www.spectradentalclinic.com/"
+        keywords="stomatological services in Yerevan, dental clinic Yerevan, teeth whitening Yerevan, implants, veneers, orthodontics"
+      />
+
+      {/* Hero Section */}
+      <Box
+        sx={{
+          px: 2,
+          py: 5,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          textAlign: "center",
+          gap: 4,
+        }}
+      >
+        <Box>
+          {/* Animated Title */}
+          <motion.div
+            initial={{ x: "-100vw", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 50,
+              damping: 25,
+              duration: 1.5,
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: { xs: "column", sm: "row" },
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 1,
+              }}
+            >
+              <Typography
+                variant="h4"
+                fontWeight="bold"
+                component="h1"
+                gutterBottom
+                sx={{
+                  fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
+                  textAlign: "center",
+                }}
+              >
+                {t("home.title")}
+              </Typography>
+              <Typography
+                variant="h4"
+                component="h2"
+                fontWeight="bold"
+                gutterBottom
+                sx={{
+                  color: colors.darkBlue,
+                  fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
+                  textAlign: "center",
+                }}
+              >
+                SPECTRA
+              </Typography>
+            </Box>
+          </motion.div>
+
+          {/* Animated Subtitle */}
+          <motion.div
+            initial={{ x: "100vw", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 50,
+              damping: 25,
+              duration: 1.5,
+            }}
+          >
+            <Typography variant="h6">{t("home.text")}</Typography>
+          </motion.div>
+        </Box>
+
+        {/* Carousel Section */}
+        <Carousel
+          images={images.map((img) => img.src)}
+          altTexts={images.map((img) => img.alt)}
+          mobileHeight={250}
+        />
+      </Box>
+
+      {/* Stats, Services, Doctors */}
+      <Box sx={{ px: 4, py: 0 }}>
+        <Box ref={statsRef}>
+          <StatsSection isVisible={statsVisible} />
+        </Box>
+        <ServicesSection />
+        <DoctorsSection />
+      </Box>
+    </>
+  );
+};
+
+export default Home;
